@@ -100,7 +100,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .shelf::after{content:"";position:absolute;left:0;right:0;bottom:-14px;height:14px;border-radius:4px;
   background:linear-gradient(#9A6A3E, var(--wood1) 30%, var(--wood2));box-shadow:0 10px 18px var(--shade), inset 0 2px 0 rgba(255,255,255,.18)}
 
-.tube{position:relative;flex:0 0 auto;width:var(--tw);height:calc(var(--tw) * 3.3);transition:transform .18s ease}
+.tube{position:relative;flex:0 0 auto;width:var(--tw);height:calc(var(--tw) * var(--th, 3.3));transition:transform .18s ease}
 .tube::before{content:"";position:absolute;left:-4px;right:-4px;top:0;height:8px;border-radius:6px;background:var(--edge);z-index:2}
 .glass{position:absolute;left:0;right:0;top:4px;bottom:0;border:3px solid var(--edge);border-top:none;
   border-radius:0 0 calc(var(--tw) / 2) calc(var(--tw) / 2);background:var(--glass);overflow:hidden;
@@ -109,7 +109,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
   background:linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.04));z-index:2;pointer-events:none}
 .fill{position:absolute;left:3px;right:3px;bottom:3px;top:13%;display:flex;flex-direction:column-reverse;
   border-radius:0 0 calc(var(--tw) / 2) calc(var(--tw) / 2);overflow:hidden}
-.layer{position:relative;flex:0 0 25%;transform-origin:bottom;display:grid;place-items:center;
+.layer{position:relative;flex:0 0 calc(100% / var(--cap, 4));transform-origin:bottom;display:grid;place-items:center;
   background-image:linear-gradient(90deg,rgba(255,255,255,.28),rgba(255,255,255,0) 45%,rgba(0,0,0,.14))}
 .layer.top::before{content:"";position:absolute;left:0;right:0;top:-1px;height:5px;background:rgba(255,255,255,.35);border-radius:50%}
 .layer .sym{font-size:calc(var(--tw) * .36);line-height:1;color:rgba(0,0,0,.55);font-weight:800;z-index:1}
@@ -277,6 +277,7 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
   box-shadow:0 3px 0 rgba(0,0,0,.35)}
 .lv .st{display:flex;gap:1px;margin-top:4px;font-size:10px;color:rgba(255,255,255,.18)}
 .lv .st .on{color:var(--gold)}
+.lv .cap{position:absolute;top:3px;right:5px;font-size:10px;font-weight:800;color:var(--magic)}
 .lv.cur{background:linear-gradient(var(--gold-hi), var(--gold) 45%, var(--gold-lo));color:var(--gold-ink);box-shadow:0 3px 0 var(--gold-edge), 0 0 16px rgba(244,197,91,.45)}
 .lv.cur .st{color:rgba(58,35,6,.3)}
 .lv:disabled{color:var(--faint);box-shadow:none;background:rgba(51,40,90,.5)}
@@ -350,10 +351,26 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
   background:radial-gradient(circle at 35% 30%, var(--gold-hi), var(--gold) 50%, var(--gold-lo))}
 #achPop small{display:block;color:var(--gold);font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
 #achPop b{display:block;font-size:17px;line-height:1.15;white-space:nowrap}
+#achPop small{white-space:nowrap}
 #achPop small .coin{vertical-align:-.15em}
 .btn-danger{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;border-radius:20px;
   background:linear-gradient(#FF9C9C,#E5484D);color:#3A0A0C;font-weight:800;font-size:20px;box-shadow:0 5px 0 #8E1F23}
 .btn-danger:active{transform:translateY(3px);box-shadow:0 2px 0 #8E1F23}
+
+/* fim de capítulo */
+.cd-medal{position:relative;width:150px;height:150px;margin:-6px auto 4px;display:grid;place-items:center}
+.cd-medal .rays{position:absolute;inset:0;border-radius:50%;
+  background:repeating-conic-gradient(from 0deg, rgba(244,197,91,.35) 0 10deg, transparent 10deg 30deg);
+  -webkit-mask-image:radial-gradient(circle, #000 30%, transparent 70%);mask-image:radial-gradient(circle, #000 30%, transparent 70%);
+  animation:spin 14s linear infinite}
+.cd-medal .disc{position:relative;width:92px;height:92px;border-radius:50%;display:grid;place-items:center;font-size:46px;color:var(--gold-ink);
+  background:radial-gradient(circle at 35% 30%, var(--gold-hi), var(--gold) 50%, var(--gold-lo));
+  box-shadow:0 6px 0 var(--gold-edge), 0 0 30px rgba(244,197,91,.55)}
+.cd-kicker{margin:0 0 2px !important;color:var(--gold) !important;font-weight:800;font-size:13px !important;letter-spacing:.2em;text-transform:uppercase}
+.cd-name{font-size:40px !important;color:var(--ink) !important;margin-bottom:12px !important}
+.cd-next{font-size:15px !important}
+.cd-next b{color:var(--ink)}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 /* bônus diário */
 .gift{font-size:64px;color:var(--gold);margin:-4px 0 2px;animation:bob 2.4s ease-in-out infinite;filter:drop-shadow(0 0 16px rgba(244,197,91,.45))}
@@ -395,7 +412,7 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
 @media (prefers-reduced-motion: reduce){
   .layer.drop,.tube.no,.tube.hint .glass,.cork.pop,.tube.done .fill::after,
   .flask .wave,.flask .bub,.halo,.hero-art .flask,.side-tube,.win-stars .ico.on,.overlay.show .card,.screen.show,
-  .layer.reveal,.gift,.day.today{animation:none}
+  .layer.reveal,.gift,.day.today,.cd-medal .rays{animation:none}
   #motes{display:none}
   .tube{transition:none}
 }
@@ -629,6 +646,17 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
   </div>
 </div>
 
+<div class="overlay" id="chapterDone">
+  <div class="card">
+    <div class="cd-medal"><span class="rays"></span><span class="disc"><svg class="ico"><use href="#i-trophy"/></svg></span></div>
+    <p class="cd-kicker" id="cdKicker"></p>
+    <h2 class="cd-name" id="cdName"></h2>
+    <div class="reward" id="cdReward"></div>
+    <p class="cd-next" id="cdNext"></p>
+    <button class="btn-gold" id="btnCdGo"></button>
+  </div>
+</div>
+
 <div class="overlay" id="daily">
   <div class="card">
     <svg class="ico gift"><use href="#i-gift"/></svg>
@@ -669,7 +697,12 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
 <script src="native.js"></script>
 <script>
 (async function(){
-const CAP = 4, MAX_LEVEL = 100, HINT_COST = 15, INTER_EVERY = 3, MYSTERY_FROM = 21;
+const MAX_LEVEL = 100, HINT_COST = 15, INTER_EVERY = 3, MYSTERY_FROM = 21;
+let CAP = 4;   // camadas por frasco no nível atual (3, 4 ou 5)
+// Frascos grandes (5 camadas) nos níveis 15, 25, 35...; pequenos (3 camadas) nos níveis 28, 38, 48...
+const capOf = n => n >= 15 && n % 10 === 5 ? 5 : n >= 28 && n % 10 === 8 ? 3 : 4;
+const tubeH = () => .8 + .625 * CAP;   // altura do frasco em larguras (3,3 para 4 camadas)
+const CHAPTER_BONUS = c => 100 + c * 25;
 const DAILY = [20, 30, 40, 50, 60, 80, 150];
 const CHALLENGE_REWARD = 100;
 const SYMS = ['●','▲','■','◆','★','✚','♥','✖','☾','✿'];
@@ -758,7 +791,7 @@ loadProgress(.12);
 const SAVE_KEY = 'alquimix-v1';
 let save = { unlocked:1, coins:0, sound:true, music:true, vib:true, noAds:false, owned:['classico'], theme:'classico', sym:false, stars:{},
   daily:{ last:'', streak:0 }, challenge:{ last:'', count:0 }, ach:{},
-  stats:{ corks:0, reveals:0, clean:0, bestStreak:0 } };
+  stats:{ corks:0, reveals:0, clean:0, bestStreak:0 }, chapters:{} };
 try { const s = JSON.parse(await N.storage.get(SAVE_KEY)); if (s) save = Object.assign(save, s); } catch(e){}
 function persist(){ N.storage.set(SAVE_KEY, JSON.stringify(save)).catch(() => {}); }
 const palette = () => THEMES[save.theme].colors;
@@ -811,30 +844,36 @@ function solve(start, limit){
 
 // par = jogadas da solução encontrada; base para as estrelas
 const levelCache = {}, levelPar = {};
-// Embaralha k cores com a semente e testa se o solucionador resolve. Retorna { tubes, par }.
-function generate(seed, k){
-  let last = null;
-  for (let attempt = 0; attempt < 40; attempt++){
-    const r = rng(seed * 7919 + attempt * 104729);
-    const units = []; for (let c = 0; c < k; c++) for (let i = 0; i < CAP; i++) units.push(c);
-    for (let i = units.length - 1; i > 0; i--){ const j = Math.floor(r() * (i + 1)); [units[i], units[j]] = [units[j], units[i]]; }
-    const tubes = []; for (let c = 0; c < k; c++) tubes.push(units.slice(c * CAP, c * CAP + CAP));
-    tubes.push([], []); last = tubes;
-    if (tubes.some(t => t.length && isDone(t))) continue;
-    const path = solve(tubes, 40000);
-    if (path) return { tubes, par:path.length };
+// Embaralha k cores (cap camadas cada) com a semente e testa se o solucionador resolve.
+// Se não achar solução com 2 frascos vazios, tenta com 3. Retorna { tubes, par }.
+function generate(seed, k, cap){
+  CAP = cap; let last = null;
+  for (let empties = 2; empties <= 3; empties++){
+    for (let attempt = 0; attempt < 30; attempt++){
+      const r = rng(seed * 7919 + attempt * 104729 + (empties - 2) * 7);
+      const units = []; for (let c = 0; c < k; c++) for (let i = 0; i < cap; i++) units.push(c);
+      for (let i = units.length - 1; i > 0; i--){ const j = Math.floor(r() * (i + 1)); [units[i], units[j]] = [units[j], units[i]]; }
+      const tubes = []; for (let c = 0; c < k; c++) tubes.push(units.slice(c * cap, c * cap + cap));
+      for (let e = 0; e < empties; e++) tubes.push([]);
+      last = tubes;
+      if (tubes.some(t => t.length && isDone(t))) continue;
+      const path = solve(tubes, 40000);
+      if (path) return { tubes, par:path.length };
+    }
   }
   return { tubes:last, par:0 };
 }
 function makeLevel(n){
-  if (!levelCache[n]){ const g = generate(n, levelColors(n)); levelCache[n] = g.tubes; if (g.par) levelPar[n] = g.par; }
+  const cap = capOf(n), k = cap === 5 ? Math.min(8, levelColors(n)) : levelColors(n);
+  CAP = cap;
+  if (!levelCache[n]){ const g = generate(n, k, cap); levelCache[n] = g.tubes; if (g.par) levelPar[n] = g.par; }
   return levelCache[n].map(t => t.slice());
 }
 // Desafio do dia: mesma semente para todo mundo naquele dia, 8 cores e muitas camadas misteriosas.
 const challengeSeed = () => { const d = new Date(); return 900000 + d.getFullYear() * 400 + d.getMonth() * 32 + d.getDate(); };
 let challengePar = 0;
 function makeChallenge(){
-  const g = generate(challengeSeed(), 8); challengePar = g.par;
+  const g = generate(challengeSeed(), 8, 4); challengePar = g.par;
   const r = rng(challengeSeed() * 31337 + 7);
   return { tubes:g.tubes, mask:g.tubes.map(t => t.map((c, k) => k < t.length - 1 && r() < .5)) };
 }
@@ -854,7 +893,7 @@ function starsFor(n, moves){
 /* ---------- estado ---------- */
 let level = 1, tubes = [], mask = [], history = [], sel = null, moves = 0, undos = 3, extraUsed = false;
 let lastDrop = null, justDone = null, hint = null, earned = 0, busy = false, hiddenTube = null;
-let mode = 'level', helped = false;   // helped: usou desfazer ou frasco extra neste nível
+let mode = 'level', helped = false, pendingChapter = null;   // helped: usou desfazer ou frasco extra neste nível
 function resetBoard(){
   history = []; sel = null; moves = 0; undos = 3; extraUsed = false; helped = false;
   lastDrop = null; justDone = null; hint = null; busy = false; hiddenTube = null;
@@ -868,7 +907,9 @@ function startLevel(n){
   $('tip').textContent = n === 1
     ? 'Toque num frasco e depois em outro para despejar. Só dá para despejar sobre a mesma cor ou num frasco vazio.'
     : n === 4 ? 'Travou? Use o desfazer, uma dica ou ganhe um frasco extra.'
-    : n === MYSTERY_FROM ? 'Poções misteriosas! As camadas com ? só mostram a cor quando ficam por cima.' : '';
+    : n === MYSTERY_FROM ? 'Poções misteriosas! As camadas com ? só mostram a cor quando ficam por cima.'
+    : n === 15 ? 'Frascos grandes! Aqui cabem 5 camadas em cada frasco.'
+    : n === 28 ? 'Frascos pequenos: só 3 camadas por frasco. Pense antes de despejar.' : '';
   render();
   tutorHint();
   if (newChapter) toast(`Capítulo ${chapterOf(n) + 1}: ${CHAPTERS[chapterOf(n)].name}`);
@@ -1008,9 +1049,11 @@ function layout(){
   const availW = Math.min(window.innerWidth, 560) - 44;
   const availH = window.innerHeight - 290;
   tw = Math.min(60, Math.floor((availW - (cols - 1) * 14) / cols));
-  tw = Math.min(tw, Math.floor((availH - (rows - 1) * 44) / (rows * 3.3 + .4)));
+  tw = Math.min(tw, Math.floor((availH - (rows - 1) * 44) / (rows * tubeH() + .4)));
   tw = Math.max(26, tw);
   $('board').style.setProperty('--tw', tw + 'px');
+  $('board').style.setProperty('--cap', CAP);
+  $('board').style.setProperty('--th', tubeH());
   return cols;
 }
 const tubeEl = i => $('board').querySelector(`.tube[data-i="${i}"]`);
@@ -1104,6 +1147,7 @@ async function doPour(from, to){
   Object.assign(clone.style, { position:'fixed', left:sr.left + 'px', top:sr.top + 'px', margin:'0', zIndex:15,
     transformOrigin:'50% 0', transform:'none', transition:'none' });
   clone.style.setProperty('--tw', tw + 'px');
+  clone.style.setProperty('--cap', CAP); clone.style.setProperty('--th', tubeH());
   document.body.appendChild(clone);
   srcEl.style.visibility = 'hidden'; hiddenTube = from;
 
@@ -1127,7 +1171,7 @@ async function doPour(from, to){
   sfx.pour(); vibrate('pour');
 
   const layers = [...clone.querySelectorAll('.layer')];
-  layers.slice(-n).forEach(l => l.animate([{ flexBasis:'25%' }, { flexBasis:'0%' }], { duration:380, easing:'ease-in', fill:'forwards' }));
+  layers.slice(-n).forEach(l => l.animate([{ flexBasis:`${100 / CAP}%` }, { flexBasis:'0%' }], { duration:380, easing:'ease-in', fill:'forwards' }));
 
   const rev = commitPour(from, to, n);
   render();
@@ -1263,10 +1307,17 @@ function win(){
     earned = firstToday ? CHALLENGE_REWARD : 0;
     if (firstToday) save.challenge = { last:dayStr(0), count:save.challenge.count + 1 };
   } else {
-    earned = 10 + level;
+    // base cresce devagar com o capítulo; cada estrela vale 2 moedas
+    earned = 8 + chapterOf(level) * 2 + stars * 2;
     if (level >= save.unlocked && level < MAX_LEVEL) save.unlocked = level + 1;
     save.stars[level] = Math.max(save.stars[level] || 0, stars);
     if (!helped) save.stats.clean++;
+    // primeira vez que fecha o capítulo: prêmio extra e tela de comemoração
+    if (level % PER_CHAPTER === 0 && !save.chapters[chapterOf(level)]){
+      save.chapters[chapterOf(level)] = true;
+      pendingChapter = chapterOf(level);
+      save.coins += CHAPTER_BONUS(pendingChapter);
+    }
   }
   save.coins += earned;
   persist();
@@ -1293,12 +1344,31 @@ function win(){
   render();
   setTimeout(checkAch, 900);
 }
-$('btnNext').onclick = () => {
-  $('win').classList.remove('show');
+function goNext(){
   if (mode === 'challenge' || level >= MAX_LEVEL){ openHome(); return; }
   const next = level + 1;
   if (level % INTER_EVERY === 0) interstitial(() => startLevel(next)); else startLevel(next);
+}
+$('btnNext').onclick = () => {
+  $('win').classList.remove('show');
+  if (pendingChapter !== null) openChapterDone(goNext); else goNext();
 };
+// then: o que fazer ao fechar (seguir para o próximo nível ou voltar ao menu)
+let cdThen = goNext;
+function openChapterDone(then){
+  const c = pendingChapter, next = CHAPTERS[c + 1];
+  pendingChapter = null; cdThen = then;
+  $('cdKicker').textContent = `Capítulo ${c + 1} concluído`;
+  $('cdName').textContent = CHAPTERS[c].name;
+  $('cdReward').innerHTML = `+${CHAPTER_BONUS(c)} ${COIN}`;
+  $('cdNext').innerHTML = next ? `A seguir: <b>Capítulo ${c + 2} · ${next.name}</b><br>${next.desc}` : 'Você completou todos os capítulos do laboratório.';
+  $('btnCdGo').textContent = next && then === goNext ? `Começar capítulo ${c + 2}` : 'Voltar ao menu';
+  $('chapterDone').classList.add('show');
+  sfx.win(); setTimeout(() => sfx.win(), 450); vibrate('done');
+  burst(window.innerWidth / 2, window.innerHeight * .3, ['#F4C55B', '#FFE9A8', '#5EE6C8', '#F06BB4', '#9B4DE0'], 80, Math.min(window.innerWidth, 500) * .6);
+  refreshHome(); render();
+}
+$('btnCdGo').onclick = () => { $('chapterDone').classList.remove('show'); cdThen(); };
 $('btnDouble').onclick = () => {
   rewarded(`+${earned} moedas`, () => {
     save.coins += earned; persist();
@@ -1306,7 +1376,10 @@ $('btnDouble').onclick = () => {
     $('btnDouble').style.display = 'none'; render();
   });
 };
-$('btnWinHome').onclick = () => { $('win').classList.remove('show'); openHome(); };
+$('btnWinHome').onclick = () => {
+  $('win').classList.remove('show');
+  if (pendingChapter !== null) openChapterDone(openHome); else openHome();
+};
 
 /* ---------- loja: RevenueCat no app, simulada no navegador ---------- */
 let buyCb = null, buying = false;
@@ -1561,7 +1634,8 @@ function openLevels(){
       if (n > save.unlocked){ b.disabled = true; b.innerHTML = svgIcon('lock'); b.setAttribute('aria-label', `Nível ${n}, bloqueado`); }
       else {
         const s = save.stars[n] || 0;
-        b.innerHTML = `${n}<span class="st">${[0, 1, 2].map(k => `<span class="${k < s ? 'on' : ''}">★</span>`).join('')}</span>`;
+        const cp = capOf(n);
+        b.innerHTML = (cp !== 4 ? `<span class="cap" title="${cp} camadas">${cp}</span>` : '') + `${n}<span class="st">${[0, 1, 2].map(k => `<span class="${k < s ? 'on' : ''}">★</span>`).join('')}</span>`;
         b.setAttribute('aria-label', `Nível ${n}, ${s} estrelas`);
         if (n === save.unlocked){ b.classList.add('cur'); curEl = b; }
         b.onclick = () => { click(); play(n); };
@@ -1613,7 +1687,7 @@ $('btnReset').onclick = async () => {
     'Apagar tudo');
   if (!ok) return;
   save = { unlocked:1, coins:0, sound:save.sound, music:save.music, vib:save.vib, noAds:false, owned:['classico'], theme:'classico', sym:save.sym, stars:{},
-    daily:save.daily, challenge:{ last:'', count:0 }, ach:{}, stats:{ corks:0, reveals:0, clean:0, bestStreak:0 } };
+    daily:save.daily, challenge:{ last:'', count:0 }, ach:{}, stats:{ corks:0, reveals:0, clean:0, bestStreak:0 }, chapters:{} };
   persist(); applyTheme(); startLevel(1); openHome();
   if (realIap()) N.iap.owned().then(applyOwned);
   toast('Progresso apagado');
