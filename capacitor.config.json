@@ -1,0 +1,11 @@
+{
+  "appId": "com.alquimix.jogo",
+  "appName": "Alquimix",
+  "webDir": "www",
+  "backgroundColor": "#140F24",
+  "ios": {
+    "contentInset": "never",
+    "scrollEnabled": false,
+    "backgroundColor": "#140F24"
+  }
+}

@@ -1,0 +1,85 @@
+# Codemagic: gera o app iOS do Alquimix e envia para o TestFlight.
+# Todas as chaves ficam no grupo de variáveis "alquimix" (Codemagic → app → Environment variables).
+# Veja o LEIAME.md para o passo a passo.
+
+workflows:
+  ios-testflight:
+    name: Alquimix iOS → TestFlight
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    environment:
+      groups:
+        - alquimix
+      # Variáveis esperadas no grupo "alquimix":
+      #   APP_STORE_CONNECT_ISSUER_ID       Issuer ID da chave de API da App Store Connect
+      #   APP_STORE_CONNECT_KEY_IDENTIFIER  Key ID da chave de API
+      #   APP_STORE_CONNECT_PRIVATE_KEY     conteúdo do arquivo .p8 (inteiro, com BEGIN/END)
+      #   CERTIFICATE_PRIVATE_KEY           chave RSA do certificado de distribuição (workflow "gerar-chave-certificado")
+      #   APP_STORE_APPLE_ID                Apple ID numérico do app (App Store Connect → Informações do app)
+      #   REVENUECAT_IOS_KEY                chave pública iOS do RevenueCat (começa com "appl_")
+      #   ADMOB_APP_ID                      opcional; sem ela usa o App ID de TESTE do Google
+      #   ADMOB_REWARDED_ID                 opcional; sem ela usa o bloco de TESTE do Google
+      #   ADMOB_INTERSTITIAL_ID             opcional; sem ela usa o bloco de TESTE do Google
+      vars:
+        BUNDLE_ID: com.alquimix.jogo
+      node: 22
+      xcode: latest
+    scripts:
+      - name: Conferir variáveis
+        script: |
+          #!/usr/bin/env bash
+          for v in APP_STORE_CONNECT_ISSUER_ID APP_STORE_CONNECT_KEY_IDENTIFIER APP_STORE_CONNECT_PRIVATE_KEY CERTIFICATE_PRIVATE_KEY APP_STORE_APPLE_ID; do
+            if [ -z "${!v}" ]; then echo "Falta a variável $v no grupo 'alquimix'"; exit 1; fi
+          done
+          [ -z "$REVENUECAT_IOS_KEY" ] && echo "Aviso: REVENUECAT_IOS_KEY vazia, as compras ficarão desativadas no app." || true
+          [ -z "$ADMOB_APP_ID" ] && echo "Aviso: usando IDs de TESTE do AdMob." || true
+      - name: Instalar dependências
+        script: npm ci
+      - name: Gerar o web app e copiar para o iOS
+        script: |
+          npm run build
+          npx cap sync ios
+      - name: AdMob App ID no Info.plist
+        script: |
+          if [ -n "$ADMOB_APP_ID" ]; then
+            /usr/libexec/PlistBuddy -c "Set :GADApplicationIdentifier $ADMOB_APP_ID" ios/App/App/Info.plist
+          fi
+          /usr/libexec/PlistBuddy -c "Print :GADApplicationIdentifier" ios/App/App/Info.plist
+      - name: Assinatura (certificado e perfil criados automaticamente)
+        script: |
+          keychain initialize
+          app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE --create
+          keychain add-certificates
+          xcode-project use-profiles
+      - name: Número da build (último do TestFlight + 1)
+        script: |
+          LATEST=$(app-store-connect get-latest-testflight-build-number "$APP_STORE_APPLE_ID" 2>/dev/null || echo 0)
+          NEXT=$((LATEST + 1))
+          echo "Build $NEXT"
+          sed -i '' "s/CURRENT_PROJECT_VERSION = [0-9]*;/CURRENT_PROJECT_VERSION = $NEXT;/g" ios/App/App.xcodeproj/project.pbxproj
+      - name: Gerar o .ipa
+        script: |
+          xcode-project build-ipa \
+            --project ios/App/App.xcodeproj \
+            --scheme App
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: true
+
+  # Rode UMA vez só, para criar a CERTIFICATE_PRIVATE_KEY sem precisar de computador.
+  # Baixe o artefato "certificado_chave.pem", copie o texto para a variável e apague o arquivo do celular.
+  gerar-chave-certificado:
+    name: Gerar chave do certificado (rodar 1 vez)
+    instance_type: mac_mini_m2
+    max_build_duration: 5
+    scripts:
+      - name: Gerar chave RSA
+        script: ssh-keygen -t rsa -b 2048 -m PEM -f certificado_chave.pem -q -N ""
+    artifacts:
+      - certificado_chave.pem

@@ -1,0 +1,6 @@
+node_modules/
+# gerado por "npm run build" (contém as chaves das variáveis de ambiente)
+www/native.js
+.DS_Store
+*.ipa
+build/

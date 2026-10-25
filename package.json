@@ -1,0 +1,23 @@
+{
+  "name": "alquimix",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Alquimix — jogo de ordenar poções por cor (iOS com Capacitor)",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "sync": "npm run build && cap sync ios",
+    "serve": "npm run build && npx --yes http-server www -p 8080 -c-1"
+  },
+  "dependencies": {
+    "@capacitor-community/admob": "^8.2.1",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/ios": "^8.5.3",
+    "@capacitor/preferences": "^8.0.1",
+    "@revenuecat/purchases-capacitor": "^13.7.6"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.3",
+    "esbuild": "^0.28.2"
+  }
+}
