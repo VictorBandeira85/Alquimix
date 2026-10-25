@@ -6,8 +6,9 @@ Jogo de ordenar poções por cor, empacotado como app iOS com Capacitor. Este gu
 
 | Arquivo | Para que serve |
 |---|---|
-| `www/index.html` | O jogo. No navegador, anúncios e compras são simulados; no app, são reais. |
-| `src/native.js` | Ponte com os plugins nativos: salvamento (Preferences), vibração (Haptics), anúncios (AdMob + ATT + UMP) e compras (RevenueCat). |
+| `www/index.html` | O jogo: carregamento, tela inicial, níveis por capítulo com estrelas, ajustes, pausa, loja. No navegador, anúncios e compras são simulados; no app, são reais. |
+| `www/fonts/` | Fonte Baloo 2 (licença OFL) embutida, para funcionar sem internet. |
+| `src/native.js` | Ponte com os plugins nativos: salvamento (Preferences), vibração (Haptics), tela de abertura (Splash Screen), anúncios (AdMob + ATT + UMP) e compras (RevenueCat). |
 | `scripts/build.mjs` | Gera `www/native.js` e injeta as chaves das variáveis de ambiente. |
 | `ios/` | Projeto Xcode (usa Swift Package Manager, não precisa de CocoaPods). |
 | `codemagic.yaml` | Compila na nuvem e envia ao TestFlight. |

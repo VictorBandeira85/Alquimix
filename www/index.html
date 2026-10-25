@@ -3,86 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#140F24">
 <title>Alquimix</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
+@font-face{font-family:"Baloo 2";font-style:normal;font-weight:400 800;font-display:swap;
+  src:url(fonts/baloo2-latin.woff2) format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Baloo 2";font-style:normal;font-weight:400 800;font-display:swap;
+  src:url(fonts/baloo2-latin-ext.woff2) format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+/* ---------- identidade: laboratório de alquimia à luz de velas ---------- */
 :root{
-  color-scheme: light;
-  --bg:#E4DCEF; --bg2:#F3EDF9; --ink:#2A1C4A; --muted:#6A5B90;
-  --gold:#A8740F; --gold-bg:#F7E3A8; --candle:rgba(255,170,70,.22);
-  --glass:rgba(255,255,255,.5); --edge:rgba(60,40,110,.5);
-  --wood1:#B07D4F; --wood2:#7E5530;
-  --panel:#FFFFFF; --btn:#FFFFFF; --btn-ink:#2A1C4A; --shade:rgba(42,28,74,.18);
-  --veil:rgba(42,28,74,.5); --chip:#EFE8F8;
+  color-scheme:dark;
+  --night0:#0B0717; --night1:#170F30; --night2:#2A1D52;
+  --ink:#F6F0FF; --muted:#B3A6D6; --faint:#7D70A6;
+  --gold:#F4C55B; --gold-hi:#FFE9A8; --gold-lo:#D98A1F; --gold-ink:#3A2306; --gold-edge:#8A5A12;
+  --magic:#5EE6C8;
+  --panel:#22183F; --panel2:#2D2152; --line:rgba(255,255,255,.09); --line-gold:rgba(244,197,91,.28);
+  --glass:rgba(255,255,255,.08); --edge:rgba(230,220,255,.55);
+  --wood1:#7A4E2C; --wood2:#3E2614;
+  --shade:rgba(0,0,0,.45); --veil:rgba(8,5,20,.74); --chip:#33285A;
+  --safe-t:env(safe-area-inset-top,0px); --safe-b:env(safe-area-inset-bottom,0px);
   box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px);
-  padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    color-scheme: dark;
-    --bg:#140F24; --bg2:#2B2048; --ink:#F3EEFF; --muted:#B6A8D9;
-    --gold:#F4C55B; --gold-bg:#4A3A1A; --candle:rgba(255,160,60,.2);
-    --glass:rgba(255,255,255,.09); --edge:rgba(230,220,255,.55);
-    --wood1:#6B4428; --wood2:#3B2414;
-    --panel:#261C44; --btn:#2E2352; --btn-ink:#F3EEFF; --shade:rgba(0,0,0,.4);
-    --veil:rgba(8,5,20,.72); --chip:#33285A;
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme: dark;
-  --bg:#140F24; --bg2:#2B2048; --ink:#F3EEFF; --muted:#B6A8D9;
-  --gold:#F4C55B; --gold-bg:#4A3A1A; --candle:rgba(255,160,60,.2);
-  --glass:rgba(255,255,255,.09); --edge:rgba(230,220,255,.55);
-  --wood1:#6B4428; --wood2:#3B2414;
-  --panel:#261C44; --btn:#2E2352; --btn-ink:#F3EEFF; --shade:rgba(0,0,0,.4);
-  --veil:rgba(8,5,20,.72); --chip:#33285A;
+  padding-top:var(--safe-t);
+  padding-bottom:var(--safe-b);
+  background:var(--night0);
 }
 *,*::before,*::after{box-sizing:inherit}
-html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+html{height:100%}
 body{
   margin:0;height:100%;overflow:hidden;
   font-family:"Baloo 2","Trebuchet MS","Segoe UI",system-ui,sans-serif;
   color:var(--ink);
   background:
-    radial-gradient(70% 45% at 50% 0%, var(--candle), transparent 70%),
-    radial-gradient(110% 70% at 50% 60%, var(--bg2), var(--bg) 75%);
-  background-color:var(--bg);
+    radial-gradient(60% 32% at 50% -4%, rgba(255,170,70,.30), transparent 70%),
+    radial-gradient(120% 85% at 50% 42%, var(--night2) 0%, var(--night1) 55%, var(--night0) 100%);
+  background-color:var(--night0);
   -webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;
+  -webkit-touch-callout:none;
 }
-.app{height:100%;display:flex;flex-direction:column;max-width:560px;margin:0 auto;padding:10px 16px 12px}
+/* tijolos discretos e vinheta */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05;
+  background:
+    repeating-linear-gradient(0deg, #fff 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(90deg, #fff 0 1px, transparent 1px 68px);
+  -webkit-mask-image:radial-gradient(80% 70% at 50% 40%, #000, transparent);
+          mask-image:radial-gradient(80% 70% at 50% 40%, #000, transparent)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(0,0,0,.55))}
+
+/* faíscas mágicas flutuando */
+#motes{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.mote{position:absolute;bottom:-12px;width:var(--s);height:var(--s);border-radius:50%;
+  background:radial-gradient(circle, var(--c) 0 35%, transparent 70%);opacity:0;
+  animation:rise var(--d) linear var(--delay) infinite}
+@keyframes rise{0%{transform:translate(0,0);opacity:0}15%{opacity:.9}100%{transform:translate(var(--dx),-105vh);opacity:0}}
+
 button{font:inherit;color:inherit;cursor:pointer;border:none;background:none;padding:0}
 button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.ico{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.ico.ico-f{fill:currentColor;stroke:none}
+.coin{display:inline-block;width:.95em;height:.95em;border-radius:50%;vertical-align:-.13em;flex:0 0 auto;
+  background:radial-gradient(circle at 35% 30%, var(--gold-hi), var(--gold) 45%, var(--gold-lo));
+  box-shadow:inset 0 0 0 .09em rgba(138,90,18,.55), 0 .06em 0 var(--gold-edge)}
 
+/* ---------- botões ---------- */
+.btn-gold{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px 18px;border-radius:20px;
+  background:linear-gradient(var(--gold-hi), var(--gold) 40%, var(--gold-lo));color:var(--gold-ink);font-weight:800;font-size:21px;
+  box-shadow:0 5px 0 var(--gold-edge), 0 10px 24px rgba(244,197,91,.25), inset 0 2px 0 rgba(255,255,255,.6)}
+.btn-gold:active{transform:translateY(3px);box-shadow:0 2px 0 var(--gold-edge), inset 0 2px 0 rgba(255,255,255,.6)}
+.btn-gold:disabled{filter:grayscale(.7);opacity:.6}
+.btn-plum{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;border-radius:18px;margin-top:10px;
+  background:var(--panel2);border:1px solid var(--line);font-weight:800;font-size:18px;box-shadow:0 4px 0 rgba(0,0,0,.35)}
+.btn-plum:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.35)}
+.ghost{display:block;width:100%;padding:10px;margin-top:8px;color:var(--muted);font-weight:700;font-size:16px}
+.iconbtn{width:46px;height:46px;border-radius:15px;background:var(--panel2);border:1px solid var(--line);color:var(--ink);
+  display:grid;place-items:center;font-size:22px;box-shadow:0 4px 0 rgba(0,0,0,.35)}
+.iconbtn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.35)}
+.coins{display:flex;align-items:center;gap:6px;background:rgba(20,12,40,.75);border:1px solid var(--line-gold);color:var(--gold);
+  font-weight:800;font-size:18px;padding:4px 5px 4px 10px;border-radius:999px;box-shadow:0 4px 0 rgba(0,0,0,.35)}
+.coins .plus{width:28px;height:28px;border-radius:50%;background:linear-gradient(var(--gold-hi),var(--gold));color:var(--gold-ink);
+  display:grid;place-items:center;font-size:20px;line-height:1;font-weight:800}
+.coins:active{transform:translateY(2px)}
+
+/* ---------- jogo ---------- */
+.app{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;max-width:560px;margin:0 auto;padding:10px 16px 12px}
 .top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.iconbtn{width:44px;height:44px;border-radius:14px;background:var(--btn);color:var(--btn-ink);font-size:22px;box-shadow:0 3px 0 var(--shade)}
-.lvl{font-size:22px;font-weight:800}
-.coins{display:flex;align-items:center;gap:6px;background:var(--gold-bg);color:var(--gold);font-weight:800;font-size:18px;padding:5px 6px 5px 12px;border-radius:999px}
-.coins .plus{width:26px;height:26px;border-radius:50%;background:var(--gold);color:#2A1C4A;display:grid;place-items:center;font-size:18px;line-height:1}
-.tip{min-height:46px;margin:6px 4px 0;text-align:center;color:var(--muted);font-size:16px;line-height:1.3}
+.lvl{text-align:center;line-height:1.05}
+.lvl b{display:block;font-size:24px;font-weight:800}
+.lvl small{display:block;font-size:13px;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+.tip{min-height:46px;margin:8px 4px 0;text-align:center;color:var(--muted);font-size:16px;line-height:1.3}
 
 #board{flex:1;display:flex;flex-direction:column;justify-content:center;gap:30px;padding-top:16px}
 .shelf{position:relative;display:flex;justify-content:center;gap:14px;padding:0 6px 4px}
 .shelf::after{content:"";position:absolute;left:0;right:0;bottom:-14px;height:14px;border-radius:4px;
-  background:linear-gradient(var(--wood1),var(--wood2));box-shadow:0 8px 14px var(--shade), inset 0 2px 0 rgba(255,255,255,.15)}
+  background:linear-gradient(#9A6A3E, var(--wood1) 30%, var(--wood2));box-shadow:0 10px 18px var(--shade), inset 0 2px 0 rgba(255,255,255,.18)}
 
 .tube{position:relative;flex:0 0 auto;width:var(--tw);height:calc(var(--tw) * 3.3);transition:transform .18s ease}
 .tube::before{content:"";position:absolute;left:-4px;right:-4px;top:0;height:8px;border-radius:6px;background:var(--edge);z-index:2}
 .glass{position:absolute;left:0;right:0;top:4px;bottom:0;border:3px solid var(--edge);border-top:none;
-  border-radius:0 0 calc(var(--tw) / 2) calc(var(--tw) / 2);background:var(--glass);overflow:hidden}
+  border-radius:0 0 calc(var(--tw) / 2) calc(var(--tw) / 2);background:var(--glass);overflow:hidden;
+  box-shadow:inset 0 -6px 14px rgba(0,0,0,.25)}
 .glass::after{content:"";position:absolute;left:16%;top:9%;width:13%;bottom:20%;border-radius:999px;
   background:linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.04));z-index:2;pointer-events:none}
 .fill{position:absolute;left:3px;right:3px;bottom:3px;top:13%;display:flex;flex-direction:column-reverse;
   border-radius:0 0 calc(var(--tw) / 2) calc(var(--tw) / 2);overflow:hidden}
 .layer{position:relative;flex:0 0 25%;transform-origin:bottom;display:grid;place-items:center;
-  background-image:linear-gradient(90deg,rgba(255,255,255,.28),rgba(255,255,255,0) 45%,rgba(0,0,0,.12))}
+  background-image:linear-gradient(90deg,rgba(255,255,255,.28),rgba(255,255,255,0) 45%,rgba(0,0,0,.14))}
 .layer.top::before{content:"";position:absolute;left:0;right:0;top:-1px;height:5px;background:rgba(255,255,255,.35);border-radius:50%}
 .layer .sym{font-size:calc(var(--tw) * .36);line-height:1;color:rgba(0,0,0,.55);font-weight:800;z-index:1}
 .layer.drop{animation:fillin .38s ease-out}
 .tube.sel{transform:translateY(-16px)}
-.tube.done .glass{box-shadow:0 0 22px 2px var(--glow)}
+.tube.sel .glass{box-shadow:0 0 0 2px rgba(244,197,91,.5), 0 0 18px rgba(244,197,91,.35)}
+.tube.done .glass{box-shadow:0 0 24px 3px var(--glow)}
 .tube.done .fill::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(circle at 30% 85%,rgba(255,255,255,.7) 0 2px,transparent 3px),
              radial-gradient(circle at 66% 65%,rgba(255,255,255,.55) 0 1.5px,transparent 2.5px),
@@ -112,111 +146,367 @@ body.th-doces .tube::before{background:#F3A6C8}
 @keyframes pop{from{transform:translateY(-14px) scale(.6);opacity:0}to{transform:none;opacity:1}}
 
 .tools{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:22px}
-.tool{background:var(--btn);color:var(--btn-ink);border-radius:16px;padding:8px 4px 6px;box-shadow:0 3px 0 var(--shade);
-  display:flex;flex-direction:column;align-items:center;font-weight:700;font-size:14px;line-height:1.15}
-.tool .ic{font-size:22px}
-.tool small{font-weight:600;color:var(--muted);font-size:12px}
-.tool:active,.iconbtn:active,.big:active,.coins:active{transform:translateY(2px)}
+.tool{position:relative;background:var(--panel2);border:1px solid var(--line);border-radius:18px;padding:9px 4px 6px;
+  box-shadow:0 4px 0 rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;gap:1px;font-weight:700;font-size:14px;line-height:1.15}
+.tool .ico{font-size:24px;color:var(--gold);margin-bottom:2px}
+.tool small{display:flex;align-items:center;gap:3px;font-weight:700;color:var(--muted);font-size:12px;min-height:15px}
+.tool:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.35)}
 .tool:disabled{opacity:.4}
+.adtag .ico{font-size:9px;margin:0;color:inherit}
+.adtag{display:inline-flex;align-items:center;gap:3px;background:rgba(94,230,200,.15);color:var(--magic);border-radius:6px;padding:0 5px;font-size:11px;font-weight:800}
 
-.overlay{position:fixed;inset:0;background:var(--veil);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}
-.overlay.show{display:flex}
-#buy{z-index:25}
-.card{background:var(--panel);border-radius:24px;padding:24px 20px;width:100%;max-width:420px;max-height:100%;overflow:auto;text-align:center;box-shadow:0 10px 40px var(--shade)}
-.card h1{font-size:46px;line-height:1;margin:4px 0 6px;font-weight:800}
-.card h2{font-size:30px;line-height:1.1;margin:0 0 8px;font-weight:800}
-.card h3{font-size:19px;margin:18px 0 8px;text-align:left;font-weight:800}
+/* ---------- telas cheias (carregando, início, níveis, ajustes) ---------- */
+.screen{position:fixed;inset:0;z-index:20;display:none;flex-direction:column;align-items:center;
+  padding:calc(var(--safe-t) + 12px) 16px calc(var(--safe-b) + 18px)}
+.screen.show{display:flex;animation:fadein .25s ease}
+.screen > .inner{position:relative;z-index:1;width:100%;max-width:520px;flex:1;display:flex;flex-direction:column;min-height:0}
+.screen.solid{background:
+    radial-gradient(60% 32% at 50% -4%, rgba(255,170,70,.30), transparent 70%),
+    radial-gradient(120% 85% at 50% 42%, var(--night2) 0%, var(--night1) 55%, var(--night0) 100%)}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+
+.title{margin:0;font-weight:800;line-height:.9;letter-spacing:-.01em;text-align:center;
+  font-size:clamp(58px, 18vw, 88px);
+  background:linear-gradient(var(--gold-hi) 10%, var(--gold) 50%, var(--gold-lo) 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 4px 0 #5B3A0A) drop-shadow(0 12px 22px rgba(0,0,0,.55))}
+.tagline{margin:10px 0 0;text-align:center;color:var(--gold);font-weight:700;font-size:14px;letter-spacing:.32em;text-transform:uppercase;opacity:.85}
+.tagline::before,.tagline::after{content:"✦";margin:0 .7em;font-size:10px;vertical-align:2px;opacity:.7}
+
+/* frasco-símbolo (carregamento e início) */
+.flask{display:block;margin:0 auto;overflow:visible}
+.flask .outline{fill:rgba(255,255,255,.06);stroke:var(--edge);stroke-width:4}
+.flask .rim{fill:#E6DCFF}
+.flask .cork2{fill:url(#corkGrad)}
+.flask .shine{fill:none;stroke:rgba(255,255,255,.45);stroke-width:5;stroke-linecap:round}
+.flask .wave{animation:wave 2.4s linear infinite}
+.flask .lvl-g{transition:transform .5s cubic-bezier(.3,.8,.3,1)}
+.flask .bub{fill:rgba(255,255,255,.7);animation:bub 2.2s ease-in infinite}
+.flask .bub:nth-of-type(2){animation-delay:.7s;animation-duration:2.6s}
+.flask .bub:nth-of-type(3){animation-delay:1.3s;animation-duration:1.9s}
+.flask .bub:nth-of-type(4){animation-delay:.3s;animation-duration:3s}
+@keyframes wave{from{transform:translateX(0)}to{transform:translateX(-60px)}}
+@keyframes bub{0%{transform:translateY(0);opacity:0}20%{opacity:1}100%{transform:translateY(-70px);opacity:0}}
+.halo{position:absolute;left:50%;top:50%;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;
+  background:radial-gradient(circle, rgba(244,197,91,.22), rgba(155,77,224,.12) 45%, transparent 70%);
+  animation:breathe 3.2s ease-in-out infinite;pointer-events:none}
+@keyframes breathe{50%{transform:scale(1.12);opacity:.75}}
+
+/* carregando */
+#loading{z-index:60;justify-content:center;transition:opacity .45s ease}
+#loading.hide{opacity:0;pointer-events:none}
+#loading .inner{flex:0 0 auto;align-items:center;gap:6px}
+.loadwrap{position:relative;width:150px;height:180px;margin-bottom:14px}
+.bar{width:220px;height:12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--line);margin-top:28px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#E8394B,#F5D13B,#3BBF5C,#3A7BEB,#9B4DE0);
+  transition:width .4s ease}
+.loadtip{margin-top:14px;color:var(--muted);font-size:15px;min-height:22px;text-align:center}
+
+/* início */
+#home .inner{justify-content:space-between}
+.home-top{display:flex;justify-content:space-between;align-items:center}
+.stars-chip{display:flex;align-items:center;gap:6px;background:rgba(20,12,40,.75);border:1px solid var(--line);border-radius:999px;
+  padding:6px 12px;font-weight:800;font-size:16px}
+.stars-chip .ico{color:var(--gold);font-size:18px}
+.hero{position:relative;display:flex;flex-direction:column;align-items:center;padding-top:8px}
+.hero-art{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:10px;height:200px;margin-bottom:6px}
+.hero-art .flask{animation:sway 4s ease-in-out infinite;transform-origin:50% 100%}
+.side-tube{width:26px;height:92px;border:3px solid var(--edge);border-top-width:6px;border-radius:5px 5px 13px 13px;overflow:hidden;
+  display:flex;flex-direction:column-reverse;background:var(--glass);margin-bottom:6px;animation:bob 3s ease-in-out infinite}
+.side-tube.r{animation-delay:-1.5s}
+.side-tube i{flex:0 0 25%}
+@keyframes sway{50%{transform:rotate(3deg)}}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.hero-shelf{width:250px;height:14px;border-radius:5px;margin-top:-4px;
+  background:linear-gradient(#9A6A3E, var(--wood1) 30%, var(--wood2));box-shadow:0 10px 18px var(--shade), inset 0 2px 0 rgba(255,255,255,.18)}
+.home-actions{display:flex;flex-direction:column;gap:12px}
+.play-btn{flex-direction:column;gap:0;padding:12px 18px 10px}
+.play-btn .row1{display:flex;align-items:center;gap:10px;font-size:28px;line-height:1.1}
+.play-btn .row1 .ico{font-size:24px}
+.play-btn small{font-size:14px;font-weight:700;opacity:.75}
+.menu-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.menu-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 6px 10px;border-radius:20px;
+  background:var(--panel2);border:1px solid var(--line);box-shadow:0 4px 0 rgba(0,0,0,.35);font-weight:800;font-size:15px}
+.menu-btn .ico{font-size:28px;color:var(--gold)}
+.menu-btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.35)}
+.mode-note{margin:12px 0 0;text-align:center;color:var(--faint);font-size:12px;line-height:1.3}
+
+/* cabeçalho de telas internas */
+.bar-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.bar-head h2{flex:1;margin:0;font-size:28px;font-weight:800}
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px 12px;min-height:0}
+
+/* níveis */
+.chapter{background:linear-gradient(var(--panel2), var(--panel));border:1px solid var(--line);border-radius:24px;padding:14px 14px 16px;margin-bottom:14px}
+.chapter.locked{opacity:.55}
+.ch-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:10px}
+.ch-head b{font-size:20px}
+.ch-head small{color:var(--muted);font-weight:700;font-size:13px}
+.ch-head .ch-stars{display:flex;align-items:center;gap:4px;color:var(--gold);font-weight:800;font-size:14px}
+.lv-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.lv{position:relative;aspect-ratio:1;border-radius:16px;background:var(--chip);border:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:20px;line-height:1;
+  box-shadow:0 3px 0 rgba(0,0,0,.35)}
+.lv .st{display:flex;gap:1px;margin-top:4px;font-size:10px;color:rgba(255,255,255,.18)}
+.lv .st .on{color:var(--gold)}
+.lv.cur{background:linear-gradient(var(--gold-hi), var(--gold) 45%, var(--gold-lo));color:var(--gold-ink);box-shadow:0 3px 0 var(--gold-edge), 0 0 16px rgba(244,197,91,.45)}
+.lv.cur .st{color:rgba(58,35,6,.3)}
+.lv:disabled{color:var(--faint);box-shadow:none;background:rgba(51,40,90,.5)}
+.lv:disabled .ico{font-size:18px}
+.lv:not(:disabled):active{transform:translateY(2px)}
+
+/* ajustes */
+.set-list{background:linear-gradient(var(--panel2), var(--panel));border:1px solid var(--line);border-radius:24px;padding:4px 16px;margin-bottom:14px}
+.set-row{display:flex;align-items:center;gap:12px;width:100%;padding:13px 0;border-bottom:1px solid var(--line);text-align:left}
+.set-row:last-child{border-bottom:none}
+.set-row .ico{font-size:22px;color:var(--gold)}
+.set-row .lbl{flex:1;font-weight:700;font-size:17px;line-height:1.2}
+.set-row .lbl small{display:block;color:var(--muted);font-weight:600;font-size:13px}
+.set-row.danger .lbl,.set-row.danger .ico{color:#FF8A8A}
+.switch{position:relative;width:52px;height:30px;border-radius:999px;background:rgba(255,255,255,.12);transition:background .2s;flex:0 0 auto}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 2px 4px rgba(0,0,0,.3)}
+[aria-checked="true"] .switch{background:var(--magic)}
+[aria-checked="true"] .switch::after{transform:translateX(22px)}
+.version{text-align:center;color:var(--faint);font-size:13px}
+
+/* ---------- janelas sobre o jogo ---------- */
+.overlay{position:fixed;inset:0;background:var(--veil);display:none;align-items:center;justify-content:center;padding:20px;z-index:30;
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.overlay.show{display:flex;animation:fadein .2s ease}
+.overlay.show .card{animation:cardin .32s cubic-bezier(.3,1.4,.6,1)}
+@keyframes cardin{from{transform:scale(.88) translateY(12px);opacity:0}to{transform:none;opacity:1}}
+#buy{z-index:35}
+.card{position:relative;background:linear-gradient(var(--panel2), var(--panel));border:1px solid var(--line-gold);border-radius:28px;
+  padding:24px 20px;width:100%;max-width:420px;max-height:100%;overflow:auto;text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08)}
+.card h2{font-size:32px;line-height:1.1;margin:0 0 8px;font-weight:800;color:var(--gold)}
+.card h3{display:flex;align-items:center;gap:8px;font-size:15px;margin:18px 0 8px;text-align:left;font-weight:800;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.card h3::after{content:"";flex:1;height:1px;background:var(--line)}
 .card p{margin:0 0 16px;color:var(--muted);font-size:17px;line-height:1.35}
-.big{display:block;width:100%;padding:14px;border-radius:18px;background:var(--gold);color:#2A1C4A;font-weight:800;font-size:20px;box-shadow:0 4px 0 rgba(0,0,0,.25)}
-.ghost{display:block;width:100%;padding:10px;margin-top:8px;color:var(--muted);font-weight:700;font-size:16px}
-.second{display:block;width:100%;padding:12px;margin-top:10px;border-radius:16px;background:var(--chip);font-weight:800;font-size:18px}
-.logo{display:flex;justify-content:center;gap:8px;margin-bottom:8px}
-.logo span{width:18px;height:44px;border-radius:4px 4px 10px 10px;border:3px solid var(--edge);border-top-width:6px;position:relative;overflow:hidden}
-.logo span i{position:absolute;left:0;right:0;bottom:0}
-.levels{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:16px 0 12px}
-.levels button{aspect-ratio:1;border-radius:14px;background:var(--chip);font-weight:800;font-size:18px}
-.levels button.cur{background:var(--gold);color:#2A1C4A}
-.levels button:disabled{opacity:.35}
-.row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;color:var(--muted);font-size:14px}
-.row button{color:var(--muted);font-weight:700;text-decoration:underline;text-underline-offset:3px}
-.adbox{border:2px dashed var(--muted);border-radius:18px;padding:28px 12px;margin-bottom:16px}
+.card .btn-plum{margin-top:10px}
+.adbox{border:2px dashed var(--faint);border-radius:18px;padding:22px 12px;margin-bottom:16px}
+.adbox .ico{font-size:40px;color:var(--magic)}
 .adbox b{display:block;font-size:56px;line-height:1;color:var(--gold)}
-.reward{font-size:20px;font-weight:800;color:var(--gold);margin-bottom:16px}
+.reward{display:inline-flex;align-items:center;gap:6px;font-size:24px;font-weight:800;color:var(--gold);margin-bottom:16px;
+  background:rgba(244,197,91,.12);border:1px solid var(--line-gold);border-radius:999px;padding:4px 18px}
 
-.item{display:flex;align-items:center;gap:12px;background:var(--chip);border-radius:16px;padding:10px 12px;margin-bottom:8px;text-align:left}
+/* vitória */
+.win-stars{display:flex;justify-content:center;align-items:flex-end;gap:6px;margin:-4px 0 6px}
+.win-stars .ico{font-size:58px;color:rgba(255,255,255,.12);filter:drop-shadow(0 3px 0 rgba(0,0,0,.35))}
+.win-stars .ico:nth-child(2){font-size:74px;margin-bottom:10px}
+.win-stars .ico.on{color:var(--gold);animation:starpop .45s cubic-bezier(.3,1.8,.5,1) both;
+  filter:drop-shadow(0 3px 0 var(--gold-edge)) drop-shadow(0 0 14px rgba(244,197,91,.6))}
+@keyframes starpop{from{transform:scale(0) rotate(-40deg)}to{transform:none}}
+
+/* loja */
+.item{display:flex;align-items:center;gap:12px;background:var(--chip);border:1px solid var(--line);border-radius:18px;padding:10px 12px;margin-bottom:8px;text-align:left}
 .item .info{flex:1;min-width:0}
 .item b{display:block;font-size:17px;line-height:1.2}
 .item span{display:block;color:var(--muted);font-size:14px;line-height:1.25}
-.item .tag{display:inline-block;background:var(--gold);color:#2A1C4A;border-radius:999px;padding:0 8px;font-size:12px;font-weight:800;margin-left:4px;vertical-align:2px}
-.price{flex:0 0 auto;min-width:92px;padding:9px 10px;border-radius:12px;background:var(--gold);color:#2A1C4A;font-weight:800;font-size:15px}
-.price.used{background:transparent;color:var(--muted);box-shadow:inset 0 0 0 2px var(--muted)}
-.price.owned{background:var(--btn);color:var(--btn-ink)}
+.item .tag{display:inline-block;background:var(--magic);color:#0B2A24;border-radius:999px;padding:0 8px;font-size:12px;font-weight:800;margin-left:4px;vertical-align:2px}
+.price{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:84px;padding:9px 10px;border-radius:12px;
+  background:linear-gradient(var(--gold-hi), var(--gold) 45%, var(--gold-lo));color:var(--gold-ink);font-weight:800;font-size:15px;box-shadow:0 3px 0 var(--gold-edge)}
+.price:active{transform:translateY(2px)}
+.price.used{background:transparent;color:var(--muted);box-shadow:inset 0 0 0 2px var(--faint)}
+.price.owned{background:var(--panel2);color:var(--ink);box-shadow:0 3px 0 rgba(0,0,0,.35)}
 .mini{flex:0 0 auto;width:22px;height:54px;border:3px solid var(--edge);border-top-width:5px;border-radius:4px 4px 11px 11px;overflow:hidden;display:flex;flex-direction:column-reverse}
 .mini i{flex:0 0 33.33%}
-.bigcoin{font-size:30px;width:44px;text-align:center}
+.icobox{flex:0 0 auto;width:44px;height:44px;display:grid;place-items:center;font-size:30px}
+.icobox.noads{position:relative;font-size:15px;font-weight:800;color:var(--muted);border:2px solid var(--faint);border-radius:12px;width:40px;height:40px}
+.icobox.noads::after{content:"";position:absolute;left:-4px;right:-4px;top:50%;height:3px;background:#FF6B6B;transform:rotate(-35deg);border-radius:2px}
+.coinstack{position:relative;width:44px;height:44px}
+.coinstack .coin{position:absolute;font-size:24px}
 
-.toast{position:fixed;left:50%;bottom:calc(110px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);
-  background:var(--panel);color:var(--ink);padding:10px 18px;border-radius:999px;box-shadow:0 6px 20px var(--shade);
-  font-weight:700;opacity:0;transition:.25s;pointer-events:none;z-index:45;max-width:90vw;text-align:center}
+.toast{position:fixed;left:50%;bottom:calc(110px + var(--safe-b));transform:translateX(-50%) translateY(20px);
+  background:var(--panel2);border:1px solid var(--line-gold);color:var(--ink);padding:10px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.5);
+  font-weight:700;opacity:0;transition:.25s;pointer-events:none;z-index:65;max-width:90vw;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 @media (prefers-reduced-motion: reduce){
-  .layer.drop,.tube.no,.tube.hint .glass,.cork.pop,.tube.done .fill::after{animation:none}
+  .layer.drop,.tube.no,.tube.hint .glass,.cork.pop,.tube.done .fill::after,
+  .flask .wave,.flask .bub,.halo,.hero-art .flask,.side-tube,.win-stars .ico.on,.overlay.show .card,.screen.show{animation:none}
+  #motes{display:none}
   .tube{transition:none}
 }
 </style>
 </head>
 <body>
+<!-- ícones -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="corkGrad" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#D4A574"/><stop offset="1" stop-color="#8A5E36"/></linearGradient>
+    <linearGradient id="liqGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#F06BB4"/><stop offset=".45" stop-color="#9B4DE0"/><stop offset="1" stop-color="#3A7BEB"/>
+    </linearGradient>
+    <clipPath id="flaskClip"><path d="M49 16H71V55.4A44 44 0 1 1 49 55.4Z"/></clipPath>
+  </defs>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2z"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5.5 9.5A2 2 0 0 0 6.2 21h11.6a2 2 0 0 0 1.7-2.5L14 9V3"/><path d="M7.5 15h9"/></symbol>
+  <symbol id="i-restart" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.7l-12-7.5A1 1 0 0 0 7 4.5z"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12a1.5 1.5 0 0 1-1.5 1.4h-9A1.5 1.5 0 0 1 6 20z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></symbol>
+  <symbol id="i-tv" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z"/></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></symbol>
+  <symbol id="i-vibe" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M3 8v8M21 8v8"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5M3 21v-5h5"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+</svg>
+
+<div id="motes" aria-hidden="true"></div>
+
+<!-- carregando -->
+<section class="screen show solid" id="loading" aria-label="Carregando">
+  <div class="inner">
+    <div class="loadwrap">
+      <div class="halo"></div>
+      <svg class="flask" viewBox="0 0 120 150" width="150" height="180" aria-hidden="true">
+        <g clip-path="url(#flaskClip)">
+          <g class="lvl-g" id="loadLiquid" style="transform:translateY(150px)">
+            <g class="wave"><path fill="url(#liqGrad)" d="M0 0Q15 -7 30 0T60 0T90 0T120 0T150 0T180 0T210 0V200H0Z"/></g>
+            <circle class="bub" cx="45" cy="40" r="3.5"/><circle class="bub" cx="68" cy="50" r="2.5"/>
+            <circle class="bub" cx="58" cy="60" r="3"/><circle class="bub" cx="76" cy="36" r="2"/>
+          </g>
+        </g>
+        <path class="outline" d="M49 16H71V55.4A44 44 0 1 1 49 55.4Z"/>
+        <path class="shine" d="M33 82a30 30 0 0 0 0 34"/>
+        <rect class="rim" x="44" y="10" width="32" height="9" rx="4"/>
+      </svg>
+    </div>
+    <h1 class="title">Alquimix</h1>
+    <p class="tagline">Laboratório de poções</p>
+    <div class="bar" role="progressbar" aria-label="Carregando"><i id="loadBar"></i></div>
+    <p class="loadtip" id="loadTip">Acendendo as velas…</p>
+  </div>
+</section>
+
+<!-- início -->
+<section class="screen solid" id="home" aria-label="Início">
+  <div class="inner">
+    <div class="home-top">
+      <div class="stars-chip" aria-label="Estrelas"><svg class="ico ico-f"><use href="#i-star"/></svg><span id="homeStars">0</span></div>
+      <button class="coins" id="btnCoinsHome" aria-label="Moedas, abrir loja"><span class="coin"></span><span id="homeCoins">0</span><span class="plus">+</span></button>
+    </div>
+    <div class="hero">
+      <div class="hero-art" aria-hidden="true">
+        <div class="halo"></div>
+        <div class="side-tube"><i style="background:#3BBF5C"></i><i style="background:#3BBF5C"></i><i style="background:#F5D13B"></i></div>
+        <svg class="flask" viewBox="0 0 120 150" width="160" height="196">
+          <g clip-path="url(#flaskClip)">
+            <g style="transform:translateY(70px)">
+              <g class="wave"><path fill="url(#liqGrad)" d="M0 0Q15 -7 30 0T60 0T90 0T120 0T150 0T180 0T210 0V200H0Z"/></g>
+              <circle class="bub" cx="45" cy="40" r="3.5"/><circle class="bub" cx="68" cy="50" r="2.5"/>
+              <circle class="bub" cx="58" cy="60" r="3"/><circle class="bub" cx="76" cy="36" r="2"/>
+            </g>
+          </g>
+          <path class="outline" d="M49 16H71V55.4A44 44 0 1 1 49 55.4Z"/>
+          <path class="shine" d="M33 82a30 30 0 0 0 0 34"/>
+          <rect class="cork2" x="47" y="2" width="26" height="16" rx="4"/>
+        </svg>
+        <div class="side-tube r"><i style="background:#E8394B"></i><i style="background:#3A7BEB"></i><i style="background:#3A7BEB"></i><i style="background:#3A7BEB"></i></div>
+      </div>
+      <div class="hero-shelf"></div>
+      <h1 class="title" style="margin-top:22px">Alquimix</h1>
+      <p class="tagline">Laboratório de poções</p>
+    </div>
+    <div class="home-actions">
+      <button class="btn-gold play-btn" id="btnPlay">
+        <span class="row1"><svg class="ico ico-f"><use href="#i-play"/></svg>Jogar</span>
+        <small id="playSub">Nível 1</small>
+      </button>
+      <div class="menu-row">
+        <button class="menu-btn" id="btnLevelsHome"><svg class="ico"><use href="#i-grid"/></svg>Níveis</button>
+        <button class="menu-btn" id="btnShopHome"><svg class="ico"><use href="#i-bag"/></svg>Loja</button>
+        <button class="menu-btn" id="btnSettingsHome"><svg class="ico"><use href="#i-sliders"/></svg>Ajustes</button>
+      </div>
+      <p class="mode-note" id="modeNote"></p>
+    </div>
+  </div>
+</section>
+
+<!-- níveis -->
+<section class="screen solid" id="levels" aria-label="Níveis">
+  <div class="inner">
+    <div class="bar-head">
+      <button class="iconbtn" id="btnLevelsBack" aria-label="Voltar"><svg class="ico"><use href="#i-back"/></svg></button>
+      <h2>Níveis</h2>
+      <div class="stars-chip"><svg class="ico ico-f"><use href="#i-star"/></svg><span id="levelsStars">0</span></div>
+    </div>
+    <div class="scroll" id="chapters"></div>
+  </div>
+</section>
+
+<!-- ajustes -->
+<section class="screen solid" id="settings" aria-label="Ajustes">
+  <div class="inner">
+    <div class="bar-head">
+      <button class="iconbtn" id="btnSettingsBack" aria-label="Voltar"><svg class="ico"><use href="#i-back"/></svg></button>
+      <h2>Ajustes</h2>
+    </div>
+    <div class="scroll">
+      <div class="set-list">
+        <button class="set-row" id="setSound" role="switch"><svg class="ico"><use href="#i-sound"/></svg><span class="lbl">Som</span><span class="switch"></span></button>
+        <button class="set-row" id="setVib" role="switch"><svg class="ico"><use href="#i-vibe"/></svg><span class="lbl">Vibração</span><span class="switch"></span></button>
+        <button class="set-row" id="setSym" role="switch"><svg class="ico"><use href="#i-eye"/></svg><span class="lbl">Símbolos de cor<small>Ajuda a diferenciar as poções</small></span><span class="switch"></span></button>
+      </div>
+      <div class="set-list">
+        <button class="set-row" id="btnRestore"><svg class="ico"><use href="#i-refresh"/></svg><span class="lbl">Restaurar compras<small>Sem anúncios e estilo Ouro</small></span></button>
+        <button class="set-row" id="btnPrivacy" style="display:none"><svg class="ico"><use href="#i-shield"/></svg><span class="lbl">Privacidade dos anúncios</span></button>
+        <button class="set-row danger" id="btnReset"><svg class="ico"><use href="#i-trash"/></svg><span class="lbl">Apagar progresso</span></button>
+      </div>
+      <p class="version">Alquimix · versão 1.0</p>
+    </div>
+  </div>
+</section>
+
+<!-- jogo -->
 <div class="app">
   <header class="top">
-    <button class="iconbtn" id="btnMenu" aria-label="Menu e níveis">☰</button>
-    <div class="lvl">Nível <span id="lvlNum">1</span></div>
-    <button class="coins" id="btnCoins" aria-label="Moedas, abrir loja">🪙 <span id="coins">0</span><span class="plus">+</span></button>
+    <button class="iconbtn" id="btnPause" aria-label="Pausa"><svg class="ico"><use href="#i-pause"/></svg></button>
+    <div class="lvl"><small id="chapterName">Aprendiz</small><b>Nível <span id="lvlNum">1</span></b></div>
+    <button class="coins" id="btnCoins" aria-label="Moedas, abrir loja"><span class="coin"></span><span id="coins">0</span><span class="plus">+</span></button>
   </header>
   <p class="tip" id="tip"></p>
   <main id="board" aria-label="Frascos"></main>
   <nav class="tools">
-    <button class="tool" id="btnUndo"><span class="ic">↩️</span>Desfazer<small id="undoLeft">3</small></button>
-    <button class="tool" id="btnHint"><span class="ic">💡</span>Dica<small>15 🪙</small></button>
-    <button class="tool" id="btnTube"><span class="ic">🧪</span>+1 frasco<small id="tubeSub">📺 anúncio</small></button>
-    <button class="tool" id="btnRestart"><span class="ic">🔄</span>Reiniciar<small>&nbsp;</small></button>
+    <button class="tool" id="btnUndo"><svg class="ico"><use href="#i-undo"/></svg>Desfazer<small id="undoLeft">3</small></button>
+    <button class="tool" id="btnHint"><svg class="ico"><use href="#i-bulb"/></svg>Dica<small>15 <span class="coin"></span></small></button>
+    <button class="tool" id="btnTube"><svg class="ico"><use href="#i-flask"/></svg>+1 frasco<small id="tubeSub"></small></button>
+    <button class="tool" id="btnRestart"><svg class="ico"><use href="#i-restart"/></svg>Reiniciar<small>&nbsp;</small></button>
   </nav>
 </div>
 
-<div class="overlay show" id="home">
+<div class="overlay" id="pause">
   <div class="card">
-    <div class="logo" aria-hidden="true">
-      <span><i style="height:70%;background:#E8394B"></i></span>
-      <span><i style="height:45%;background:#3BBF5C"></i></span>
-      <span><i style="height:85%;background:#3A7BEB"></i></span>
-      <span><i style="height:60%;background:#F5D13B"></i></span>
-    </div>
-    <h1>Alquimix</h1>
-    <p>Separe as poções por cor, um frasco para cada.</p>
-    <button class="big" id="btnPlay">Jogar nível 1</button>
-    <button class="second" id="btnShopHome">🛒 Loja</button>
-    <div class="levels" id="levels"></div>
-    <div class="row">
-      <button id="btnSound">Som: ligado</button>
-      <button id="btnSym">Símbolos de cor: desligados</button>
-      <button id="btnReset">Apagar progresso</button>
-      <button id="btnPrivacy" style="display:none">Privacidade dos anúncios</button>
-    </div>
-    <p style="margin:14px 0 0;font-size:13px" id="modeNote"></p>
+    <h2>Pausa</h2>
+    <p id="pauseText"></p>
+    <button class="btn-gold" id="btnResume"><svg class="ico ico-f"><use href="#i-play"/></svg>Continuar</button>
+    <button class="btn-plum" id="btnPauseRestart"><svg class="ico"><use href="#i-restart"/></svg>Reiniciar nível</button>
+    <button class="btn-plum" id="btnPauseLevels"><svg class="ico"><use href="#i-grid"/></svg>Escolher nível</button>
+    <button class="btn-plum" id="btnPauseHome"><svg class="ico"><use href="#i-home"/></svg>Menu inicial</button>
   </div>
 </div>
 
 <div class="overlay" id="shop">
   <div class="card">
     <h2>Loja</h2>
-    <p style="margin-bottom:4px">Você tem 🪙 <b id="shopCoins">0</b></p>
+    <p style="margin-bottom:4px">Você tem <span class="coin"></span> <b id="shopCoins">0</b></p>
     <h3>Sem anúncios</h3>
     <div id="shopNoAds"></div>
     <h3>Moedas</h3>
     <div id="shopCoinsList"></div>
     <h3>Estilos de frasco</h3>
     <div id="shopThemes"></div>
-    <button class="second" id="btnRestore">Restaurar compras</button>
+    <button class="btn-plum" id="btnShopRestore"><svg class="ico"><use href="#i-refresh"/></svg>Restaurar compras</button>
     <button class="ghost" id="btnShopClose">Fechar</button>
   </div>
 </div>
@@ -225,42 +515,56 @@ body.th-doces .tube::before{background:#F3A6C8}
   <div class="card">
     <h2>Compra de teste</h2>
     <p id="buyText"></p>
-    <p style="font-size:14px">No app real, aqui abre o pagamento da Google Play ou da App Store.</p>
-    <button class="big" id="btnBuyOk">Confirmar compra</button>
+    <p style="font-size:14px">No app real, aqui abre o pagamento da App Store.</p>
+    <button class="btn-gold" id="btnBuyOk">Confirmar compra</button>
     <button class="ghost" id="btnBuyCancel">Cancelar</button>
   </div>
 </div>
 
 <div class="overlay" id="win">
   <div class="card">
+    <div class="win-stars" id="winStars">
+      <svg class="ico ico-f"><use href="#i-star"/></svg><svg class="ico ico-f"><use href="#i-star"/></svg><svg class="ico ico-f"><use href="#i-star"/></svg>
+    </div>
     <h2 id="winTitle">Poções em ordem!</h2>
     <p id="winText"></p>
     <div class="reward" id="winReward"></div>
-    <button class="big" id="btnNext">Próximo nível</button>
-    <button class="ghost" id="btnDouble">📺 Assistir anúncio e dobrar moedas</button>
+    <button class="btn-gold" id="btnNext">Próximo nível</button>
+    <button class="btn-plum" id="btnDouble"></button>
+    <button class="ghost" id="btnWinHome">Menu inicial</button>
   </div>
 </div>
 
 <div class="overlay" id="ad">
   <div class="card">
     <div class="adbox">
+      <svg class="ico"><use href="#i-tv"/></svg>
       <p style="margin-bottom:8px" id="adKind">Anúncio de teste</p>
       <b id="adCount">3</b>
     </div>
     <div class="reward" id="adReward"></div>
-    <button class="big" id="btnAdClaim" disabled>Aguarde…</button>
+    <button class="btn-gold" id="btnAdClaim" disabled>Aguarde…</button>
     <button class="ghost" id="btnAdClose">Fechar sem recompensa</button>
     <button class="ghost" id="btnAdNoAds" style="display:none">Remover anúncios</button>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status"></div>
 
 <script src="native.js"></script>
 <script>
 (async function(){
 const CAP = 4, MAX_LEVEL = 50, HINT_COST = 15, INTER_EVERY = 3;
 const SYMS = ['●','▲','■','◆','★','✚','♥','✖','☾','✿'];
+const CHAPTERS = [
+  { name:'Aprendiz',   desc:'Primeiras misturas' },
+  { name:'Herborista', desc:'Ervas e cores novas' },
+  { name:'Boticário',  desc:'Prateleiras cheias' },
+  { name:'Alquimista', desc:'Todas as cores' },
+  { name:'Grão-Mestre',desc:'Só para mãos firmes' }
+];
+const PER_CHAPTER = 10;
+const chapterOf = n => Math.floor((n - 1) / PER_CHAPTER);
 const THEMES = {
   classico:{ name:'Clássico', desc:'O frasco de sempre.', cost:0,
     colors:['#E8394B','#F28C28','#F5D13B','#3BBF5C','#26C6C0','#3A7BEB','#9B4DE0','#F06BB4','#8B5A2B','#ECE6F7'] },
@@ -277,16 +581,20 @@ const COIN_PACKS = [
   { amt:1500, price:'R$ 19,90', tag:'Melhor valor', product:'coins1500' }
 ];
 const NOADS = { price:'R$ 9,90', product:'noads' };
+const LOAD_TIPS = ['Acendendo as velas…', 'Polindo os frascos…', 'Separando as essências…', 'Aquecendo o caldeirão…'];
+const COIN = '<span class="coin"></span>';
 const $ = id => document.getElementById(id);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+const frame = () => new Promise(r => requestAnimationFrame(() => setTimeout(r, 0)));
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const svgIcon = (id, fill) => `<svg class="ico${fill ? ' ico-f' : ''}"><use href="#i-${id}"/></svg>`;
 
 /* ---------- nativo (Capacitor) ou navegador ---------- */
 // native.js é gerado por "npm run build". Sem ele (ou no navegador) o jogo usa o modo simulado.
 const N = window.AlquimixNative || {
   isNative:false,
   storage:{ get: async k => localStorage.getItem(k), set: async (k, v) => localStorage.setItem(k, v) },
-  haptic(){},
+  haptic(){}, hideSplash(){},
   ads:{ ready:false, init: async () => {}, privacyOptionsRequired: async () => false },
   iap:{ enabled:false, init: async () => {}, price: () => null }
 };
@@ -294,13 +602,40 @@ const realAds = () => N.isNative && N.ads.ready;
 const realIap = () => N.iap.enabled;
 const priceOf = (product, fallback) => (realIap() && N.iap.price(product)) || fallback;
 
+/* ---------- carregando ---------- */
+const loadStart = Date.now();
+$('loadTip').textContent = LOAD_TIPS[Math.floor(Math.random() * LOAD_TIPS.length)];
+function loadProgress(p){
+  $('loadBar').style.width = Math.round(p * 100) + '%';
+  // o líquido do frasco sobe junto com a barra (150 = vazio, 62 = cheio)
+  $('loadLiquid').style.transform = `translateY(${150 - p * 88}px)`;
+}
+await frame();
+N.hideSplash();
+loadProgress(.12);
+
+/* ---------- faíscas ---------- */
+(function motes(){
+  const box = $('motes'), cols = ['#F4C55B', '#5EE6C8', '#F06BB4', '#9B4DE0', '#FFE9A8'];
+  for (let i = 0; i < 16; i++){
+    const m = document.createElement('i'); m.className = 'mote';
+    const s = 4 + Math.random() * 7;
+    m.style.cssText = `left:${Math.random() * 100}%;--s:${s}px;--c:${cols[i % cols.length]};--d:${9 + Math.random() * 10}s;` +
+      `--delay:${-Math.random() * 18}s;--dx:${(Math.random() - .5) * 80}px`;
+    box.appendChild(m);
+  }
+})();
+
 /* ---------- salvar ---------- */
 const SAVE_KEY = 'alquimix-v1';
-let save = { unlocked:1, coins:0, sound:true, noAds:false, owned:['classico'], theme:'classico', sym:false };
+let save = { unlocked:1, coins:0, sound:true, vib:true, noAds:false, owned:['classico'], theme:'classico', sym:false, stars:{} };
 try { const s = JSON.parse(await N.storage.get(SAVE_KEY)); if (s) save = Object.assign(save, s); } catch(e){}
 function persist(){ N.storage.set(SAVE_KEY, JSON.stringify(save)).catch(() => {}); }
 const palette = () => THEMES[save.theme].colors;
 function applyTheme(){ document.body.className = 'th-' + save.theme; }
+const totalStars = () => Object.values(save.stars).reduce((a, b) => a + b, 0);
+function vibrate(kind){ if (save.vib) N.haptic(kind); }
+loadProgress(.35);
 
 /* ---------- lógica ---------- */
 function rng(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
@@ -341,7 +676,8 @@ function solve(start, limit){
   return dfs(start.map(t => t.slice())) ? path.slice() : null;
 }
 
-const levelCache = {};
+// par = jogadas da solução encontrada; base para as estrelas
+const levelCache = {}, levelPar = {};
 function makeLevel(n){
   if (levelCache[n]) return levelCache[n].map(t => t.slice());
   const k = levelColors(n); let last = null;
@@ -352,10 +688,15 @@ function makeLevel(n){
     const tubes = []; for (let c = 0; c < k; c++) tubes.push(units.slice(c * CAP, c * CAP + CAP));
     tubes.push([], []); last = tubes;
     if (tubes.some(t => t.length && isDone(t))) continue;
-    if (solve(tubes, 40000)) break;
+    const path = solve(tubes, 40000);
+    if (path){ levelPar[n] = path.length; break; }
   }
   levelCache[n] = last.map(t => t.slice());
   return last.map(t => t.slice());
+}
+function starsFor(n, moves){
+  const par = levelPar[n] || moves;
+  return moves <= par ? 3 : moves <= Math.ceil(par * 1.4) ? 2 : 1;
 }
 
 /* ---------- estado ---------- */
@@ -363,13 +704,16 @@ let level = 1, tubes = [], history = [], sel = null, moves = 0, undos = 3, extra
 let lastDrop = null, justDone = null, hint = null, earned = 0, busy = false, hiddenTube = null;
 
 function startLevel(n){
+  const newChapter = n > 1 && (n - 1) % PER_CHAPTER === 0 && n === level + 1;
   level = n; tubes = makeLevel(n); history = []; sel = null; moves = 0; undos = 3; extraUsed = false;
   lastDrop = null; justDone = null; hint = null; busy = false; hiddenTube = null;
   $('lvlNum').textContent = n;
+  $('chapterName').textContent = CHAPTERS[chapterOf(n)].name;
   $('tip').textContent = n === 1
     ? 'Toque num frasco e depois em outro para despejar. Só dá para despejar sobre a mesma cor ou num frasco vazio.'
     : n === 4 ? 'Travou? Use o desfazer, uma dica ou ganhe um frasco extra.' : '';
   render();
+  if (newChapter) toast(`Capítulo ${chapterOf(n) + 1}: ${CHAPTERS[chapterOf(n)].name}`);
 }
 
 /* ---------- som ---------- */
@@ -390,13 +734,14 @@ function gurgle(){
   if (!save.sound) return;
   [0, 90, 180].forEach((d, i) => setTimeout(() => beep([300 + i * 80 + Math.random() * 60], .08, 'triangle'), d));
 }
+const click = () => beep([660], .04);
 
 /* ---------- desenho ---------- */
 let tw = 50;
 function layout(){
   const n = tubes.length, cols = n <= 6 ? n : Math.ceil(n / 2), rows = Math.ceil(n / cols);
   const availW = Math.min(window.innerWidth, 560) - 44;
-  const availH = window.innerHeight - 270;
+  const availH = window.innerHeight - 290;
   tw = Math.min(60, Math.floor((availW - (cols - 1) * 14) / cols));
   tw = Math.min(tw, Math.floor((availH - (rows - 1) * 44) / (rows * 3.3 + .4)));
   tw = Math.max(26, tw);
@@ -436,8 +781,9 @@ function render(){
   });
   lastDrop = null; justDone = null;
   $('coins').textContent = save.coins;
-  $('undoLeft').textContent = undos > 0 ? undos : (save.noAds ? '+3' : '📺 +3');
-  $('tubeSub').textContent = save.noAds ? 'grátis' : '📺 anúncio';
+  const adTag = `<span class="adtag">${svgIcon('play', true)}anúncio</span>`;
+  $('undoLeft').innerHTML = undos > 0 ? `${undos} restantes` : (save.noAds ? '+3' : adTag);
+  $('tubeSub').innerHTML = save.noAds ? 'grátis' : adTag;
   $('btnUndo').disabled = history.length === 0;
   $('btnTube').disabled = extraUsed;
 }
@@ -481,7 +827,7 @@ async function doPour(from, to){
   if (reduceMotion()){
     pour(tubes[from], tubes[to]); moves++; sel = null; lastDrop = { to, n };
     if (isFull(tubes[to])) justDone = to;
-    render(); gurgle(); N.haptic('pour'); afterPour(to); return;
+    render(); gurgle(); vibrate('pour'); afterPour(to); return;
   }
 
   busy = true;
@@ -512,7 +858,7 @@ async function doPour(from, to){
     height:Math.max(8, surface - my) + 'px', background:palette()[color] });
   document.body.appendChild(st);
   st.animate([{ transform:'scaleY(0)' }, { transform:'scaleY(1)' }], { duration:110, fill:'forwards' });
-  gurgle(); N.haptic('pour');
+  gurgle(); vibrate('pour');
 
   const layers = [...clone.querySelectorAll('.layer')];
   layers.slice(-n).forEach(l => l.animate([{ flexBasis:'25%' }, { flexBasis:'0%' }], { duration:380, easing:'ease-in', fill:'forwards' }));
@@ -536,7 +882,7 @@ async function doPour(from, to){
 
 function afterPour(to){
   if (isFull(tubes[to])){
-    beep([784, 1047], .1); N.haptic('done');
+    beep([784, 1047], .1); vibrate('done');
     const r = tubeEl(to).getBoundingClientRect();
     burst(r.left + r.width / 2, r.top, [palette()[tubes[to][0]], '#FFFFFF', '#F4C55B'], 14, 60);
   }
@@ -611,16 +957,26 @@ function win(){
   earned = 10 + level;
   save.coins += earned;
   if (level >= save.unlocked && level < MAX_LEVEL) save.unlocked = level + 1;
+  const stars = starsFor(level, moves);
+  save.stars[level] = Math.max(save.stars[level] || 0, stars);
   persist();
   beep([523, 659, 784, 1047], .12);
   burst(window.innerWidth / 2, window.innerHeight * .4, palette().slice(0, 8), 60, Math.min(window.innerWidth, 500) * .5);
   const last = level >= MAX_LEVEL;
-  $('winTitle').textContent = last ? 'Você zerou o protótipo!' : 'Poções em ordem!';
+  $('winTitle').textContent = last ? 'Você é Grão-Mestre!' : ['Poções em ordem!', 'Muito bem!', 'Perfeito!'][stars - 1];
   $('winText').textContent = `Nível ${level} concluído em ${moves} jogadas.`;
-  $('winReward').textContent = `+${earned} 🪙`;
+  $('winReward').innerHTML = `+${earned} ${COIN}`;
   $('btnNext').textContent = last ? 'Voltar ao menu' : 'Próximo nível';
   $('btnDouble').style.display = '';
-  $('btnDouble').textContent = save.noAds ? 'Dobrar moedas' : '📺 Assistir anúncio e dobrar moedas';
+  $('btnDouble').innerHTML = save.noAds ? 'Dobrar moedas' : `${svgIcon('tv')} Ver anúncio e dobrar moedas`;
+  const icons = [...$('winStars').children];
+  icons.forEach(s => { s.classList.remove('on'); s.style.animationDelay = ''; });
+  icons.forEach((s, i) => {
+    if (i >= stars) return;
+    s.style.animationDelay = (.25 + i * .22) + 's';
+    s.classList.add('on');
+    setTimeout(() => beep([880 + i * 220], .08), 250 + i * 220);
+  });
   $('win').classList.add('show');
   render();
 }
@@ -633,14 +989,17 @@ $('btnNext').onclick = () => {
 $('btnDouble').onclick = () => {
   rewarded(`+${earned} moedas`, () => {
     save.coins += earned; persist();
-    $('winReward').textContent = `+${earned * 2} 🪙`;
+    $('winReward').innerHTML = `+${earned * 2} ${COIN}`;
     $('btnDouble').style.display = 'none'; render();
   });
 };
+$('btnWinHome').onclick = () => { $('win').classList.remove('show'); openHome(); };
 
 /* ---------- loja: RevenueCat no app, simulada no navegador ---------- */
 let buyCb = null, buying = false;
 function confirmBuy(text, cb){ buyCb = cb; $('buyText').textContent = text; $('buy').classList.add('show'); }
+$('btnBuyOk').onclick = () => { $('buy').classList.remove('show'); const cb = buyCb; buyCb = null; if (cb) cb(); };
+$('btnBuyCancel').onclick = () => { buyCb = null; $('buy').classList.remove('show'); };
 // Compra o produto pela App Store (RevenueCat) ou abre o diálogo de teste.
 async function purchase(product, text, cb){
   if (!realIap()){ confirmBuy(text, cb); return; }
@@ -660,21 +1019,24 @@ function applyOwned(list){
   if (changed){ persist(); render(); }
   return changed;
 }
-$('btnBuyOk').onclick = () => { $('buy').classList.remove('show'); const cb = buyCb; buyCb = null; if (cb) cb(); };
-$('btnBuyCancel').onclick = () => { buyCb = null; $('buy').classList.remove('show'); };
 
-function item(left, title, desc, btnText, btnClass, onClick){
+function item(left, title, desc, btnHtml, btnClass, onClick){
   const d = document.createElement('div'); d.className = 'item';
   d.appendChild(left);
   const info = document.createElement('div'); info.className = 'info';
   info.innerHTML = `<b>${title}</b><span>${desc}</span>`;
   d.appendChild(info);
-  const b = document.createElement('button'); b.className = 'price ' + (btnClass || ''); b.textContent = btnText;
+  const b = document.createElement('button'); b.className = 'price ' + (btnClass || ''); b.innerHTML = btnHtml;
   if (onClick) b.onclick = onClick; else b.disabled = true;
   d.appendChild(b);
   return d;
 }
-function emojiBox(e){ const s = document.createElement('div'); s.className = 'bigcoin'; s.textContent = e; return s; }
+function noAdsBox(){ const s = document.createElement('div'); s.className = 'icobox noads'; s.textContent = 'AD'; return s; }
+function coinBox(n){
+  const s = document.createElement('div'); s.className = 'coinstack';
+  [[4, 14], [16, 6], [16, 20]].slice(0, n).forEach(([x, y]) => { const c = document.createElement('span'); c.className = 'coin'; c.style.left = x + 'px'; c.style.top = y + 'px'; s.appendChild(c); });
+  return s;
+}
 function miniTube(id){
   const m = document.createElement('div'); m.className = 'mini';
   const c = THEMES[id].colors;
@@ -684,32 +1046,34 @@ function miniTube(id){
   if (id === 'doces') m.style.borderColor = '#F3A6C8';
   return m;
 }
+const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[ch]));
 function renderShop(){
   $('shopCoins').textContent = save.coins;
   const na = $('shopNoAds'); na.innerHTML = '';
+  const noAdsPrice = priceOf(NOADS.product, NOADS.price);
   na.appendChild(save.noAds
-    ? item(emojiBox('🚫'), 'Remover anúncios', 'Ativo. Obrigado pelo apoio!', 'Comprado', 'used')
-    : item(emojiBox('🚫'), 'Remover anúncios', 'Sem anúncios entre níveis e recompensas na hora.', priceOf(NOADS.product, NOADS.price), '',
-        () => purchase(NOADS.product, `Remover anúncios por ${priceOf(NOADS.product, NOADS.price)}`, () => { save.noAds = true; persist(); renderShop(); render(); toast('Anúncios removidos'); })));
+    ? item(noAdsBox(), 'Remover anúncios', 'Ativo. Obrigado pelo apoio!', 'Comprado', 'used')
+    : item(noAdsBox(), 'Remover anúncios', 'Sem intervalos e recompensas na hora.', esc(noAdsPrice), '',
+        () => purchase(NOADS.product, `Remover anúncios por ${noAdsPrice}`, () => { save.noAds = true; persist(); renderShop(); render(); toast('Anúncios removidos'); })));
   const cl = $('shopCoinsList'); cl.innerHTML = '';
-  COIN_PACKS.forEach(p => {
+  COIN_PACKS.forEach((p, i) => {
     const title = `${p.amt} moedas` + (p.tag ? ` <span class="tag">${p.tag}</span>` : '');
     const price = priceOf(p.product, p.price);
-    cl.appendChild(item(emojiBox('🪙'), title, `Dá para ${Math.floor(p.amt / HINT_COST)} dicas.`, price, '',
+    cl.appendChild(item(coinBox(i + 1), title, `Dá para ${Math.floor(p.amt / HINT_COST)} dicas.`, esc(price), '',
       () => purchase(p.product, `${p.amt} moedas por ${price}`, () => { save.coins += p.amt; persist(); renderShop(); render(); toast(`+${p.amt} moedas`); })));
   });
   const th = $('shopThemes'); th.innerHTML = '';
   Object.keys(THEMES).forEach(id => {
     const t = THEMES[id], owned = save.owned.includes(id), using = save.theme === id;
-    let txt, cls, fn;
-    if (using){ txt = 'Em uso'; cls = 'used'; fn = null; }
-    else if (owned){ txt = 'Usar'; cls = 'owned'; fn = () => { save.theme = id; persist(); applyTheme(); renderShop(); render(); }; }
-    else if (t.product){ txt = priceOf(t.product, t.price); cls = ''; fn = () => purchase(t.product, `Estilo ${t.name} por ${txt}`, () => unlockTheme(id)); }
-    else { txt = `${t.cost} 🪙`; cls = ''; fn = () => {
+    let html, cls, fn;
+    if (using){ html = 'Em uso'; cls = 'used'; fn = null; }
+    else if (owned){ html = 'Usar'; cls = 'owned'; fn = () => { save.theme = id; persist(); applyTheme(); renderShop(); render(); }; }
+    else if (t.product){ const price = priceOf(t.product, t.price); html = esc(price); cls = ''; fn = () => purchase(t.product, `Estilo ${t.name} por ${price}`, () => unlockTheme(id)); }
+    else { html = `${t.cost} ${COIN}`; cls = ''; fn = () => {
       if (save.coins < t.cost){ toast(`Faltam ${t.cost - save.coins} moedas`); return; }
       save.coins -= t.cost; unlockTheme(id);
     }; }
-    th.appendChild(item(miniTube(id), t.name, t.desc, txt, cls, fn));
+    th.appendChild(item(miniTube(id), t.name, t.desc, html, cls, fn));
   });
 }
 function unlockTheme(id){
@@ -717,59 +1081,123 @@ function unlockTheme(id){
   save.theme = id; persist(); applyTheme(); renderShop(); render(); toast(`Estilo ${THEMES[id].name} ativado`);
 }
 function openShop(){ renderShop(); $('shop').classList.add('show'); }
-$('btnCoins').onclick = openShop;
-$('btnShopHome').onclick = openShop;
-$('btnShopClose').onclick = () => $('shop').classList.remove('show');
-$('btnRestore').onclick = async () => {
+async function restorePurchases(btn){
   if (!realIap()){ toast(N.isNative ? 'Loja indisponível no momento' : 'Modo de teste: nada para restaurar'); return; }
   if (buying) return;
-  buying = true; $('btnRestore').textContent = 'Restaurando…';
+  buying = true; btn.classList.add('busy'); toast('Restaurando…');
   try {
     const list = await N.iap.restore();
     applyOwned(list);
     renderShop();
     toast(list.length ? 'Compras restauradas' : 'Nenhuma compra para restaurar');
   } catch(e){ toast('Não foi possível restaurar. Tente de novo.'); }
-  finally { buying = false; $('btnRestore').textContent = 'Restaurar compras'; }
-};
+  finally { buying = false; btn.classList.remove('busy'); }
+}
+$('btnCoins').onclick = openShop;
+$('btnCoinsHome').onclick = openShop;
+$('btnShopHome').onclick = () => { click(); openShop(); };
+$('btnShopClose').onclick = () => { $('shop').classList.remove('show'); refreshHome(); };
+$('btnShopRestore').onclick = e => restorePurchases(e.currentTarget);
+$('btnRestore').onclick = e => restorePurchases(e.currentTarget);
 
-/* ---------- menu ---------- */
-function labels(){
-  $('btnSound').textContent = 'Som: ' + (save.sound ? 'ligado' : 'desligado');
-  $('btnSym').textContent = 'Símbolos de cor: ' + (save.sym ? 'ligados' : 'desligados');
+/* ---------- telas ---------- */
+const SCREENS = ['home', 'levels', 'settings'];
+function showScreen(id){
+  SCREENS.forEach(s => $(s).classList.toggle('show', s === id));
+}
+function closeScreens(){ SCREENS.forEach(s => $(s).classList.remove('show')); }
+
+function refreshHome(){
+  $('homeCoins').textContent = save.coins;
+  $('homeStars').textContent = totalStars();
+  $('playSub').textContent = `Nível ${save.unlocked} · ${CHAPTERS[chapterOf(save.unlocked)].name}`;
 }
 function openHome(){
-  $('btnPlay').textContent = `Jogar nível ${save.unlocked}`;
-  labels();
-  const box = $('levels'); box.innerHTML = '';
-  for (let n = 1; n <= MAX_LEVEL; n++){
-    const b = document.createElement('button'); b.textContent = n;
-    if (n > save.unlocked) b.disabled = true;
-    if (n === save.unlocked) b.classList.add('cur');
-    b.onclick = () => { $('home').classList.remove('show'); startLevel(n); };
-    box.appendChild(b);
-  }
-  $('home').classList.add('show');
+  ['pause', 'win'].forEach(o => $(o).classList.remove('show'));
+  refreshHome();
+  showScreen('home');
 }
-$('btnMenu').onclick = () => { if (!busy) openHome(); };
-$('btnPlay').onclick = () => { $('home').classList.remove('show'); startLevel(save.unlocked); };
-$('btnSound').onclick = () => { save.sound = !save.sound; persist(); labels(); };
-$('btnSym').onclick = () => { save.sym = !save.sym; persist(); labels(); render(); };
+function play(n){ closeScreens(); $('pause').classList.remove('show'); startLevel(n); }
+
+function openLevels(){
+  $('levelsStars').textContent = `${totalStars()}/${MAX_LEVEL * 3}`;
+  const box = $('chapters'); box.innerHTML = '';
+  let curEl = null;
+  CHAPTERS.forEach((ch, ci) => {
+    const first = ci * PER_CHAPTER + 1, lastLv = first + PER_CHAPTER - 1;
+    let got = 0; for (let n = first; n <= lastLv; n++) got += save.stars[n] || 0;
+    const sec = document.createElement('section');
+    sec.className = 'chapter' + (first > save.unlocked ? ' locked' : '');
+    sec.innerHTML = `<div class="ch-head"><div><b>${ci + 1}. ${ch.name}</b><br><small>${ch.desc} · níveis ${first}–${lastLv}</small></div>` +
+      `<span class="ch-stars">${svgIcon('star', true)}${got}/${PER_CHAPTER * 3}</span></div>`;
+    const grid = document.createElement('div'); grid.className = 'lv-grid';
+    for (let n = first; n <= lastLv; n++){
+      const b = document.createElement('button'); b.className = 'lv';
+      if (n > save.unlocked){ b.disabled = true; b.innerHTML = svgIcon('lock'); b.setAttribute('aria-label', `Nível ${n}, bloqueado`); }
+      else {
+        const s = save.stars[n] || 0;
+        b.innerHTML = `${n}<span class="st">${[0, 1, 2].map(k => `<span class="${k < s ? 'on' : ''}">★</span>`).join('')}</span>`;
+        b.setAttribute('aria-label', `Nível ${n}, ${s} estrelas`);
+        if (n === save.unlocked){ b.classList.add('cur'); curEl = b; }
+        b.onclick = () => { click(); play(n); };
+      }
+      grid.appendChild(b);
+    }
+    sec.appendChild(grid); box.appendChild(sec);
+  });
+  showScreen('levels');
+  if (curEl) curEl.scrollIntoView({ block:'center' });
+}
+
+function syncSettings(){
+  [['setSound', save.sound], ['setVib', save.vib], ['setSym', save.sym]].forEach(([id, on]) => $(id).setAttribute('aria-checked', on));
+}
+function openSettings(){ syncSettings(); showScreen('settings'); }
+
+$('btnPlay').onclick = () => { click(); play(save.unlocked); };
+$('btnLevelsHome').onclick = () => { click(); openLevels(); };
+$('btnSettingsHome').onclick = () => { click(); openSettings(); };
+$('btnLevelsBack').onclick = () => { click(); openHome(); };
+$('btnSettingsBack').onclick = () => { click(); openHome(); };
+
+$('btnPause').onclick = () => {
+  if (busy) return;
+  $('pauseText').textContent = `${CHAPTERS[chapterOf(level)].name} · nível ${level} · ${moves} jogadas`;
+  $('pause').classList.add('show');
+};
+$('btnResume').onclick = () => $('pause').classList.remove('show');
+$('btnPauseRestart').onclick = () => { $('pause').classList.remove('show'); startLevel(level); };
+$('btnPauseLevels').onclick = () => { $('pause').classList.remove('show'); openLevels(); };
+$('btnPauseHome').onclick = () => openHome();
+
+$('setSound').onclick = () => { save.sound = !save.sound; persist(); syncSettings(); click(); };
+$('setVib').onclick = () => { save.vib = !save.vib; persist(); syncSettings(); vibrate('pour'); };
+$('setSym').onclick = () => { save.sym = !save.sym; persist(); syncSettings(); render(); };
 $('btnReset').onclick = () => {
-  if (!confirm(realIap() ? 'Apagar todo o progresso e as moedas? Compras permanentes (sem anúncios, estilo Ouro) continuam valendo.'
-                         : 'Apagar todo o progresso, moedas e compras de teste?')) return;
-  save = { unlocked:1, coins:0, sound:save.sound, noAds:false, owned:['classico'], theme:'classico', sym:save.sym };
-  persist(); applyTheme(); openHome(); startLevel(1);
+  if (!confirm(realIap() ? 'Apagar todo o progresso, estrelas e moedas? Compras permanentes (sem anúncios, estilo Ouro) continuam valendo.'
+                         : 'Apagar todo o progresso, estrelas, moedas e compras de teste?')) return;
+  save = { unlocked:1, coins:0, sound:save.sound, vib:save.vib, noAds:false, owned:['classico'], theme:'classico', sym:save.sym, stars:{} };
+  persist(); applyTheme(); startLevel(1); openHome();
   if (realIap()) N.iap.owned().then(applyOwned);
+  toast('Progresso apagado');
 };
 $('btnPrivacy').onclick = () => N.ads.showPrivacyOptions();
 
 window.addEventListener('resize', () => { if (!busy) render(); });
+
+/* ---------- abrir o jogo ---------- */
 $('modeNote').textContent = N.isNative ? ''
-  : 'Modo navegador: anúncios e compras são simulados. No app eles vêm do AdMob e da App Store.';
+  : 'Modo navegador: anúncios e compras são simulados.';
 applyTheme();
+await frame();
 startLevel(save.unlocked);
+loadProgress(.75);
+try { await Promise.race([document.fonts.ready, sleep(1500)]); } catch(e){}
+loadProgress(1);
+await sleep(Math.max(0, 1400 - (Date.now() - loadStart)));
 openHome();
+$('loading').classList.add('hide');
+setTimeout(() => $('loading').remove(), 500);
 
 // Serviços nativos depois que o jogo já está na tela.
 N.iap.init().then(async () => {

@@ -3,6 +3,7 @@
 import { Capacitor } from '@capacitor/core';
 import { Preferences } from '@capacitor/preferences';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import { SplashScreen } from '@capacitor/splash-screen';
 import { AdMob, AdmobConsentStatus, RewardAdPluginEvents, InterstitialAdPluginEvents } from '@capacitor-community/admob';
 import { Purchases, LOG_LEVEL, PURCHASES_ERROR_CODE } from '@revenuecat/purchases-capacitor';
 
@@ -13,6 +14,12 @@ const storage = {
   async get(key) { const { value } = await Preferences.get({ key }); return value; },
   async set(key, value) { await Preferences.set({ key, value }); },
 };
+
+/* ---------- tela de abertura ---------- */
+// A abertura nativa fica até a tela de carregamento do jogo (mesmo fundo) estar desenhada.
+function hideSplash() {
+  if (isNative) SplashScreen.hide({ fadeOutDuration: 200 }).catch(() => {});
+}
 
 /* ---------- vibração ---------- */
 function haptic(kind) {
@@ -173,4 +180,4 @@ const iap = {
   },
 };
 
-window.AlquimixNative = { isNative, storage, haptic, ads, iap };
+window.AlquimixNative = { isNative, storage, haptic, hideSplash, ads, iap };

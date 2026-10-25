@@ -7,5 +7,13 @@
     "contentInset": "never",
     "scrollEnabled": false,
     "backgroundColor": "#140F24"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false,
+      "backgroundColor": "#140F24",
+      "showSpinner": false,
+      "launchFadeOutDuration": 0
+    }
   }
 }
