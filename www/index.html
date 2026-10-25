@@ -132,6 +132,9 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .cork.pop{animation:pop .4s cubic-bezier(.3,1.7,.6,1)}
 .tube.no{animation:shake .3s}
 .tube.hint .glass{animation:pulse 1s ease-in-out infinite}
+.tube.hint.from{transform:translateY(-12px)}
+.tube.hint.to::after{content:"";position:absolute;left:50%;top:-30px;margin-left:-8px;border:8px solid transparent;border-top:11px solid var(--gold);
+  animation:bob 1s ease-in-out infinite}
 .stream{position:fixed;z-index:16;border-radius:4px;transform-origin:top;pointer-events:none}
 .spark{position:fixed;z-index:40;width:8px;height:8px;border-radius:2px;pointer-events:none}
 
@@ -143,6 +146,12 @@ body.th-ouro .glass{border-color:#D4AF37;background:linear-gradient(90deg,rgba(2
 body.th-ouro .tube::before{background:linear-gradient(90deg,#B8902B,#F5D77A,#B8902B)}
 body.th-doces .glass{border-radius:0 0 calc(var(--tw) / 2.2) calc(var(--tw) / 2.2);border-color:#F3A6C8}
 body.th-doces .tube::before{background:#F3A6C8}
+body.th-cristal .glass{border-color:#BFE9FF;background:linear-gradient(rgba(191,233,255,.2),var(--glass));box-shadow:0 0 12px rgba(191,233,255,.25), inset 0 -6px 14px rgba(0,0,0,.2)}
+body.th-cristal .tube::before{background:linear-gradient(90deg,#BFE9FF,#FFFFFF,#BFE9FF)}
+body.th-floresta .glass{border-color:#9CC69B;background:linear-gradient(90deg,rgba(156,198,155,.12),var(--glass))}
+body.th-floresta .tube::before{background:linear-gradient(#B07D4F,#7E5530)}
+body.th-vulcao .glass{border-color:#FF7A3D;box-shadow:0 0 14px rgba(255,100,40,.45), inset 0 -8px 16px rgba(255,80,20,.18)}
+body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#FF3B30)}
 
 @keyframes fillin{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 @keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
@@ -214,7 +223,8 @@ body.th-doces .tube::before{background:#F3A6C8}
   padding:6px 12px;font-weight:800;font-size:16px}
 .stars-chip .ico{color:var(--gold);font-size:18px}
 .hero{position:relative;display:flex;flex-direction:column;align-items:center;padding-top:8px}
-.hero-art{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:10px;height:200px;margin-bottom:6px}
+.hero-art{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:10px;height:clamp(150px, 22vh, 200px);margin-bottom:6px}
+.hero-art .flask{height:100%;width:auto}
 .hero-art .flask{animation:sway 4s ease-in-out infinite;transform-origin:50% 100%}
 .side-tube{width:26px;height:92px;border:3px solid var(--edge);border-top-width:6px;border-radius:5px 5px 13px 13px;overflow:hidden;
   display:flex;flex-direction:column-reverse;background:var(--glass);margin-bottom:6px;animation:bob 3s ease-in-out infinite}
@@ -229,10 +239,23 @@ body.th-doces .tube::before{background:#F3A6C8}
 .play-btn .row1{display:flex;align-items:center;gap:10px;font-size:28px;line-height:1.1}
 .play-btn .row1 .ico{font-size:24px}
 .play-btn small{font-size:14px;font-weight:700;opacity:.75}
-.menu-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.menu-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 6px 10px;border-radius:20px;
-  background:var(--panel2);border:1px solid var(--line);box-shadow:0 4px 0 rgba(0,0,0,.35);font-weight:800;font-size:15px}
-.menu-btn .ico{font-size:28px;color:var(--gold)}
+.menu-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.menu-btn{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:11px 4px 9px;border-radius:20px;
+  background:var(--panel2);border:1px solid var(--line);box-shadow:0 4px 0 rgba(0,0,0,.35);font-weight:800;font-size:14px}
+.menu-btn .ico{font-size:26px;color:var(--gold)}
+.menu-btn .dot{position:absolute;top:6px;right:8px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--magic);color:#0B2A24;
+  font-size:12px;line-height:20px;font-weight:800}
+.challenge{display:flex;align-items:center;gap:12px;width:100%;padding:10px 14px;border-radius:20px;text-align:left;
+  background:linear-gradient(100deg, rgba(94,230,200,.18), rgba(94,230,200,.05));border:1px solid rgba(94,230,200,.4);
+  box-shadow:0 4px 0 rgba(0,0,0,.35)}
+.challenge:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.35)}
+.challenge > .ico{font-size:30px;color:var(--magic)}
+.challenge .ch-txt{flex:1;min-width:0;line-height:1.15}
+.challenge .ch-txt b{display:block;font-size:18px}
+.challenge .ch-txt small{display:block;color:var(--muted);font-weight:700;font-size:13px}
+.challenge .ch-reward{display:flex;align-items:center;gap:4px;font-weight:800;color:var(--gold);font-size:17px}
+.challenge.done{opacity:.6}
+.challenge.done .ch-reward{color:var(--magic)}
 .menu-btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.35)}
 .mode-note{margin:12px 0 0;text-align:center;color:var(--faint);font-size:12px;line-height:1.3}
 
@@ -302,6 +325,35 @@ body.th-doces .tube::before{background:#F3A6C8}
 .win-stars .ico.on{color:var(--gold);animation:starpop .45s cubic-bezier(.3,1.8,.5,1) both;
   filter:drop-shadow(0 3px 0 var(--gold-edge)) drop-shadow(0 0 14px rgba(244,197,91,.6))}
 @keyframes starpop{from{transform:scale(0) rotate(-40deg)}to{transform:none}}
+
+/* conquistas */
+.ach{display:flex;align-items:center;gap:12px;padding:12px;border-radius:18px;background:linear-gradient(var(--panel2), var(--panel));
+  border:1px solid var(--line);margin-bottom:10px}
+.ach .medal{flex:0 0 auto;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:24px;
+  background:var(--chip);color:var(--faint);border:2px solid var(--line)}
+.ach.got .medal{background:radial-gradient(circle at 35% 30%, var(--gold-hi), var(--gold) 50%, var(--gold-lo));color:var(--gold-ink);
+  border-color:var(--gold-edge);box-shadow:0 0 14px rgba(244,197,91,.35)}
+.ach .info{flex:1;min-width:0}
+.ach b{display:block;font-size:17px;line-height:1.2}
+.ach span{display:block;color:var(--muted);font-size:13px;line-height:1.25}
+.ach .prog{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:12px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.ach .prog i{flex:1;height:8px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.ach .prog i::before{content:"";display:block;height:100%;width:var(--p);border-radius:inherit;background:linear-gradient(90deg,var(--magic),#9BF5E3)}
+.ach .rew{flex:0 0 auto;display:flex;align-items:center;gap:4px;font-weight:800;color:var(--gold);font-size:15px}
+.ach.got .rew{color:var(--magic)}
+#achPop{position:fixed;left:50%;top:calc(var(--safe-t) + 10px);z-index:70;display:flex;align-items:center;gap:12px;
+  padding:10px 18px 10px 10px;border-radius:999px;background:var(--panel2);border:1px solid var(--line-gold);
+  box-shadow:0 10px 30px rgba(0,0,0,.5);transform:translate(-50%,-140%);transition:transform .45s cubic-bezier(.3,1.4,.6,1);
+  pointer-events:none;max-width:calc(100vw - 24px)}
+#achPop.show{transform:translate(-50%,0)}
+#achPop .medal{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:22px;flex:0 0 auto;color:var(--gold-ink);
+  background:radial-gradient(circle at 35% 30%, var(--gold-hi), var(--gold) 50%, var(--gold-lo))}
+#achPop small{display:block;color:var(--gold);font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+#achPop b{display:block;font-size:17px;line-height:1.15;white-space:nowrap}
+#achPop small .coin{vertical-align:-.15em}
+.btn-danger{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;border-radius:20px;
+  background:linear-gradient(#FF9C9C,#E5484D);color:#3A0A0C;font-weight:800;font-size:20px;box-shadow:0 5px 0 #8E1F23}
+.btn-danger:active{transform:translateY(3px);box-shadow:0 2px 0 #8E1F23}
 
 /* bônus diário */
 .gift{font-size:64px;color:var(--gold);margin:-4px 0 2px;animation:bob 2.4s ease-in-out infinite;filter:drop-shadow(0 0 16px rgba(244,197,91,.45))}
@@ -378,6 +430,8 @@ body.th-doces .tube::before{background:#F3A6C8}
   <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/></symbol>
   <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5M3 21v-5h5"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M12 13.5l1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2-1.6-1.5 2.2-.3z"/></symbol>
   <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
   <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="5" rx="1"/><path d="M5 13v8h14v-8M12 8v13M12 8S10.5 3 8 3a2.5 2.5 0 0 0 0 5M12 8s1.5-5 4-5a2.5 2.5 0 0 1 0 5"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
@@ -444,8 +498,14 @@ body.th-doces .tube::before{background:#F3A6C8}
         <span class="row1"><svg class="ico ico-f"><use href="#i-play"/></svg>Jogar</span>
         <small id="playSub">Nível 1</small>
       </button>
+      <button class="challenge" id="btnChallenge">
+        <svg class="ico"><use href="#i-calendar"/></svg>
+        <span class="ch-txt"><b>Desafio do dia</b><small id="challengeSub">Um nível novo todo dia</small></span>
+        <span class="ch-reward" id="challengeReward"></span>
+      </button>
       <div class="menu-row">
         <button class="menu-btn" id="btnLevelsHome"><svg class="ico"><use href="#i-grid"/></svg>Níveis</button>
+        <button class="menu-btn" id="btnTrophiesHome"><svg class="ico"><use href="#i-trophy"/></svg>Troféus<span class="dot" id="trophyDot" hidden></span></button>
         <button class="menu-btn" id="btnShopHome"><svg class="ico"><use href="#i-bag"/></svg>Loja</button>
         <button class="menu-btn" id="btnSettingsHome"><svg class="ico"><use href="#i-sliders"/></svg>Ajustes</button>
       </div>
@@ -463,6 +523,18 @@ body.th-doces .tube::before{background:#F3A6C8}
       <div class="stars-chip"><svg class="ico ico-f"><use href="#i-star"/></svg><span id="levelsStars">0</span></div>
     </div>
     <div class="scroll" id="chapters"></div>
+  </div>
+</section>
+
+<!-- conquistas -->
+<section class="screen solid" id="trophies" aria-label="Conquistas">
+  <div class="inner">
+    <div class="bar-head">
+      <button class="iconbtn" id="btnTrophiesBack" aria-label="Voltar"><svg class="ico"><use href="#i-back"/></svg></button>
+      <h2>Conquistas</h2>
+      <div class="stars-chip"><svg class="ico"><use href="#i-trophy"/></svg><span id="trophyCount">0</span></div>
+    </div>
+    <div class="scroll" id="achList"></div>
   </div>
 </section>
 
@@ -494,7 +566,7 @@ body.th-doces .tube::before{background:#F3A6C8}
 <div class="app">
   <header class="top">
     <button class="iconbtn" id="btnPause" aria-label="Pausa"><svg class="ico"><use href="#i-pause"/></svg></button>
-    <div class="lvl"><small id="chapterName">Aprendiz</small><b>Nível <span id="lvlNum">1</span></b></div>
+    <div class="lvl"><small id="chapterName">Aprendiz</small><b id="lvlTitle">Nível 1</b></div>
     <button class="coins" id="btnCoins" aria-label="Moedas, abrir loja"><span class="coin"></span><span id="coins">0</span><span class="plus">+</span></button>
   </header>
   <p class="tip" id="tip"></p>
@@ -582,6 +654,16 @@ body.th-doces .tube::before{background:#F3A6C8}
   </div>
 </div>
 
+<div class="overlay" id="confirm">
+  <div class="card">
+    <h2 id="confirmTitle"></h2>
+    <p id="confirmText"></p>
+    <button class="btn-danger" id="btnConfirmOk"></button>
+    <button class="ghost" id="btnConfirmCancel">Cancelar</button>
+  </div>
+</div>
+
+<div id="achPop" role="status" aria-live="polite"><div class="medal"><svg class="ico"><use href="#i-trophy"/></svg></div><div><small id="achPopReward"></small><b id="achPopName"></b></div></div>
 <div class="toast" id="toast" role="status"></div>
 
 <script src="native.js"></script>
@@ -589,6 +671,7 @@ body.th-doces .tube::before{background:#F3A6C8}
 (async function(){
 const CAP = 4, MAX_LEVEL = 100, HINT_COST = 15, INTER_EVERY = 3, MYSTERY_FROM = 21;
 const DAILY = [20, 30, 40, 50, 60, 80, 150];
+const CHALLENGE_REWARD = 100;
 const SYMS = ['●','▲','■','◆','★','✚','♥','✖','☾','✿'];
 const CHAPTERS = [
   { name:'Aprendiz',    desc:'Primeiras misturas' },
@@ -607,11 +690,17 @@ const chapterOf = n => Math.floor((n - 1) / PER_CHAPTER);
 const THEMES = {
   classico:{ name:'Clássico', desc:'O frasco de sempre.', cost:0,
     colors:['#E8394B','#F28C28','#F5D13B','#3BBF5C','#26C6C0','#3A7BEB','#9B4DE0','#F06BB4','#8B5A2B','#ECE6F7'] },
-  doces:{ name:'Doces', desc:'Cores de confeitaria.', cost:250,
+  doces:{ name:'Doces', desc:'Cores de confeitaria.', cost:250, edge:'#F3A6C8',
     colors:['#F58A97','#F9B47A','#F7DC6F','#8FD98A','#7FD6CF','#8DB4F0','#BE93E8','#F4A3CF','#B98A62','#FFFFFF'] },
-  neon:{ name:'Neon', desc:'Brilho de laboratório secreto.', cost:250,
+  neon:{ name:'Neon', desc:'Brilho de laboratório secreto.', cost:250, edge:'#7DF9FF',
     colors:['#FF2E63','#FF8A00','#FFE600','#39FF14','#00F5D4','#2D9CFF','#B14AFF','#FF4FD8','#C77D3A','#FFFFFF'] },
-  ouro:{ name:'Ouro', desc:'Frascos dourados e cores de joia.', price:'R$ 4,90', product:'theme_ouro',
+  cristal:{ name:'Cristal', desc:'Gelo e luz da lua.', cost:400, edge:'#BFE9FF',
+    colors:['#FF6F91','#FFB26B','#FFE66D','#7BE0AD','#6EE7F0','#7FA8FF','#B79CFF','#FF9BD2','#C9A98B','#F2F8FF'] },
+  floresta:{ name:'Floresta', desc:'Musgo, mel e madeira.', cost:400, edge:'#9CC69B',
+    colors:['#C0392B','#D9822B','#E3C565','#6A994E','#2A9D8F','#457B9D','#7D5BA6','#D17A9E','#8B5E3C','#EDE6D6'] },
+  vulcao:{ name:'Vulcão', desc:'Frascos em brasa.', cost:600, edge:'#FF7A3D',
+    colors:['#FF3B30','#FF8C1A','#FFD60A','#34C759','#00C7BE','#0A84FF','#AF52DE','#FF2D92','#A2672F','#FFF4E0'] },
+  ouro:{ name:'Ouro', desc:'Frascos dourados e cores de joia.', price:'R$ 4,90', product:'theme_ouro', edge:'#D4AF37',
     colors:['#C8102E','#E86A10','#F2C230','#1E9E5A','#12A3A0','#1F5FD1','#7B2FC0','#D6418C','#7A4A1E','#F4EBD0'] }
 };
 const COIN_PACKS = [
@@ -668,12 +757,16 @@ loadProgress(.12);
 /* ---------- salvar ---------- */
 const SAVE_KEY = 'alquimix-v1';
 let save = { unlocked:1, coins:0, sound:true, music:true, vib:true, noAds:false, owned:['classico'], theme:'classico', sym:false, stars:{},
-  daily:{ last:'', streak:0 } };
+  daily:{ last:'', streak:0 }, challenge:{ last:'', count:0 }, ach:{},
+  stats:{ corks:0, reveals:0, clean:0, bestStreak:0 } };
 try { const s = JSON.parse(await N.storage.get(SAVE_KEY)); if (s) save = Object.assign(save, s); } catch(e){}
 function persist(){ N.storage.set(SAVE_KEY, JSON.stringify(save)).catch(() => {}); }
 const palette = () => THEMES[save.theme].colors;
 function applyTheme(){ document.body.className = 'th-' + save.theme; }
 const totalStars = () => Object.values(save.stars).reduce((a, b) => a + b, 0);
+const levelsDone = () => Object.keys(save.stars).length;
+const perfectLevels = () => Object.values(save.stars).filter(v => v === 3).length;
+const dayStr = off => { const d = new Date(); d.setDate(d.getDate() + off); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
 function vibrate(kind){ if (save.vib) N.haptic(kind); }
 loadProgress(.35);
 
@@ -718,21 +811,32 @@ function solve(start, limit){
 
 // par = jogadas da solução encontrada; base para as estrelas
 const levelCache = {}, levelPar = {};
-function makeLevel(n){
-  if (levelCache[n]) return levelCache[n].map(t => t.slice());
-  const k = levelColors(n); let last = null;
+// Embaralha k cores com a semente e testa se o solucionador resolve. Retorna { tubes, par }.
+function generate(seed, k){
+  let last = null;
   for (let attempt = 0; attempt < 40; attempt++){
-    const r = rng(n * 7919 + attempt * 104729);
+    const r = rng(seed * 7919 + attempt * 104729);
     const units = []; for (let c = 0; c < k; c++) for (let i = 0; i < CAP; i++) units.push(c);
     for (let i = units.length - 1; i > 0; i--){ const j = Math.floor(r() * (i + 1)); [units[i], units[j]] = [units[j], units[i]]; }
     const tubes = []; for (let c = 0; c < k; c++) tubes.push(units.slice(c * CAP, c * CAP + CAP));
     tubes.push([], []); last = tubes;
     if (tubes.some(t => t.length && isDone(t))) continue;
     const path = solve(tubes, 40000);
-    if (path){ levelPar[n] = path.length; break; }
+    if (path) return { tubes, par:path.length };
   }
-  levelCache[n] = last.map(t => t.slice());
-  return last.map(t => t.slice());
+  return { tubes:last, par:0 };
+}
+function makeLevel(n){
+  if (!levelCache[n]){ const g = generate(n, levelColors(n)); levelCache[n] = g.tubes; if (g.par) levelPar[n] = g.par; }
+  return levelCache[n].map(t => t.slice());
+}
+// Desafio do dia: mesma semente para todo mundo naquele dia, 8 cores e muitas camadas misteriosas.
+const challengeSeed = () => { const d = new Date(); return 900000 + d.getFullYear() * 400 + d.getMonth() * 32 + d.getDate(); };
+let challengePar = 0;
+function makeChallenge(){
+  const g = generate(challengeSeed(), 8); challengePar = g.par;
+  const r = rng(challengeSeed() * 31337 + 7);
+  return { tubes:g.tubes, mask:g.tubes.map(t => t.map((c, k) => k < t.length - 1 && r() < .5)) };
 }
 // Poções misteriosas: a partir do capítulo 3, algumas camadas (nunca a de cima) ficam ocultas
 // até virarem o topo do frasco. Uma camada oculta só se move depois de revelada, então a máscara
@@ -743,19 +847,23 @@ function makeMask(n, tubes){
   return tubes.map(t => t.map((c, k) => k < t.length - 1 && r() < p));
 }
 function starsFor(n, moves){
-  const par = levelPar[n] || moves;
+  const par = (mode === 'challenge' ? challengePar : levelPar[n]) || moves;
   return moves <= par ? 3 : moves <= Math.ceil(par * 1.4) ? 2 : 1;
 }
 
 /* ---------- estado ---------- */
 let level = 1, tubes = [], mask = [], history = [], sel = null, moves = 0, undos = 3, extraUsed = false;
 let lastDrop = null, justDone = null, hint = null, earned = 0, busy = false, hiddenTube = null;
+let mode = 'level', helped = false;   // helped: usou desfazer ou frasco extra neste nível
+function resetBoard(){
+  history = []; sel = null; moves = 0; undos = 3; extraUsed = false; helped = false;
+  lastDrop = null; justDone = null; hint = null; busy = false; hiddenTube = null;
+}
 
 function startLevel(n){
   const newChapter = n > 1 && (n - 1) % PER_CHAPTER === 0 && n === level + 1;
-  level = n; tubes = makeLevel(n); mask = makeMask(n, tubes); history = []; sel = null; moves = 0; undos = 3; extraUsed = false;
-  lastDrop = null; justDone = null; hint = null; busy = false; hiddenTube = null;
-  $('lvlNum').textContent = n;
+  mode = 'level'; level = n; tubes = makeLevel(n); mask = makeMask(n, tubes); resetBoard();
+  $('lvlTitle').textContent = `Nível ${n}`;
   $('chapterName').textContent = CHAPTERS[chapterOf(n)].name;
   $('tip').textContent = n === 1
     ? 'Toque num frasco e depois em outro para despejar. Só dá para despejar sobre a mesma cor ou num frasco vazio.'
@@ -765,6 +873,17 @@ function startLevel(n){
   tutorHint();
   if (newChapter) toast(`Capítulo ${chapterOf(n) + 1}: ${CHAPTERS[chapterOf(n)].name}`);
 }
+function startChallenge(){
+  const c = makeChallenge();
+  mode = 'challenge'; tubes = c.tubes; mask = c.mask; resetBoard();
+  $('chapterName').textContent = 'Desafio do dia';
+  $('lvlTitle').textContent = new Date().toLocaleDateString('pt-BR', { day:'numeric', month:'long' });
+  $('tip').textContent = challengeDone() ? 'Você já venceu o desafio de hoje. Jogue por diversão!'
+                                         : `Um nível novo por dia, com muitas poções misteriosas. Vale ${CHALLENGE_REWARD} moedas.`;
+  render();
+}
+const restartCurrent = () => mode === 'challenge' ? startChallenge() : startLevel(level);
+const challengeDone = () => save.challenge.last === dayStr(0);
 
 /* ---------- som: efeitos e música gerados na hora (Web Audio, sem arquivos) ---------- */
 let actx = null, sfxBus = null, musicBus = null, noiseBuf = null;
@@ -911,7 +1030,7 @@ function render(){
       el.classList.add('done'); el.style.setProperty('--glow', pal[t[0]]);
       const c = document.createElement('div'); c.className = 'cork' + (justDone === i ? ' pop' : ''); el.appendChild(c);
     }
-    if (hint && (hint[0] === i || hint[1] === i)) el.classList.add('hint');
+    if (hint && (hint[0] === i || hint[1] === i)) el.classList.add('hint', hint[0] === i ? 'from' : 'to');
     const g = document.createElement('div'); g.className = 'glass';
     const f = document.createElement('div'); f.className = 'fill';
     t.forEach((c, k) => {
@@ -1034,7 +1153,7 @@ function commitPour(from, to, n){
   mask[from].length = tubes[from].length;
   const top = tubes[from].length - 1;
   const revealed = top >= 0 && mask[from][top];
-  if (revealed) mask[from][top] = false;
+  if (revealed){ mask[from][top] = false; save.stats.reveals++; }
   if (isFull(tubes[to])){ justDone = to; mask[to].fill(false); }   // frasco completo mostra tudo
   return revealed;
 }
@@ -1048,9 +1167,9 @@ function revealFx(i){
 let tutorTimer = null;
 function tutorHint(){
   clearTimeout(tutorTimer);
-  if (level !== 1 || moves >= 3 || solved(tubes)) return;
+  if (mode !== 'level' || level !== 1 || moves >= 3 || solved(tubes)) return;
   tutorTimer = setTimeout(() => {
-    if (level !== 1 || busy || sel !== null || hint) return;
+    if (mode !== 'level' || level !== 1 || busy || sel !== null || hint) return;
     const path = solve(tubes, 20000);
     if (path && path.length){ hint = path[0]; render(); }
   }, moves ? 700 : 1200);
@@ -1058,12 +1177,12 @@ function tutorHint(){
 
 function afterPour(to){
   if (isFull(tubes[to])){
-    sfx.cork(); vibrate('done');
+    sfx.cork(); vibrate('done'); save.stats.corks++; persist();
     const r = tubeEl(to).getBoundingClientRect();
     burst(r.left + r.width / 2, r.top, [palette()[tubes[to][0]], '#FFFFFF', '#F4C55B'], 14, 60);
   }
   if (solved(tubes)) setTimeout(win, 380);
-  else tutorHint();
+  else { tutorHint(); checkAch(); }
 }
 
 /* ---------- ferramentas ---------- */
@@ -1072,22 +1191,27 @@ function toast(msg){ const t = $('toast'); t.textContent = msg; t.classList.add(
 $('btnUndo').onclick = () => {
   if (busy || !history.length) return;
   if (undos <= 0){ rewarded('+3 desfazer', () => { undos = 3; render(); toast('Você ganhou 3 desfazer'); }); return; }
-  const h = history.pop(); tubes = h.t; mask = h.m; undos--; sel = null; hint = null; moves = Math.max(0, moves - 1); render();
+  const h = history.pop(); tubes = h.t; mask = h.m; undos--; helped = true; sel = null; hint = null; moves = Math.max(0, moves - 1); render();
 };
-$('btnRestart').onclick = () => { if (!busy) startLevel(level); };
+$('btnRestart').onclick = () => { if (!busy) restartCurrent(); };
 $('btnTube').onclick = () => {
   if (busy || extraUsed) return;
   rewarded('+1 frasco vazio', () => {
-    extraUsed = true; tubes.push([]); mask.push([]); history.forEach(h => { h.t.push([]); h.m.push([]); }); sel = null; render(); toast('Frasco extra adicionado');
+    extraUsed = true; helped = true; tubes.push([]); mask.push([]); history.forEach(h => { h.t.push([]); h.m.push([]); }); sel = null; render(); toast('Frasco extra adicionado');
   });
 };
+// Enquanto o jogador segue as dicas, continua o mesmo plano (recalcular a cada vez podia andar em círculos).
+let hintPlan = null;
+const exactKey = ts => ts.map(t => t.join(',')).join('|');
 $('btnHint').onclick = () => {
-  if (busy) return;
+  if (busy || solved(tubes)) return;
   if (save.coins < HINT_COST){ toast('Moedas insuficientes'); openShop(); return; }
-  const path = solve(tubes, 60000);
+  const path = hintPlan && hintPlan.key === exactKey(tubes) && hintPlan.path.length ? hintPlan.path : solve(tubes, 60000);
   if (!path || !path.length){ toast('Sem saída a partir daqui. Desfaça ou reinicie.'); return; }
   save.coins -= HINT_COST; persist();
   hint = path[0]; sel = null; render();
+  const after = tubes.map(t => t.slice()); pour(after[hint[0]], after[hint[1]]);
+  hintPlan = { path:path.slice(1), key:exactKey(after) };
 };
 
 /* ---------- anúncios: AdMob no app, simulados no navegador ---------- */
@@ -1133,20 +1257,29 @@ $('btnAdNoAds').onclick = () => openShop();
 
 /* ---------- vitória ---------- */
 function win(){
-  earned = 10 + level;
-  save.coins += earned;
-  if (level >= save.unlocked && level < MAX_LEVEL) save.unlocked = level + 1;
+  const challenge = mode === 'challenge', firstToday = challenge && !challengeDone();
   const stars = starsFor(level, moves);
-  save.stars[level] = Math.max(save.stars[level] || 0, stars);
+  if (challenge){
+    earned = firstToday ? CHALLENGE_REWARD : 0;
+    if (firstToday) save.challenge = { last:dayStr(0), count:save.challenge.count + 1 };
+  } else {
+    earned = 10 + level;
+    if (level >= save.unlocked && level < MAX_LEVEL) save.unlocked = level + 1;
+    save.stars[level] = Math.max(save.stars[level] || 0, stars);
+    if (!helped) save.stats.clean++;
+  }
+  save.coins += earned;
   persist();
   sfx.win();
   burst(window.innerWidth / 2, window.innerHeight * .4, palette().slice(0, 8), 60, Math.min(window.innerWidth, 500) * .5);
-  const last = level >= MAX_LEVEL;
-  $('winTitle').textContent = last ? 'Você é Grão-Mestre!' : ['Poções em ordem!', 'Muito bem!', 'Perfeito!'][stars - 1];
-  $('winText').textContent = `Nível ${level} concluído em ${moves} jogadas.`;
+  const last = !challenge && level >= MAX_LEVEL;
+  $('winTitle').textContent = challenge ? 'Desafio vencido!' : last ? 'Você é Grão-Mestre!' : ['Poções em ordem!', 'Muito bem!', 'Perfeito!'][stars - 1];
+  $('winText').textContent = challenge ? `Desafio do dia concluído em ${moves} jogadas.${firstToday ? '' : ' O prêmio de hoje já foi pego.'}`
+                                       : `Nível ${level} concluído em ${moves} jogadas.`;
   $('winReward').innerHTML = `+${earned} ${COIN}`;
-  $('btnNext').textContent = last ? 'Voltar ao menu' : 'Próximo nível';
-  $('btnDouble').style.display = '';
+  $('winReward').style.display = earned ? '' : 'none';
+  $('btnNext').textContent = challenge || last ? 'Voltar ao menu' : 'Próximo nível';
+  $('btnDouble').style.display = earned ? '' : 'none';
   $('btnDouble').innerHTML = save.noAds ? 'Dobrar moedas' : `${svgIcon('tv')} Ver anúncio e dobrar moedas`;
   const icons = [...$('winStars').children];
   icons.forEach(s => { s.classList.remove('on'); s.style.animationDelay = ''; });
@@ -1158,10 +1291,11 @@ function win(){
   });
   $('win').classList.add('show');
   render();
+  setTimeout(checkAch, 900);
 }
 $('btnNext').onclick = () => {
   $('win').classList.remove('show');
-  if (level >= MAX_LEVEL){ openHome(); return; }
+  if (mode === 'challenge' || level >= MAX_LEVEL){ openHome(); return; }
   const next = level + 1;
   if (level % INTER_EVERY === 0) interstitial(() => startLevel(next)); else startLevel(next);
 };
@@ -1220,9 +1354,7 @@ function miniTube(id){
   const m = document.createElement('div'); m.className = 'mini';
   const c = THEMES[id].colors;
   [c[0], c[5], c[3]].forEach(col => { const i = document.createElement('i'); i.style.background = col; m.appendChild(i); });
-  if (id === 'ouro') m.style.borderColor = '#D4AF37';
-  if (id === 'neon') m.style.borderColor = '#7DF9FF';
-  if (id === 'doces') m.style.borderColor = '#F3A6C8';
+  if (THEMES[id].edge) m.style.borderColor = THEMES[id].edge;
   return m;
 }
 const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[ch]));
@@ -1258,6 +1390,7 @@ function renderShop(){
 function unlockTheme(id){
   if (!save.owned.includes(id)) save.owned.push(id);
   save.theme = id; persist(); applyTheme(); renderShop(); render(); toast(`Estilo ${THEMES[id].name} ativado`);
+  checkAch();
 }
 function openShop(){ renderShop(); $('shop').classList.add('show'); }
 async function restorePurchases(btn){
@@ -1280,7 +1413,6 @@ $('btnShopRestore').onclick = e => restorePurchases(e.currentTarget);
 $('btnRestore').onclick = e => restorePurchases(e.currentTarget);
 
 /* ---------- bônus diário: sequência de 7 dias ---------- */
-const dayStr = off => { const d = new Date(); d.setDate(d.getDate() + off); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
 // dia da sequência que pode ser pego hoje (1 a 7), ou 0 se já pegou
 function dailyDay(){
   if (save.daily.last === dayStr(0)) return 0;
@@ -1301,10 +1433,12 @@ function openDaily(){
 function claimDaily(mult){
   const day = dailyDay(); if (!day) return;
   const amt = DAILY[day - 1] * mult;
-  save.coins += amt; save.daily = { last:dayStr(0), streak:day }; persist();
+  save.coins += amt; save.daily = { last:dayStr(0), streak:day };
+  save.stats.bestStreak = Math.max(save.stats.bestStreak, day); persist();
   $('daily').classList.remove('show');
   sfx.coin(); refreshHome(); render(); toast(`+${amt} moedas`);
   burst(window.innerWidth / 2, window.innerHeight * .35, ['#F4C55B', '#FFE9A8', '#D98A1F'], 30, 140);
+  setTimeout(checkAch, 1200);
 }
 $('btnDailyClaim').onclick = () => claimDaily(1);
 $('btnDailyDouble').onclick = async () => {
@@ -1315,8 +1449,77 @@ $('btnDailyDouble').onclick = async () => {
   if (N.isNative && dailyDay()) openDaily();
 };
 
+/* ---------- conquistas: prêmio em moedas na hora em que acontecem ---------- */
+const ACH = [
+  { id:'lv1',    name:'Primeira poção',        desc:'Conclua 1 nível',                         goal:1,    reward:20,  val:levelsDone },
+  { id:'lv10',   name:'Aprendiz formado',      desc:'Conclua 10 níveis',                       goal:10,   reward:50,  val:levelsDone },
+  { id:'lv30',   name:'Boticário de respeito', desc:'Conclua 30 níveis',                       goal:30,   reward:100, val:levelsDone },
+  { id:'lv60',   name:'Alquimista',            desc:'Conclua 60 níveis',                       goal:60,   reward:200, val:levelsDone },
+  { id:'lv100',  name:'Grão-Mestre',           desc:'Conclua os 100 níveis',                   goal:100,  reward:500, val:levelsDone },
+  { id:'p10',    name:'Mão firme',             desc:'Tire 3 estrelas em 10 níveis',            goal:10,   reward:80,  val:perfectLevels },
+  { id:'p50',    name:'Perfeccionista',        desc:'Tire 3 estrelas em 50 níveis',            goal:50,   reward:250, val:perfectLevels },
+  { id:'st150',  name:'Constelação',           desc:'Junte 150 estrelas',                      goal:150,  reward:200, val:totalStars },
+  { id:'c100',   name:'Rolhas aos montes',     desc:'Complete 100 frascos',                    goal:100,  reward:60,  val:() => save.stats.corks },
+  { id:'c1000',  name:'Fábrica de poções',     desc:'Complete 1.000 frascos',                  goal:1000, reward:200, val:() => save.stats.corks },
+  { id:'r50',    name:'Olhar atento',          desc:'Revele 50 poções misteriosas',            goal:50,   reward:80,  val:() => save.stats.reveals },
+  { id:'clean10',name:'Sem rodinhas',          desc:'Vença 10 níveis sem desfazer nem frasco extra', goal:10, reward:100, val:() => save.stats.clean },
+  { id:'ch1',    name:'Desafiante',            desc:'Vença 1 desafio do dia',                  goal:1,    reward:30,  val:() => save.challenge.count },
+  { id:'ch7',    name:'Rotina de alquimista',  desc:'Vença 7 desafios do dia',                 goal:7,    reward:150, val:() => save.challenge.count },
+  { id:'d7',     name:'Fiel ao laboratório',   desc:'Pegue o bônus diário 7 dias seguidos',    goal:7,    reward:100, val:() => save.stats.bestStreak },
+  { id:'th4',    name:'Colecionador',          desc:'Tenha 4 estilos de frasco',               goal:4,    reward:150, val:() => save.owned.length }
+];
+let achQueue = [], achShowing = false;
+function checkAch(){
+  let changed = false;
+  ACH.forEach(a => {
+    if (save.ach[a.id] || a.val() < a.goal) return;
+    save.ach[a.id] = true; save.coins += a.reward; changed = true;
+    achQueue.push(a);
+  });
+  if (!changed) return;
+  persist();
+  $('coins').textContent = save.coins; refreshHome();
+  if (!achShowing) nextAchPop();
+}
+function nextAchPop(){
+  const a = achQueue.shift();
+  if (!a){ achShowing = false; return; }
+  achShowing = true;
+  $('achPopName').textContent = a.name;
+  $('achPopReward').innerHTML = `Conquista · +${a.reward} ${COIN}`;
+  $('achPop').classList.add('show');
+  sfx.win(); vibrate('done');
+  setTimeout(() => { $('achPop').classList.remove('show'); setTimeout(nextAchPop, 500); }, 2800);
+}
+function openTrophies(){
+  const got = ACH.filter(a => save.ach[a.id]).length;
+  $('trophyCount').textContent = `${got}/${ACH.length}`;
+  // as mais perto de completar vêm primeiro; as já ganhas vão para o fim
+  const list = ACH.slice().sort((a, b) => (!!save.ach[a.id] - !!save.ach[b.id]) ||
+    (Math.min(1, b.val() / b.goal) - Math.min(1, a.val() / a.goal)));
+  $('achList').innerHTML = list.map(a => {
+    const v = Math.min(a.val(), a.goal), done = !!save.ach[a.id];
+    return `<div class="ach${done ? ' got' : ''}"><div class="medal">${svgIcon('trophy')}</div>` +
+      `<div class="info"><b>${a.name}</b><span>${a.desc}</span>` +
+      `<div class="prog"><i style="--p:${Math.round(v / a.goal * 100)}%"></i>${v.toLocaleString('pt-BR')}/${a.goal.toLocaleString('pt-BR')}</div></div>` +
+      `<div class="rew">${done ? '✓' : `+${a.reward} ${COIN}`}</div></div>`;
+  }).join('');
+  showScreen('trophies');
+}
+
+/* ---------- confirmação dentro do jogo ---------- */
+function askConfirm(title, text, okLabel){
+  return new Promise(resolve => {
+    $('confirmTitle').textContent = title; $('confirmText').textContent = text; $('btnConfirmOk').textContent = okLabel;
+    const done = v => { $('confirm').classList.remove('show'); resolve(v); };
+    $('btnConfirmOk').onclick = () => done(true);
+    $('btnConfirmCancel').onclick = () => done(false);
+    $('confirm').classList.add('show');
+  });
+}
+
 /* ---------- telas ---------- */
-const SCREENS = ['home', 'levels', 'settings'];
+const SCREENS = ['home', 'levels', 'trophies', 'settings'];
 function showScreen(id){
   SCREENS.forEach(s => $(s).classList.toggle('show', s === id));
 }
@@ -1326,6 +1529,12 @@ function refreshHome(){
   $('homeCoins').textContent = save.coins;
   $('homeStars').textContent = totalStars();
   $('playSub').textContent = `Nível ${save.unlocked} · ${CHAPTERS[chapterOf(save.unlocked)].name}`;
+  const done = challengeDone();
+  $('btnChallenge').classList.toggle('done', done);
+  $('challengeSub').textContent = done ? 'Volte amanhã para um novo' : 'Um nível novo todo dia';
+  $('challengeReward').innerHTML = done ? '✓ Feito' : `+${CHALLENGE_REWARD} ${COIN}`;
+  const got = ACH.filter(a => save.ach[a.id]).length;
+  $('trophyDot').hidden = !got; $('trophyDot').textContent = `${got}/${ACH.length}`;
 }
 function openHome(){
   ['pause', 'win'].forEach(o => $(o).classList.remove('show'));
@@ -1371,6 +1580,9 @@ function syncSettings(){
 function openSettings(){ syncSettings(); showScreen('settings'); }
 
 $('btnPlay').onclick = () => { click(); play(save.unlocked); };
+$('btnChallenge').onclick = () => { click(); closeScreens(); startChallenge(); };
+$('btnTrophiesHome').onclick = () => { click(); openTrophies(); };
+$('btnTrophiesBack').onclick = () => { click(); openHome(); };
 $('btnLevelsHome').onclick = () => { click(); openLevels(); };
 $('btnSettingsHome').onclick = () => { click(); openSettings(); };
 $('btnLevelsBack').onclick = () => { click(); openHome(); };
@@ -1378,11 +1590,12 @@ $('btnSettingsBack').onclick = () => { click(); openHome(); };
 
 $('btnPause').onclick = () => {
   if (busy) return;
-  $('pauseText').textContent = `${CHAPTERS[chapterOf(level)].name} · nível ${level} · ${moves} jogadas`;
+  $('pauseText').textContent = mode === 'challenge' ? `Desafio do dia · ${moves} jogadas`
+    : `${CHAPTERS[chapterOf(level)].name} · nível ${level} · ${moves} jogadas`;
   $('pause').classList.add('show');
 };
 $('btnResume').onclick = () => $('pause').classList.remove('show');
-$('btnPauseRestart').onclick = () => { $('pause').classList.remove('show'); startLevel(level); };
+$('btnPauseRestart').onclick = () => { $('pause').classList.remove('show'); restartCurrent(); };
 $('btnPauseLevels').onclick = () => { $('pause').classList.remove('show'); openLevels(); };
 $('btnPauseHome').onclick = () => openHome();
 
@@ -1393,11 +1606,14 @@ $('setMusic').onclick = () => {
 $('setSound').onclick = () => { save.sound = !save.sound; persist(); syncSettings(); click(); };
 $('setVib').onclick = () => { save.vib = !save.vib; persist(); syncSettings(); vibrate('pour'); };
 $('setSym').onclick = () => { save.sym = !save.sym; persist(); syncSettings(); render(); };
-$('btnReset').onclick = () => {
-  if (!confirm(realIap() ? 'Apagar todo o progresso, estrelas e moedas? Compras permanentes (sem anúncios, estilo Ouro) continuam valendo.'
-                         : 'Apagar todo o progresso, estrelas, moedas e compras de teste?')) return;
+$('btnReset').onclick = async () => {
+  const ok = await askConfirm('Apagar progresso?',
+    realIap() ? 'Níveis, estrelas, moedas, conquistas e estilos comprados com moedas serão apagados. Compras feitas na App Store (sem anúncios, estilo Ouro) continuam valendo.'
+              : 'Níveis, estrelas, moedas, conquistas e estilos serão apagados, inclusive as compras de teste.',
+    'Apagar tudo');
+  if (!ok) return;
   save = { unlocked:1, coins:0, sound:save.sound, music:save.music, vib:save.vib, noAds:false, owned:['classico'], theme:'classico', sym:save.sym, stars:{},
-    daily:save.daily };
+    daily:save.daily, challenge:{ last:'', count:0 }, ach:{}, stats:{ corks:0, reveals:0, clean:0, bestStreak:0 } };
   persist(); applyTheme(); startLevel(1); openHome();
   if (realIap()) N.iap.owned().then(applyOwned);
   toast('Progresso apagado');

@@ -6,7 +6,7 @@ Jogo de ordenar poções por cor, empacotado como app iOS com Capacitor. Este gu
 
 | Arquivo | Para que serve |
 |---|---|
-| `www/index.html` | O jogo: 100 níveis em 10 capítulos com estrelas, poções misteriosas (a partir do nível 21), bônus diário de 7 dias, música e efeitos gerados por código (sem arquivos de áudio), tutorial no nível 1, ajustes, pausa e loja. No navegador, anúncios e compras são simulados; no app, são reais. |
+| `www/index.html` | O jogo: 100 níveis em 10 capítulos com estrelas, poções misteriosas (a partir do nível 21), bônus diário de 7 dias, desafio do dia, 16 conquistas, 7 estilos de frasco, música e efeitos gerados por código (sem arquivos de áudio), tutorial no nível 1, ajustes, pausa e loja. No navegador, anúncios e compras são simulados; no app, são reais. |
 | `www/fonts/` | Fonte Baloo 2 (licença OFL) embutida, para funcionar sem internet. |
 | `src/native.js` | Ponte com os plugins nativos: salvamento (Preferences), vibração (Haptics), tela de abertura (Splash Screen), anúncios (AdMob + ATT + UMP) e compras (RevenueCat). |
 | `scripts/build.mjs` | Gera `www/native.js` e injeta as chaves das variáveis de ambiente. |
