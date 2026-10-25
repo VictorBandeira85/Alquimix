@@ -31,6 +31,7 @@
   background:var(--night0);
 }
 *,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none !important}
 html{height:100%}
 body{
   margin:0;height:100%;overflow:hidden;
@@ -130,7 +131,18 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .cork{position:absolute;left:10%;right:10%;top:-12px;height:18px;border-radius:6px 6px 3px 3px;z-index:3;
   background:linear-gradient(#D4A574,#8A5E36);box-shadow:inset 0 -3px 0 rgba(0,0,0,.22)}
 .cork.pop{animation:pop .4s cubic-bezier(.3,1.7,.6,1)}
-.tube.no{animation:shake .3s}
+.tube.no{animation:refuse .5s cubic-bezier(.36,.07,.19,.97)}
+.tube.no .glass{animation:redflash .6s ease-out}
+.tube.no::before{animation:redrim .6s ease-out}
+.refuse-tag{position:fixed;z-index:19;display:flex;align-items:center;gap:5px;padding:4px 10px 4px 6px;border-radius:999px;
+  background:#E5484D;color:#fff;font-weight:800;font-size:13px;white-space:nowrap;pointer-events:none;
+  box-shadow:0 4px 12px rgba(229,72,77,.45);transform:translate(-50%,-100%)}
+.refuse-tag i{width:18px;height:18px;border-radius:50%;background:#fff;color:#E5484D;display:grid;place-items:center;font-style:normal;font-size:12px;line-height:1}
+/* sem jogadas */
+.stuck-owl{width:96px;height:96px;margin:-8px auto 0;display:block;animation:bob 2.2s ease-in-out infinite}
+#stuck .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+#stuck .row2 .btn-plum{margin-top:0;font-size:16px;padding:11px 8px}
+#stuck .row2 .btn-plum small{font-size:12px;color:var(--magic);font-weight:800}
 .tube.hint .glass{animation:pulse 1s ease-in-out infinite}
 .tube.hint.from{transform:translateY(-12px)}
 .tube.hint.to::after{content:"";position:absolute;left:50%;top:-30px;margin-left:-8px;border:8px solid transparent;border-top:11px solid var(--gold);
@@ -155,6 +167,10 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
 
 @keyframes fillin{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 @keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes refuse{0%{transform:none}15%{transform:translateX(-7px) rotate(-4deg)}30%{transform:translateX(7px) rotate(4deg)}
+  45%{transform:translateX(-5px) rotate(-2.5deg)}60%{transform:translateX(4px) rotate(1.5deg)}78%{transform:translateX(-2px)}100%{transform:none}}
+@keyframes redflash{0%,100%{}25%{border-color:#FF6B6B;box-shadow:0 0 18px 2px rgba(255,80,80,.6), inset 0 0 14px rgba(255,80,80,.35)}}
+@keyframes redrim{25%{background:#FF6B6B}}
 @keyframes pulse{50%{box-shadow:0 0 0 4px var(--gold)}}
 @keyframes bubbles{from{transform:translateY(25%);opacity:0}30%{opacity:1}to{transform:translateY(-55%);opacity:0}}
 @keyframes pop{from{transform:translateY(-14px) scale(.6);opacity:0}to{transform:none;opacity:1}}
@@ -444,7 +460,8 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
 @media (prefers-reduced-motion: reduce){
   .layer.drop,.tube.no,.tube.hint .glass,.cork.pop,.tube.done .fill::after,
   .flask .wave,.flask .bub,.halo,.hero-art .flask,.side-tube,.win-stars .ico.on,.overlay.show .card,.screen.show,
-  .layer.reveal,.gift,.day.today,.cd-medal .rays,#owl.show svg,.tube.slosh .fill{animation:none}
+  .layer.reveal,.gift,.day.today,.cd-medal .rays,#owl.show svg,.tube.slosh .fill,.stuck-owl{animation:none}
+  .tube.no .glass,.tube.no::before{animation:redflash .6s ease-out}
   #motes{display:none}
   .tube{transition:none}
 }
@@ -733,6 +750,20 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
   </div>
 </div>
 
+<div class="overlay" id="stuck">
+  <div class="card">
+    <svg class="stuck-owl" viewBox="0 0 64 64" aria-hidden="true"><use href="#owlArt"/></svg>
+    <h2>Sem jogadas</h2>
+    <p>Não há mais movimentos possíveis. Acontece com todo alquimista!</p>
+    <button class="btn-gold" id="btnStuckRestart"><svg class="ico"><use href="#i-restart"/></svg><span>Reiniciar fase</span></button>
+    <div class="row2">
+      <button class="btn-plum" id="btnStuckUndo"><svg class="ico"><use href="#i-undo"/></svg><span>Desfazer</span></button>
+      <button class="btn-plum" id="btnStuckTube"><svg class="ico"><use href="#i-flask"/></svg><span>+1 frasco</span></button>
+    </div>
+    <button class="ghost" id="btnStuckHome">Menu inicial</button>
+  </div>
+</div>
+
 <div class="overlay" id="confirm">
   <div class="card">
     <h2 id="confirmTitle"></h2>
@@ -744,7 +775,8 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
 
 <div id="achPop" role="status" aria-live="polite"><div class="medal"><svg class="ico"><use href="#i-trophy"/></svg></div><div><small id="achPopReward"></small><b id="achPopName"></b></div></div>
 <div id="owl" role="status" aria-live="polite">
-  <svg viewBox="0 0 64 64" aria-hidden="true">
+  <svg viewBox="0 0 64 64" aria-hidden="true"><use href="#owlArt"/></svg>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="owlArt" viewBox="0 0 64 64">
     <path d="M17 16 22 6l6 8M47 16 42 6l-6 8" fill="#6E52A8"/>
     <ellipse cx="32" cy="38" rx="21" ry="23" fill="#8B6CC6"/>
     <ellipse cx="32" cy="45" rx="13" ry="14" fill="#E8DDF7"/>
@@ -757,7 +789,7 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
     <path d="M29 35l3 5 3-5z" fill="#F4C55B"/>
     <path d="M14 46q-4 8 4 13M50 46q4 8-4 13" stroke="#6E52A8" stroke-width="4" fill="none" stroke-linecap="round"/>
     <path d="M26 61h4M34 61h4" stroke="#F4C55B" stroke-width="3" stroke-linecap="round"/>
-  </svg>
+  </symbol></svg>
   <div class="bubble" id="owlText"></div>
 </div>
 <div class="toast" id="toast" role="status"></div>
@@ -848,6 +880,9 @@ const WORDS = [
   ['Anúncio de teste', 'Test ad', 'Anuncio de prueba'], ['Aguarde…', 'Please wait…', 'Espera…'], ['Fechar sem recompensa', 'Close without reward', 'Cerrar sin recompensa'],
   ['Remover anúncios', 'Remove ads', 'Quitar anuncios'], ['Apagar tudo', 'Erase everything', 'Borrar todo'], ['Apagar progresso?', 'Erase progress?', '¿Borrar progreso?'],
   ['Progresso apagado', 'Progress erased', 'Progreso borrado'],
+  ['Frasco cheio', 'Flask is full', 'Frasco lleno'], ['Cor diferente', 'Different color', 'Color diferente'],
+  ['Sem jogadas', 'No moves left', 'Sin jugadas'], ['Reiniciar fase', 'Restart level', 'Reiniciar nivel'],
+  ['Não há mais movimentos possíveis. Acontece com todo alquimista!', 'There are no possible moves left. It happens to every alchemist!', 'No quedan movimientos posibles. ¡Le pasa a todo alquimista!'],
   ['Modo navegador: anúncios e compras são simulados.', 'Browser mode: ads and purchases are simulated.', 'Modo navegador: anuncios y compras son simulados.'],
   // capítulos
   ['Aprendiz', 'Apprentice', 'Aprendiz'], ['Primeiras misturas', 'First mixes', 'Primeras mezclas'],
@@ -1505,8 +1540,30 @@ function tap(i){
   }
   if (sel === i){ sel = null; render(); return; }
   if (canPour(tubes[sel], tubes[i])){ doPour(sel, i); }
-  else if (tubes[i].length){ sel = i; render(); }
-  else { bump(i); }
+  else refuse(sel, i);
+}
+// Despejo impossível: o frasco escolhido ensaia o despejo e recua, o destino balança em vermelho
+// e um aviso diz o motivo. A seleção é desfeita.
+function refuse(from, to){
+  const reason = tubes[to].length >= CAP ? 'Frasco cheio' : 'Cor diferente';
+  sel = null; render();
+  sfx.deny(); vibrate('deny');
+  const src = tubeEl(from), dst = tubeEl(to);
+  if (!src || !dst) return;
+  dst.classList.add('no');
+  const sr = src.getBoundingClientRect(), dr = dst.getBoundingClientRect();
+  if (!reduceMotion()){
+    const dir = dr.left + dr.width / 2 >= sr.left + sr.width / 2 ? 1 : -1;
+    src.animate([{ transform:'translateY(-16px)' }, { transform:`translateY(-20px) translateX(${dir * 6}px) rotate(${dir * 16}deg)`, offset:.4 },
+      { transform:`translateY(-12px) rotate(${-dir * 4}deg)`, offset:.7 }, { transform:'none' }], { duration:460, easing:'ease-out' });
+  }
+  const tag = document.createElement('div'); tag.className = 'refuse-tag';
+  tag.innerHTML = '<i>✕</i>'; tag.appendChild(document.createTextNode(reason));
+  tag.style.left = (dr.left + dr.width / 2) + 'px'; tag.style.top = (dr.top - 8) + 'px';
+  document.body.appendChild(tag);
+  tag.animate([{ opacity:0, transform:'translate(-50%,-80%) scale(.6)' }, { opacity:1, transform:'translate(-50%,-110%) scale(1)', offset:.2 },
+    { opacity:1, transform:'translate(-50%,-115%)', offset:.75 }, { opacity:0, transform:'translate(-50%,-140%)' }],
+    { duration:reduceMotion() ? 1200 : 1100, easing:'ease-out' }).finished.then(() => tag.remove());
 }
 
 async function doPour(from, to){
@@ -1615,7 +1672,7 @@ function afterPour(to){
   if (solved(tubes)){ owlHide(); setTimeout(win, 380); }
   else {
     tutorHint(); checkAch();
-    if (!hasMoves()) owlSay('stuck', true);
+    if (!hasMoves()) setTimeout(openStuck, 650);
     else if (mode === 'level' && levelPar[level] && moves === levelPar[level] * 2) owlSay('long');
   }
 }
@@ -1629,7 +1686,6 @@ const OWL = {
   big:['Frascos grandes! Cabe mais, mas também mistura mais.'],
   small:['Frascos pequenos. Cada espaço conta.'],
   reveal:['Um segredo revelado!', 'Aha, era essa cor!', 'Agora sim dá para planejar.'],
-  stuck:['Hum... não há mais jogadas. Desfaça ou peça um frasco extra.'],
   long:['Respire. Às vezes recomeçar com calma é o melhor caminho.'],
   relax:['Sem pressa. Só misture.', 'Aqui ninguém conta jogadas.', 'Uma poção de cada vez.'],
   relaxWin:['Que calma boa.', 'Mais uma pronta. Vamos à próxima?', 'Linda mistura.', 'O caldeirão agradece.']
@@ -1648,6 +1704,23 @@ function owlSay(kind, force){
 function owlHide(){ clearTimeout(owlTimer); $('owl').classList.remove('show'); }
 $('owl').onclick = owlHide;
 const hasMoves = () => tubes.some((a, i) => tubes.some((b, j) => i !== j && canPour(a, b) && !(topRun(a) === a.length && !b.length)));
+
+/* ---------- sem jogadas ---------- */
+function openStuck(){
+  if (solved(tubes) || hasMoves() || busy || document.querySelector('.overlay.show, .screen.show')) return;
+  owlHide();
+  sfx.deny(); vibrate('deny');
+  $('btnStuckUndo').hidden = !history.length;
+  $('btnStuckTube').hidden = extraUsed;
+  const row = $('btnStuckUndo').parentElement;
+  row.hidden = !history.length && extraUsed;
+  row.style.gridTemplateColumns = history.length && !extraUsed ? '' : '1fr';
+  $('stuck').classList.add('show');
+}
+$('btnStuckRestart').onclick = () => { $('stuck').classList.remove('show'); restartCurrent(); };
+$('btnStuckUndo').onclick = () => { $('stuck').classList.remove('show'); $('btnUndo').onclick(); };
+$('btnStuckTube').onclick = () => { $('stuck').classList.remove('show'); $('btnTube').onclick(); };
+$('btnStuckHome').onclick = () => { $('stuck').classList.remove('show'); openHome(); };
 
 /* ---------- ferramentas ---------- */
 function toast(msg){ const t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 2200); }
@@ -2033,7 +2106,7 @@ function refreshHome(){
 }
 function openHome(){
   owlHide();
-  ['pause', 'win'].forEach(o => $(o).classList.remove('show'));
+  ['pause', 'win', 'stuck'].forEach(o => $(o).classList.remove('show'));
   refreshHome();
   showScreen('home');
   setTimeout(openDaily, 350);

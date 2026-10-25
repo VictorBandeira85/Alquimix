@@ -2,7 +2,7 @@
 // No navegador, tudo cai no modo simulado: o jogo usa os próprios diálogos de teste.
 import { Capacitor } from '@capacitor/core';
 import { Preferences } from '@capacitor/preferences';
-import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import { Haptics, ImpactStyle, NotificationType } from '@capacitor/haptics';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { AdMob, AdmobConsentStatus, RewardAdPluginEvents, InterstitialAdPluginEvents } from '@capacitor-community/admob';
 import { Purchases, LOG_LEVEL, PURCHASES_ERROR_CODE } from '@revenuecat/purchases-capacitor';
@@ -24,6 +24,7 @@ function hideSplash() {
 /* ---------- vibração ---------- */
 function haptic(kind) {
   if (!isNative) return;
+  if (kind === 'deny') { Haptics.notification({ type: NotificationType.Warning }).catch(() => {}); return; }
   const style = kind === 'done' ? ImpactStyle.Medium : ImpactStyle.Light;
   Haptics.impact({ style }).catch(() => {});
 }
