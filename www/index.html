@@ -114,6 +114,11 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .layer.top::before{content:"";position:absolute;left:0;right:0;top:-1px;height:5px;background:rgba(255,255,255,.35);border-radius:50%}
 .layer .sym{font-size:calc(var(--tw) * .36);line-height:1;color:rgba(0,0,0,.55);font-weight:800;z-index:1}
 .layer.drop{animation:fillin .38s ease-out}
+.layer.mystery{background-color:#3B2F63;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.07) 0 5px,transparent 5px 10px),
+  linear-gradient(90deg,rgba(255,255,255,.18),rgba(255,255,255,0) 45%,rgba(0,0,0,.14))}
+.layer.mystery .sym{color:rgba(255,255,255,.8);font-size:calc(var(--tw) * .4)}
+.layer.reveal{animation:reveal .55s ease-out}
+@keyframes reveal{0%{filter:brightness(2.4) saturate(0);transform:scaleX(.6)}60%{transform:scaleX(1.06)}100%{filter:none;transform:none}}
 .tube.sel{transform:translateY(-16px)}
 .tube.sel .glass{box-shadow:0 0 0 2px rgba(244,197,91,.5), 0 0 18px rgba(244,197,91,.35)}
 .tube.done .glass{box-shadow:0 0 24px 3px var(--glow)}
@@ -298,6 +303,19 @@ body.th-doces .tube::before{background:#F3A6C8}
   filter:drop-shadow(0 3px 0 var(--gold-edge)) drop-shadow(0 0 14px rgba(244,197,91,.6))}
 @keyframes starpop{from{transform:scale(0) rotate(-40deg)}to{transform:none}}
 
+/* bônus diário */
+.gift{font-size:64px;color:var(--gold);margin:-4px 0 2px;animation:bob 2.4s ease-in-out infinite;filter:drop-shadow(0 0 16px rgba(244,197,91,.45))}
+.days{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:4px 0 18px}
+.day{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border-radius:16px;
+  background:var(--chip);border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--muted)}
+.day b{display:flex;align-items:center;gap:3px;font-size:17px;color:var(--ink)}
+.day:last-child{grid-column:span 2}
+.day.got{opacity:.45}
+.day.got::after{content:"✓";position:absolute;top:2px;right:7px;color:var(--magic);font-weight:800;font-size:14px}
+.day.today{background:linear-gradient(var(--gold-hi), var(--gold) 45%, var(--gold-lo));color:var(--gold-ink);border-color:transparent;
+  box-shadow:0 3px 0 var(--gold-edge), 0 0 18px rgba(244,197,91,.5);animation:breathe 2s ease-in-out infinite}
+.day.today b{color:var(--gold-ink)}
+
 /* loja */
 .item{display:flex;align-items:center;gap:12px;background:var(--chip);border:1px solid var(--line);border-radius:18px;padding:10px 12px;margin-bottom:8px;text-align:left}
 .item .info{flex:1;min-width:0}
@@ -324,7 +342,8 @@ body.th-doces .tube::before{background:#F3A6C8}
 
 @media (prefers-reduced-motion: reduce){
   .layer.drop,.tube.no,.tube.hint .glass,.cork.pop,.tube.done .fill::after,
-  .flask .wave,.flask .bub,.halo,.hero-art .flask,.side-tube,.win-stars .ico.on,.overlay.show .card,.screen.show{animation:none}
+  .flask .wave,.flask .bub,.halo,.hero-art .flask,.side-tube,.win-stars .ico.on,.overlay.show .card,.screen.show,
+  .layer.reveal,.gift,.day.today{animation:none}
   #motes{display:none}
   .tube{transition:none}
 }
@@ -359,6 +378,8 @@ body.th-doces .tube::before{background:#F3A6C8}
   <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/></symbol>
   <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5M3 21v-5h5"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="5" rx="1"/><path d="M5 13v8h14v-8M12 8v13M12 8S10.5 3 8 3a2.5 2.5 0 0 0 0 5M12 8s1.5-5 4-5a2.5 2.5 0 0 1 0 5"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
 </svg>
 
@@ -454,7 +475,8 @@ body.th-doces .tube::before{background:#F3A6C8}
     </div>
     <div class="scroll">
       <div class="set-list">
-        <button class="set-row" id="setSound" role="switch"><svg class="ico"><use href="#i-sound"/></svg><span class="lbl">Som</span><span class="switch"></span></button>
+        <button class="set-row" id="setMusic" role="switch"><svg class="ico"><use href="#i-music"/></svg><span class="lbl">Música</span><span class="switch"></span></button>
+        <button class="set-row" id="setSound" role="switch"><svg class="ico"><use href="#i-sound"/></svg><span class="lbl">Efeitos sonoros</span><span class="switch"></span></button>
         <button class="set-row" id="setVib" role="switch"><svg class="ico"><use href="#i-vibe"/></svg><span class="lbl">Vibração</span><span class="switch"></span></button>
         <button class="set-row" id="setSym" role="switch"><svg class="ico"><use href="#i-eye"/></svg><span class="lbl">Símbolos de cor<small>Ajuda a diferenciar as poções</small></span><span class="switch"></span></button>
       </div>
@@ -463,7 +485,7 @@ body.th-doces .tube::before{background:#F3A6C8}
         <button class="set-row" id="btnPrivacy" style="display:none"><svg class="ico"><use href="#i-shield"/></svg><span class="lbl">Privacidade dos anúncios</span></button>
         <button class="set-row danger" id="btnReset"><svg class="ico"><use href="#i-trash"/></svg><span class="lbl">Apagar progresso</span></button>
       </div>
-      <p class="version">Alquimix · versão 1.0</p>
+      <p class="version">Alquimix · versão 1.1</p>
     </div>
   </div>
 </section>
@@ -535,6 +557,17 @@ body.th-doces .tube::before{background:#F3A6C8}
   </div>
 </div>
 
+<div class="overlay" id="daily">
+  <div class="card">
+    <svg class="ico gift"><use href="#i-gift"/></svg>
+    <h2>Bônus diário</h2>
+    <p id="dailyText"></p>
+    <div class="days" id="days"></div>
+    <button class="btn-gold" id="btnDailyClaim"></button>
+    <button class="btn-plum" id="btnDailyDouble"></button>
+  </div>
+</div>
+
 <div class="overlay" id="ad">
   <div class="card">
     <div class="adbox">
@@ -554,14 +587,20 @@ body.th-doces .tube::before{background:#F3A6C8}
 <script src="native.js"></script>
 <script>
 (async function(){
-const CAP = 4, MAX_LEVEL = 50, HINT_COST = 15, INTER_EVERY = 3;
+const CAP = 4, MAX_LEVEL = 100, HINT_COST = 15, INTER_EVERY = 3, MYSTERY_FROM = 21;
+const DAILY = [20, 30, 40, 50, 60, 80, 150];
 const SYMS = ['●','▲','■','◆','★','✚','♥','✖','☾','✿'];
 const CHAPTERS = [
-  { name:'Aprendiz',   desc:'Primeiras misturas' },
-  { name:'Herborista', desc:'Ervas e cores novas' },
-  { name:'Boticário',  desc:'Prateleiras cheias' },
-  { name:'Alquimista', desc:'Todas as cores' },
-  { name:'Grão-Mestre',desc:'Só para mãos firmes' }
+  { name:'Aprendiz',    desc:'Primeiras misturas' },
+  { name:'Herborista',  desc:'Ervas e cores novas' },
+  { name:'Boticário',   desc:'Surgem as poções misteriosas' },
+  { name:'Destilador',  desc:'Vapores e segredos' },
+  { name:'Encantador',  desc:'Brilhos traiçoeiros' },
+  { name:'Alquimista',  desc:'Todas as cores, poucas pistas' },
+  { name:'Arcanista',   desc:'Fórmulas antigas' },
+  { name:'Guardião',    desc:'Quase nada à vista' },
+  { name:'Sábio',       desc:'Para mentes afiadas' },
+  { name:'Grão-Mestre', desc:'O teste final' }
 ];
 const PER_CHAPTER = 10;
 const chapterOf = n => Math.floor((n - 1) / PER_CHAPTER);
@@ -628,7 +667,8 @@ loadProgress(.12);
 
 /* ---------- salvar ---------- */
 const SAVE_KEY = 'alquimix-v1';
-let save = { unlocked:1, coins:0, sound:true, vib:true, noAds:false, owned:['classico'], theme:'classico', sym:false, stars:{} };
+let save = { unlocked:1, coins:0, sound:true, music:true, vib:true, noAds:false, owned:['classico'], theme:'classico', sym:false, stars:{},
+  daily:{ last:'', streak:0 } };
 try { const s = JSON.parse(await N.storage.get(SAVE_KEY)); if (s) save = Object.assign(save, s); } catch(e){}
 function persist(){ N.storage.set(SAVE_KEY, JSON.stringify(save)).catch(() => {}); }
 const palette = () => THEMES[save.theme].colors;
@@ -694,47 +734,153 @@ function makeLevel(n){
   levelCache[n] = last.map(t => t.slice());
   return last.map(t => t.slice());
 }
+// Poções misteriosas: a partir do capítulo 3, algumas camadas (nunca a de cima) ficam ocultas
+// até virarem o topo do frasco. Uma camada oculta só se move depois de revelada, então a máscara
+// acompanha o frasco: true = oculta.
+function makeMask(n, tubes){
+  if (n < MYSTERY_FROM) return tubes.map(t => t.map(() => false));
+  const r = rng(n * 31337 + 7), p = Math.min(.75, .3 + (n - MYSTERY_FROM) * .006);
+  return tubes.map(t => t.map((c, k) => k < t.length - 1 && r() < p));
+}
 function starsFor(n, moves){
   const par = levelPar[n] || moves;
   return moves <= par ? 3 : moves <= Math.ceil(par * 1.4) ? 2 : 1;
 }
 
 /* ---------- estado ---------- */
-let level = 1, tubes = [], history = [], sel = null, moves = 0, undos = 3, extraUsed = false;
+let level = 1, tubes = [], mask = [], history = [], sel = null, moves = 0, undos = 3, extraUsed = false;
 let lastDrop = null, justDone = null, hint = null, earned = 0, busy = false, hiddenTube = null;
 
 function startLevel(n){
   const newChapter = n > 1 && (n - 1) % PER_CHAPTER === 0 && n === level + 1;
-  level = n; tubes = makeLevel(n); history = []; sel = null; moves = 0; undos = 3; extraUsed = false;
+  level = n; tubes = makeLevel(n); mask = makeMask(n, tubes); history = []; sel = null; moves = 0; undos = 3; extraUsed = false;
   lastDrop = null; justDone = null; hint = null; busy = false; hiddenTube = null;
   $('lvlNum').textContent = n;
   $('chapterName').textContent = CHAPTERS[chapterOf(n)].name;
   $('tip').textContent = n === 1
     ? 'Toque num frasco e depois em outro para despejar. Só dá para despejar sobre a mesma cor ou num frasco vazio.'
-    : n === 4 ? 'Travou? Use o desfazer, uma dica ou ganhe um frasco extra.' : '';
+    : n === 4 ? 'Travou? Use o desfazer, uma dica ou ganhe um frasco extra.'
+    : n === MYSTERY_FROM ? 'Poções misteriosas! As camadas com ? só mostram a cor quando ficam por cima.' : '';
   render();
+  tutorHint();
   if (newChapter) toast(`Capítulo ${chapterOf(n) + 1}: ${CHAPTERS[chapterOf(n)].name}`);
 }
 
-/* ---------- som ---------- */
-let actx = null;
-function beep(freqs, dur, type){
-  if (!save.sound) return;
+/* ---------- som: efeitos e música gerados na hora (Web Audio, sem arquivos) ---------- */
+let actx = null, sfxBus = null, musicBus = null, noiseBuf = null;
+function audio(){
+  if (actx) return actx;
   try {
-    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
-    freqs.forEach((f, i) => {
-      const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime + i * dur;
-      o.type = type || 'sine'; o.frequency.setValueAtTime(f, t); o.frequency.exponentialRampToValueAtTime(f * 1.5, t + dur);
-      g.gain.setValueAtTime(.14, t); g.gain.exponentialRampToValueAtTime(.001, t + dur);
-      o.connect(g).connect(actx.destination); o.start(t); o.stop(t + dur);
-    });
-  } catch(e){}
+    actx = new (window.AudioContext || window.webkitAudioContext)();
+    sfxBus = actx.createGain(); sfxBus.gain.value = .9; sfxBus.connect(actx.destination);
+    musicBus = actx.createGain(); musicBus.gain.value = 0; musicBus.connect(actx.destination);
+    noiseBuf = actx.createBuffer(1, actx.sampleRate, actx.sampleRate);
+    const d = noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  } catch(e){ actx = null; }
+  return actx;
 }
-function gurgle(){
-  if (!save.sound) return;
-  [0, 90, 180].forEach((d, i) => setTimeout(() => beep([300 + i * 80 + Math.random() * 60], .08, 'triangle'), d));
+const midiHz = m => 440 * Math.pow(2, (m - 69) / 12);
+// nota com envelope; o.at = instante exato (usado pela música)
+function tone(f, dur, o = {}){
+  const c = audio(); if (!c) return;
+  const t = o.at || c.currentTime + (o.delay || 0);
+  const osc = c.createOscillator(), g = c.createGain();
+  osc.type = o.type || 'sine'; osc.frequency.setValueAtTime(f, t);
+  if (o.slide) osc.frequency.exponentialRampToValueAtTime(o.slide, t + dur);
+  g.gain.setValueAtTime(.0001, t);
+  g.gain.exponentialRampToValueAtTime(o.gain || .14, t + (o.attack || .005));
+  g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+  let out = g;
+  if (o.lowpass){ const lp = c.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = o.lowpass; g.connect(lp); out = lp; }
+  osc.connect(g); out.connect(o.bus || sfxBus); if (o.send) out.connect(o.send);
+  osc.start(t); osc.stop(t + dur + .05);
 }
-const click = () => beep([660], .04);
+function noise(dur, o = {}){
+  const c = audio(); if (!c) return;
+  const t = c.currentTime + (o.delay || 0);
+  const src = c.createBufferSource(); src.buffer = noiseBuf;
+  const f = c.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = o.q || 1;
+  f.frequency.setValueAtTime(o.freq || 1000, t);
+  if (o.sweep) f.frequency.exponentialRampToValueAtTime(o.sweep, t + dur);
+  const g = c.createGain();
+  g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(o.gain || .1, t + (o.attack || .01)); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+  src.connect(f).connect(g).connect(sfxBus); src.start(t, Math.random() * .4); src.stop(t + dur + .05);
+}
+function bell(f, delay){ tone(f, 1.1, { delay, gain:.07 }); tone(f * 2.76, .45, { delay, gain:.016 }); }
+const sfx = {
+  select(){ if (save.sound) tone(740, .07, { type:'triangle', gain:.07, slide:900 }); },
+  deny(){ if (save.sound) tone(190, .13, { type:'square', gain:.035, slide:140, lowpass:900 }); },
+  click(){ if (save.sound) tone(520, .05, { type:'triangle', gain:.06 }); },
+  pour(){
+    if (!save.sound) return;
+    noise(.42, { freq:450, sweep:1300, q:3, gain:.07, attack:.05 });
+    for (let i = 0; i < 4; i++) tone(240 + Math.random() * 240, .07, { delay:.06 + i * .09, gain:.06, slide:520 + Math.random() * 300 });
+  },
+  cork(){
+    if (!save.sound) return;
+    tone(950, .08, { gain:.15, slide:300 }); noise(.04, { freq:2600, q:.8, gain:.08 });
+    bell(1047, .08); bell(1568, .17);
+  },
+  reveal(){ if (save.sound){ tone(1568, .35, { gain:.05 }); tone(2093, .45, { delay:.07, gain:.04 }); } },
+  star(i){ if (save.sound) bell([1047, 1319, 1568][i] || 1568, 0); },
+  win(){ if (save.sound) [523, 659, 784, 1047, 1319].forEach((f, i) => bell(f, i * .09)); },
+  coin(){ if (save.sound){ tone(1319, .09, { gain:.07 }); tone(1976, .16, { delay:.07, gain:.07 }); } }
+};
+const click = () => sfx.click();
+
+// Música ambiente: acordes suaves em lá menor + arpejo de caixinha de música com eco.
+const music = {
+  on:false, timer:null, next:0, step:0, echo:null,
+  chords:[[45, 57, 60, 64], [41, 57, 60, 65], [43, 55, 59, 62], [40, 55, 59, 64]],
+  arp:[[69, 72, 76, 81], [69, 72, 77, 81], [67, 71, 74, 79], [67, 71, 76, 83]],
+  start(){
+    const c = audio(); if (!c || this.on) return;
+    this.on = true;
+    if (!this.echo){
+      const d = c.createDelay(1), fb = c.createGain(), lp = c.createBiquadFilter();
+      d.delayTime.value = .42; fb.gain.value = .38; lp.type = 'lowpass'; lp.frequency.value = 2400;
+      d.connect(lp).connect(fb).connect(d); lp.connect(musicBus); this.echo = d;
+    }
+    musicBus.gain.cancelScheduledValues(c.currentTime);
+    musicBus.gain.setTargetAtTime(.5, c.currentTime, 1);
+    this.next = c.currentTime + .15;
+    this.timer = setInterval(() => this.schedule(), 300);
+    this.schedule();
+  },
+  stop(){
+    if (!this.on) return;
+    this.on = false; clearInterval(this.timer);
+    if (actx) musicBus.gain.setTargetAtTime(0, actx.currentTime, .25);
+  },
+  schedule(){
+    const c = actx, step = 60 / 70 / 2;   // colcheias a 70 bpm
+    if (this.next < c.currentTime) this.next = c.currentTime + .05;   // voltou de uma pausa
+    while (this.next < c.currentTime + 1.5){
+      const bar = Math.floor(this.step / 8) % this.chords.length, s = this.step % 8, t = this.next;
+      if (s === 0) this.chords[bar].forEach((m, k) =>
+        tone(midiHz(m), step * 8 + 1.2, { at:t, type:k ? 'triangle' : 'sine', gain:k ? .022 : .05, attack:.9, lowpass:900, bus:musicBus }));
+      if (s === 0 || Math.random() < .45){
+        const notes = this.arp[bar], m = notes[Math.floor(Math.random() * notes.length)];
+        tone(midiHz(m), 1.3, { at:t, gain:.035, bus:musicBus, send:this.echo });
+      }
+      this.next += step; this.step++;
+    }
+  }
+};
+// iOS só libera o áudio depois de um toque na tela.
+function unlockAudio(){
+  const c = audio(); if (!c) return;
+  if (c.state === 'suspended' && !document.hidden) c.resume();
+  if (save.music && !music.on && !document.hidden) music.start();
+}
+document.addEventListener('pointerdown', unlockAudio, true);
+// Pausa o som durante anúncios e com o app em segundo plano.
+function muteAll(){ if (actx && actx.state === 'running') actx.suspend(); }
+function unmuteAll(){ if (actx && actx.state === 'suspended' && !document.hidden) actx.resume(); }
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) muteAll();
+  else { unmuteAll(); if ($('home').classList.contains('show')) openDaily(); }
+});
 
 /* ---------- desenho ---------- */
 let tw = 50;
@@ -769,10 +915,12 @@ function render(){
     const g = document.createElement('div'); g.className = 'glass';
     const f = document.createElement('div'); f.className = 'fill';
     t.forEach((c, k) => {
-      const l = document.createElement('div'); l.className = 'layer'; l.style.backgroundColor = pal[c];
+      const hidden = mask[i] && mask[i][k];
+      const l = document.createElement('div'); l.className = 'layer' + (hidden ? ' mystery' : '');
+      if (!hidden) l.style.backgroundColor = pal[c];
       if (k === t.length - 1) l.classList.add('top');
       if (lastDrop && lastDrop.to === i && k >= t.length - lastDrop.n) l.classList.add('drop');
-      if (save.sym){ const s = document.createElement('span'); s.className = 'sym'; s.textContent = SYMS[c]; l.appendChild(s); }
+      if (hidden || save.sym){ const s = document.createElement('span'); s.className = 'sym'; s.textContent = hidden ? '?' : SYMS[c]; l.appendChild(s); }
       f.appendChild(l);
     });
     g.appendChild(f); el.appendChild(g);
@@ -788,7 +936,7 @@ function render(){
   $('btnTube').disabled = extraUsed;
 }
 
-function bump(i){ const el = tubeEl(i); if (!el) return; el.classList.remove('no'); void el.offsetWidth; el.classList.add('no'); }
+function bump(i){ sfx.deny(); const el = tubeEl(i); if (!el) return; el.classList.remove('no'); void el.offsetWidth; el.classList.add('no'); }
 
 function burst(x, y, colors, count, spread){
   if (reduceMotion()) return;
@@ -811,7 +959,7 @@ function tap(i){
   hint = null;
   if (sel === null){
     if (!tubes[i].length){ bump(i); return; }
-    sel = i; beep([520], .05); render(); return;
+    sel = i; sfx.select(); render(); return;
   }
   if (sel === i){ sel = null; render(); return; }
   if (canPour(tubes[sel], tubes[i])){ doPour(sel, i); }
@@ -820,14 +968,13 @@ function tap(i){
 }
 
 async function doPour(from, to){
-  history.push(tubes.map(t => t.slice()));
+  history.push({ t: tubes.map(t => t.slice()), m: mask.map(m => m.slice()) });
   const n = Math.min(topRun(tubes[from]), CAP - tubes[to].length);
   const color = tubes[from][tubes[from].length - 1];
 
   if (reduceMotion()){
-    pour(tubes[from], tubes[to]); moves++; sel = null; lastDrop = { to, n };
-    if (isFull(tubes[to])) justDone = to;
-    render(); gurgle(); vibrate('pour'); afterPour(to); return;
+    const rev = commitPour(from, to, n);
+    render(); sfx.pour(); vibrate('pour'); if (rev) revealFx(from); afterPour(to); return;
   }
 
   busy = true;
@@ -858,13 +1005,12 @@ async function doPour(from, to){
     height:Math.max(8, surface - my) + 'px', background:palette()[color] });
   document.body.appendChild(st);
   st.animate([{ transform:'scaleY(0)' }, { transform:'scaleY(1)' }], { duration:110, fill:'forwards' });
-  gurgle(); vibrate('pour');
+  sfx.pour(); vibrate('pour');
 
   const layers = [...clone.querySelectorAll('.layer')];
   layers.slice(-n).forEach(l => l.animate([{ flexBasis:'25%' }, { flexBasis:'0%' }], { duration:380, easing:'ease-in', fill:'forwards' }));
 
-  pour(tubes[from], tubes[to]); moves++; sel = null; lastDrop = { to, n };
-  if (isFull(tubes[to])) justDone = to;
+  const rev = commitPour(from, to, n);
   render();
   await sleep(380);
 
@@ -877,16 +1023,47 @@ async function doPour(from, to){
   hiddenTube = null;
   const back = tubeEl(from); if (back) back.style.visibility = '';
   busy = false;
+  if (rev) revealFx(from);
   afterPour(to);
+}
+
+// Aplica a jogada e atualiza a máscara. Retorna true se uma camada oculta foi revelada.
+function commitPour(from, to, n){
+  pour(tubes[from], tubes[to]); moves++; sel = null; lastDrop = { to, n };
+  for (let k = 0; k < n; k++) mask[to].push(false);
+  mask[from].length = tubes[from].length;
+  const top = tubes[from].length - 1;
+  const revealed = top >= 0 && mask[from][top];
+  if (revealed) mask[from][top] = false;
+  if (isFull(tubes[to])){ justDone = to; mask[to].fill(false); }   // frasco completo mostra tudo
+  return revealed;
+}
+function revealFx(i){
+  sfx.reveal();
+  const l = tubeEl(i) && tubeEl(i).querySelector('.layer.top');
+  if (l){ l.classList.remove('reveal'); void l.offsetWidth; l.classList.add('reveal'); }
+}
+
+// Tutorial do nível 1: destaca a próxima jogada nas primeiras despejadas.
+let tutorTimer = null;
+function tutorHint(){
+  clearTimeout(tutorTimer);
+  if (level !== 1 || moves >= 3 || solved(tubes)) return;
+  tutorTimer = setTimeout(() => {
+    if (level !== 1 || busy || sel !== null || hint) return;
+    const path = solve(tubes, 20000);
+    if (path && path.length){ hint = path[0]; render(); }
+  }, moves ? 700 : 1200);
 }
 
 function afterPour(to){
   if (isFull(tubes[to])){
-    beep([784, 1047], .1); vibrate('done');
+    sfx.cork(); vibrate('done');
     const r = tubeEl(to).getBoundingClientRect();
     burst(r.left + r.width / 2, r.top, [palette()[tubes[to][0]], '#FFFFFF', '#F4C55B'], 14, 60);
   }
   if (solved(tubes)) setTimeout(win, 380);
+  else tutorHint();
 }
 
 /* ---------- ferramentas ---------- */
@@ -895,13 +1072,13 @@ function toast(msg){ const t = $('toast'); t.textContent = msg; t.classList.add(
 $('btnUndo').onclick = () => {
   if (busy || !history.length) return;
   if (undos <= 0){ rewarded('+3 desfazer', () => { undos = 3; render(); toast('Você ganhou 3 desfazer'); }); return; }
-  tubes = history.pop(); undos--; sel = null; hint = null; moves = Math.max(0, moves - 1); render();
+  const h = history.pop(); tubes = h.t; mask = h.m; undos--; sel = null; hint = null; moves = Math.max(0, moves - 1); render();
 };
 $('btnRestart').onclick = () => { if (!busy) startLevel(level); };
 $('btnTube').onclick = () => {
   if (busy || extraUsed) return;
   rewarded('+1 frasco vazio', () => {
-    extraUsed = true; tubes.push([]); history.forEach(h => h.push([])); sel = null; render(); toast('Frasco extra adicionado');
+    extraUsed = true; tubes.push([]); mask.push([]); history.forEach(h => { h.t.push([]); h.m.push([]); }); sel = null; render(); toast('Frasco extra adicionado');
   });
 };
 $('btnHint').onclick = () => {
@@ -920,7 +1097,9 @@ async function rewarded(label, cb){
   if (!N.isNative){ openAd('reward', 'Recompensa: ' + label, cb); return; }
   if (adBusy) return;
   adBusy = true;
+  muteAll();
   const r = realAds() ? await N.ads.showRewarded() : 'unavailable';
+  unmuteAll();
   adBusy = false;
   if (r === 'rewarded') cb();
   else if (r === 'closed') toast('Assista até o fim para ganhar a recompensa');
@@ -929,7 +1108,7 @@ async function rewarded(label, cb){
 async function interstitial(cb){
   if (save.noAds){ cb(); return; }
   if (!N.isNative){ openAd('inter', 'Anúncio entre níveis', cb); return; }
-  if (realAds()) await N.ads.showInterstitial();
+  if (realAds()){ muteAll(); await N.ads.showInterstitial(); unmuteAll(); }
   cb();
 }
 function openAd(kind, text, cb){
@@ -960,7 +1139,7 @@ function win(){
   const stars = starsFor(level, moves);
   save.stars[level] = Math.max(save.stars[level] || 0, stars);
   persist();
-  beep([523, 659, 784, 1047], .12);
+  sfx.win();
   burst(window.innerWidth / 2, window.innerHeight * .4, palette().slice(0, 8), 60, Math.min(window.innerWidth, 500) * .5);
   const last = level >= MAX_LEVEL;
   $('winTitle').textContent = last ? 'Você é Grão-Mestre!' : ['Poções em ordem!', 'Muito bem!', 'Perfeito!'][stars - 1];
@@ -975,7 +1154,7 @@ function win(){
     if (i >= stars) return;
     s.style.animationDelay = (.25 + i * .22) + 's';
     s.classList.add('on');
-    setTimeout(() => beep([880 + i * 220], .08), 250 + i * 220);
+    setTimeout(() => sfx.star(i), 250 + i * 220);
   });
   $('win').classList.add('show');
   render();
@@ -1060,7 +1239,7 @@ function renderShop(){
     const title = `${p.amt} moedas` + (p.tag ? ` <span class="tag">${p.tag}</span>` : '');
     const price = priceOf(p.product, p.price);
     cl.appendChild(item(coinBox(i + 1), title, `Dá para ${Math.floor(p.amt / HINT_COST)} dicas.`, esc(price), '',
-      () => purchase(p.product, `${p.amt} moedas por ${price}`, () => { save.coins += p.amt; persist(); renderShop(); render(); toast(`+${p.amt} moedas`); })));
+      () => purchase(p.product, `${p.amt} moedas por ${price}`, () => { save.coins += p.amt; persist(); sfx.coin(); renderShop(); render(); toast(`+${p.amt} moedas`); })));
   });
   const th = $('shopThemes'); th.innerHTML = '';
   Object.keys(THEMES).forEach(id => {
@@ -1100,6 +1279,42 @@ $('btnShopClose').onclick = () => { $('shop').classList.remove('show'); refreshH
 $('btnShopRestore').onclick = e => restorePurchases(e.currentTarget);
 $('btnRestore').onclick = e => restorePurchases(e.currentTarget);
 
+/* ---------- bônus diário: sequência de 7 dias ---------- */
+const dayStr = off => { const d = new Date(); d.setDate(d.getDate() + off); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
+// dia da sequência que pode ser pego hoje (1 a 7), ou 0 se já pegou
+function dailyDay(){
+  if (save.daily.last === dayStr(0)) return 0;
+  return save.daily.last === dayStr(-1) ? save.daily.streak % 7 + 1 : 1;
+}
+function openDaily(){
+  const day = dailyDay();
+  if (!day || !$('home').classList.contains('show') || document.querySelector('.overlay.show')) return;
+  const amt = DAILY[day - 1];
+  $('days').innerHTML = DAILY.map((a, i) =>
+    `<div class="day${i + 1 < day ? ' got' : ''}${i + 1 === day ? ' today' : ''}">Dia ${i + 1}<b>${a} ${COIN}</b></div>`).join('');
+  $('dailyText').textContent = day > 1 ? `${day} dias seguidos! Volte amanhã para um prêmio maior.`
+                                       : 'Volte todo dia: o prêmio cresce a cada dia seguido.';
+  $('btnDailyClaim').innerHTML = `Pegar +${amt} ${COIN}`;
+  $('btnDailyDouble').innerHTML = save.noAds ? `Pegar em dobro: +${amt * 2}` : `${svgIcon('tv')} Ver anúncio e pegar +${amt * 2}`;
+  $('daily').classList.add('show');
+}
+function claimDaily(mult){
+  const day = dailyDay(); if (!day) return;
+  const amt = DAILY[day - 1] * mult;
+  save.coins += amt; save.daily = { last:dayStr(0), streak:day }; persist();
+  $('daily').classList.remove('show');
+  sfx.coin(); refreshHome(); render(); toast(`+${amt} moedas`);
+  burst(window.innerWidth / 2, window.innerHeight * .35, ['#F4C55B', '#FFE9A8', '#D98A1F'], 30, 140);
+}
+$('btnDailyClaim').onclick = () => claimDaily(1);
+$('btnDailyDouble').onclick = async () => {
+  const day = dailyDay(); if (!day) return;
+  $('daily').classList.remove('show');
+  await rewarded(`+${DAILY[day - 1] * 2} moedas`, () => claimDaily(2));
+  // no app, se o anúncio falhar ou for fechado antes do fim, o bônus continua disponível
+  if (N.isNative && dailyDay()) openDaily();
+};
+
 /* ---------- telas ---------- */
 const SCREENS = ['home', 'levels', 'settings'];
 function showScreen(id){
@@ -1116,6 +1331,7 @@ function openHome(){
   ['pause', 'win'].forEach(o => $(o).classList.remove('show'));
   refreshHome();
   showScreen('home');
+  setTimeout(openDaily, 350);
 }
 function play(n){ closeScreens(); $('pause').classList.remove('show'); startLevel(n); }
 
@@ -1150,7 +1366,7 @@ function openLevels(){
 }
 
 function syncSettings(){
-  [['setSound', save.sound], ['setVib', save.vib], ['setSym', save.sym]].forEach(([id, on]) => $(id).setAttribute('aria-checked', on));
+  [['setMusic', save.music], ['setSound', save.sound], ['setVib', save.vib], ['setSym', save.sym]].forEach(([id, on]) => $(id).setAttribute('aria-checked', on));
 }
 function openSettings(){ syncSettings(); showScreen('settings'); }
 
@@ -1170,13 +1386,18 @@ $('btnPauseRestart').onclick = () => { $('pause').classList.remove('show'); star
 $('btnPauseLevels').onclick = () => { $('pause').classList.remove('show'); openLevels(); };
 $('btnPauseHome').onclick = () => openHome();
 
+$('setMusic').onclick = () => {
+  save.music = !save.music; persist(); syncSettings();
+  if (save.music) unlockAudio(); else music.stop();
+};
 $('setSound').onclick = () => { save.sound = !save.sound; persist(); syncSettings(); click(); };
 $('setVib').onclick = () => { save.vib = !save.vib; persist(); syncSettings(); vibrate('pour'); };
 $('setSym').onclick = () => { save.sym = !save.sym; persist(); syncSettings(); render(); };
 $('btnReset').onclick = () => {
   if (!confirm(realIap() ? 'Apagar todo o progresso, estrelas e moedas? Compras permanentes (sem anúncios, estilo Ouro) continuam valendo.'
                          : 'Apagar todo o progresso, estrelas, moedas e compras de teste?')) return;
-  save = { unlocked:1, coins:0, sound:save.sound, vib:save.vib, noAds:false, owned:['classico'], theme:'classico', sym:save.sym, stars:{} };
+  save = { unlocked:1, coins:0, sound:save.sound, music:save.music, vib:save.vib, noAds:false, owned:['classico'], theme:'classico', sym:save.sym, stars:{},
+    daily:save.daily };
   persist(); applyTheme(); startLevel(1); openHome();
   if (realIap()) N.iap.owned().then(applyOwned);
   toast('Progresso apagado');
