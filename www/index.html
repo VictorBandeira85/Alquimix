@@ -405,6 +405,90 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
   background:linear-gradient(#FF9C9C,#E5484D);color:#3A0A0C;font-weight:800;font-size:20px;box-shadow:0 5px 0 #8E1F23}
 .btn-danger:active{transform:translateY(3px);box-shadow:0 2px 0 #8E1F23}
 
+/* aventura: cartão da tela inicial */
+.adv-card{display:flex;align-items:center;gap:12px;width:100%;padding:8px 14px 8px 8px;border-radius:22px;text-align:left;
+  background:linear-gradient(100deg, rgba(176,124,240,.30), rgba(244,197,91,.16));border:1px solid rgba(244,197,91,.45);
+  box-shadow:0 4px 0 rgba(0,0,0,.35)}
+.adv-card:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.35)}
+.adv-card .adv-owl{width:52px;height:52px;flex:0 0 auto}
+.adv-card .mc-txt{flex:1;min-width:0;line-height:1.15}
+.adv-card b{display:block;font-size:19px}
+.adv-card small{display:block;color:var(--muted);font-weight:700;font-size:13px}
+.adv-card .chev{font-size:22px;color:var(--gold)}
+.essences{display:flex;gap:4px}
+.essences i{width:13px;height:13px;border-radius:50%;background:rgba(255,255,255,.08);border:1.5px solid var(--rc)}
+.essences i.on{background:radial-gradient(circle at 35% 30%, #fff, var(--rc) 60%);box-shadow:0 0 8px var(--rc)}
+
+/* aventura: mapa */
+.region{position:relative;border-radius:26px;margin-bottom:14px;overflow:hidden;
+  background:linear-gradient(180deg, var(--rc-bg), rgba(20,12,40,.35));border:1px solid var(--rc-line)}
+.region.closed{filter:grayscale(.75);opacity:.55}
+.rg-head{display:flex;align-items:center;gap:12px;padding:14px 16px 0}
+.rg-icon{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;font-size:28px;flex:0 0 auto;
+  background:var(--rc);color:#1A1030;box-shadow:0 4px 0 rgba(0,0,0,.35)}
+.rg-txt{flex:1;min-width:0;line-height:1.15}
+.rg-txt small{display:block;color:var(--rc);font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.rg-txt b{display:block;font-size:20px}
+.rg-txt span{display:block;color:var(--muted);font-weight:700;font-size:13px}
+.rg-head > .ico{font-size:22px;color:var(--faint)}
+.rg-ess{width:30px;height:30px;border-radius:50%;flex:0 0 auto;background:radial-gradient(circle at 35% 30%, #fff, var(--rc) 55%);box-shadow:0 0 18px var(--rc)}
+.rg-path{position:relative}
+.rg-path > svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.rg-path path{fill:none;stroke:var(--rc-line);stroke-width:5;stroke-dasharray:2 12;stroke-linecap:round}
+.node{position:absolute;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
+  font-weight:800;font-size:21px;background:var(--panel2);color:var(--ink);border:3px solid var(--rc-line);box-shadow:0 5px 0 rgba(0,0,0,.4)}
+.node .ico{font-size:24px}
+.node.done{background:var(--rc);color:#1A1030;border-color:rgba(255,255,255,.55)}
+.node.cur{background:linear-gradient(var(--gold-hi), var(--gold) 45%, var(--gold-lo));color:var(--gold-ink);border-color:#fff;
+  box-shadow:0 5px 0 var(--gold-edge), 0 0 22px rgba(244,197,91,.6);animation:nodepulse 1.6s ease-in-out infinite}
+@keyframes nodepulse{50%{transform:translate(-50%,-50%) scale(1.08)}}
+.node.locked{background:rgba(45,33,82,.7);color:var(--faint);box-shadow:none}
+.node.boss{width:76px;height:76px}
+.node.boss .ico{font-size:32px}
+.node .tick{position:absolute;right:-4px;bottom:-4px;width:22px;height:22px;border-radius:50%;background:#fff;color:#1A1030;
+  font-size:13px;display:grid;place-items:center}
+.node .lbl{position:absolute;top:100%;margin-top:8px;padding:1px 8px;border-radius:999px;background:var(--rc);color:#1A1030;
+  font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.node.locked .lbl{background:var(--chip);color:var(--faint)}
+.node-owl{position:absolute;width:46px;height:46px;left:100%;top:-20px;margin-left:0;pointer-events:none;animation:bob 2s ease-in-out infinite}
+.node:not(:disabled):active{transform:translate(-50%,-50%) scale(.94)}
+
+/* aventura: missão no alto do jogo */
+.mission{display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 6px;padding:6px 12px;border-radius:14px;
+  background:rgba(20,12,40,.65);border:1px solid var(--line-gold);color:var(--ink);font-weight:700;font-size:14px;line-height:1.25}
+.mission .ico{color:var(--gold);font-size:17px}
+.mission.boss{border-color:rgba(240,82,79,.65)}
+.mission.boss .ico{color:#FF8A8A}
+.mission .sep{color:var(--faint)}
+.mission b{margin-left:4px;padding:1px 9px;border-radius:999px;background:var(--chip);font-variant-numeric:tabular-nums}
+.mission b.warn{background:#E5484D;color:#fff}
+
+/* aventura: cenas da Ônix */
+#scene{z-index:55;align-items:flex-end;padding-bottom:calc(var(--safe-b) + 24px);cursor:pointer}
+#scene::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 50% at 50% 35%, var(--rc), transparent 70%);opacity:.22;pointer-events:none}
+.scene-wrap{position:relative;width:100%;max-width:440px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scene-badge{display:flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:rgba(20,12,40,.75);
+  border:1px solid var(--rc);color:var(--rc);font-weight:800;font-size:14px;letter-spacing:.04em}
+.scene-badge .ico{font-size:18px}
+.scene-owl{width:150px;height:150px;animation:bob 2.4s ease-in-out infinite;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5))}
+.scene-box{width:100%;background:linear-gradient(var(--panel2), var(--panel));border:1px solid var(--line-gold);border-radius:24px;
+  padding:16px 18px 14px;box-shadow:0 20px 50px rgba(0,0,0,.55);animation:cardin .32s cubic-bezier(.3,1.4,.6,1)}
+.scene-name{color:var(--gold);font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px}
+#sceneText{font-size:19px;line-height:1.4;font-weight:600;min-height:3.4em;margin:0 0 12px}
+#sceneText.in{animation:textin .35s ease}
+@keyframes textin{from{opacity:0;transform:translateY(6px)}}
+.scene-foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#sceneDots{display:flex;gap:5px}
+#sceneDots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2)}
+#sceneDots i.on{background:var(--gold)}
+.btn-gold.small{width:auto;padding:10px 20px;font-size:17px}
+
+@media (max-height:760px){
+  .hero-art{height:clamp(110px, 16vh, 150px)}
+  .title{font-size:clamp(46px, 14vw, 64px)}
+  .tagline{margin-top:6px}
+}
+
 /* fim de capítulo */
 .cd-medal{position:relative;width:150px;height:150px;margin:-6px auto 4px;display:grid;place-items:center}
 .cd-medal .rays{position:absolute;inset:0;border-radius:50%;
@@ -460,7 +544,8 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
 @media (prefers-reduced-motion: reduce){
   .layer.drop,.tube.no,.tube.hint .glass,.cork.pop,.tube.done .fill::after,
   .flask .wave,.flask .bub,.halo,.hero-art .flask,.side-tube,.win-stars .ico.on,.overlay.show .card,.screen.show,
-  .layer.reveal,.gift,.day.today,.cd-medal .rays,#owl.show svg,.tube.slosh .fill,.stuck-owl{animation:none}
+  .layer.reveal,.gift,.day.today,.cd-medal .rays,#owl.show svg,.tube.slosh .fill,.stuck-owl,
+  .node.cur,.node-owl,.scene-owl,.scene-box,#sceneText.in{animation:none}
   .tube.no .glass,.tube.no::before{animation:redflash .6s ease-out}
   #motes{display:none}
   .tube{transition:none}
@@ -498,6 +583,14 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
   <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5M3 21v-5h5"/></symbol>
   <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></symbol>
   <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M12 13.5l1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2-1.6-1.5 2.2-.3z"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 20c0-9 6-15 15-15 0 9-6 15-15 15z"/><path d="M5 20l8-8"/></symbol>
+  <symbol id="i-gem" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l3 6 3-6M12 21 9 9M12 21l3-12"/></symbol>
+  <symbol id="i-mist" viewBox="0 0 24 24"><path d="M3 8h11a3 3 0 1 0-3-3M3 13h16a3 3 0 1 1-3 3M3 18h8"/></symbol>
+  <symbol id="i-volcano" viewBox="0 0 24 24"><path d="M2 21l7-11h6l7 11z"/><path d="M9 10l1-4M15 10l-1-4M12 6V2"/><path d="M9 16l2-2 2 2 2-2"/></symbol>
+  <symbol id="i-tower" viewBox="0 0 24 24"><path d="M7 21V10l5-7 5 7v11z"/><path d="M5 21h14M12 13v3"/><path d="M12 6.5l.7 1.4 1.5.2-1.1 1 .3 1.5-1.4-.7-1.4.7.3-1.5-1.1-1 1.5-.2z"/></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><path d="M3 18h18l-2-11-5 4-2-7-2 7-5-4z"/><path d="M5 21h14"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a6.8 6.8 0 0 0 11 11z"/></symbol>
   <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
@@ -566,6 +659,12 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
         <span class="row1"><svg class="ico ico-f"><use href="#i-play"/></svg>Jogar</span>
         <small id="playSub">Nível 1</small>
       </button>
+      <button class="adv-card" id="btnAdvHome">
+        <svg class="adv-owl" viewBox="0 0 64 64" aria-hidden="true"><use href="#owlArt"/></svg>
+        <span class="mc-txt"><b>Aventura</b><small id="advSub">A Jornada de Ônix</small></span>
+        <span class="essences" id="advEssHome"></span>
+        <svg class="ico chev"><use href="#i-back" transform="rotate(180 12 12)"/></svg>
+      </button>
       <div class="modes">
         <button class="mode-card challenge" id="btnChallenge">
           <svg class="ico"><use href="#i-calendar"/></svg>
@@ -596,6 +695,18 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
       <div class="stars-chip"><svg class="ico ico-f"><use href="#i-star"/></svg><span id="levelsStars">0</span></div>
     </div>
     <div class="scroll" id="chapters"></div>
+  </div>
+</section>
+
+<!-- aventura: mapa -->
+<section class="screen solid" id="adventure" aria-label="Aventura">
+  <div class="inner">
+    <div class="bar-head">
+      <button class="iconbtn" id="btnAdvBack" aria-label="Voltar"><svg class="ico"><use href="#i-back"/></svg></button>
+      <h2>Aventura</h2>
+      <div class="stars-chip"><span class="essences" id="essences"></span><span id="essCount"></span></div>
+    </div>
+    <div class="scroll" id="regions"></div>
   </div>
 </section>
 
@@ -632,7 +743,7 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
         <button class="set-row" id="btnPrivacy" style="display:none"><svg class="ico"><use href="#i-shield"/></svg><span class="lbl">Privacidade dos anúncios</span></button>
         <button class="set-row danger" id="btnReset"><svg class="ico"><use href="#i-trash"/></svg><span class="lbl">Apagar progresso</span></button>
       </div>
-      <p class="version">Alquimix · versão 1.2</p>
+      <p class="version">Alquimix · versão 1.3</p>
     </div>
   </div>
 </section>
@@ -764,6 +875,28 @@ body.th-vulcao .tube::before{background:linear-gradient(90deg,#FF3B30,#FFB23D,#F
   </div>
 </div>
 
+<div class="overlay" id="missionFail">
+  <div class="card">
+    <svg class="stuck-owl" viewBox="0 0 64 64" aria-hidden="true"><use href="#owlArt"/></svg>
+    <h2>Missão falhou</h2>
+    <p>As jogadas acabaram antes de separar todas as poções.</p>
+    <button class="btn-gold" id="btnFailRetry"><svg class="ico"><use href="#i-restart"/></svg><span>Tentar de novo</span></button>
+    <button class="btn-plum" id="btnFailMap"><svg class="ico"><use href="#i-map"/></svg><span>Ver mapa</span></button>
+  </div>
+</div>
+
+<div class="overlay" id="scene">
+  <div class="scene-wrap">
+    <div class="scene-badge" id="sceneBadge"></div>
+    <svg class="scene-owl" viewBox="0 0 64 64" aria-hidden="true"><use href="#owlArt"/></svg>
+    <div class="scene-box">
+      <div class="scene-name">Ônix</div>
+      <p id="sceneText"></p>
+      <div class="scene-foot"><span id="sceneDots"></span><button class="btn-gold small" id="btnSceneNext">Continuar</button></div>
+    </div>
+  </div>
+</div>
+
 <div class="overlay" id="confirm">
   <div class="card">
     <h2 id="confirmTitle"></h2>
@@ -880,7 +1013,41 @@ const WORDS = [
   ['Anúncio de teste', 'Test ad', 'Anuncio de prueba'], ['Aguarde…', 'Please wait…', 'Espera…'], ['Fechar sem recompensa', 'Close without reward', 'Cerrar sin recompensa'],
   ['Remover anúncios', 'Remove ads', 'Quitar anuncios'], ['Apagar tudo', 'Erase everything', 'Borrar todo'], ['Apagar progresso?', 'Erase progress?', '¿Borrar progreso?'],
   ['Progresso apagado', 'Progress erased', 'Progreso borrado'],
-  ['Frasco cheio', 'Flask is full', 'Frasco lleno'], ['Cor diferente', 'Different color', 'Color diferente'],
+  ['Frasco cheio', 'Flask is full', 'Frasco lleno'],
+  ['Aventura', 'Adventure', 'Aventura'], ['A Jornada de Ônix', 'Ônix\'s Journey', 'El viaje de Ônix'], ['Reino restaurado!', 'Kingdom restored!', '¡Reino restaurado!'],
+  ['Jardim das Ervas', 'Herb Garden', 'Jardín de Hierbas'], ['Minas de Cristal', 'Crystal Mines', 'Minas de Cristal'],
+  ['Pântano das Brumas', 'Misty Marsh', 'Pantano de las Brumas'], ['Vulcão Rubro', 'Crimson Volcano', 'Volcán Carmesí'],
+  ['Torre das Estrelas', 'Tower of Stars', 'Torre de las Estrellas'],
+  ['Essência Verde', 'Green Essence', 'Esencia Verde'], ['Essência Azul', 'Blue Essence', 'Esencia Azul'],
+  ['Essência Violeta', 'Violet Essence', 'Esencia Violeta'], ['Essência Rubra', 'Crimson Essence', 'Esencia Carmesí'],
+  ['Essência Dourada', 'Golden Essence', 'Esencia Dorada'],
+  ['Chefe', 'Boss', 'Jefe'], ['Sem desfazer nem frasco extra', 'No undo or extra flask', 'Sin deshacer ni frasco extra'],
+  ['Com névoa', 'With mist', 'Con niebla'], ['Separe todas as poções', 'Sort all the potions', 'Separa todas las pociones'],
+  ['Missão falhou', 'Mission failed', 'Misión fallida'],
+  ['As jogadas acabaram antes de separar todas as poções.', 'You ran out of moves before sorting all the potions.', 'Se acabaron las jugadas antes de separar todas las pociones.'],
+  ['Tentar de novo', 'Try again', 'Intentar de nuevo'], ['Ver mapa', 'View map', 'Ver mapa'],
+  ['Missão cumprida!', 'Mission complete!', '¡Misión cumplida!'], ['Chefe derrotado!', 'Boss defeated!', '¡Jefe derrotado!'],
+  ['Próxima fase', 'Next stage', 'Siguiente fase'], ['Vamos lá!', 'Let\'s go!', '¡Vamos!'],
+  ['Primeira essência', 'First essence', 'Primera esencia'], ['Herói do reino', 'Hero of the kingdom', 'Héroe del reino'],
+  ['Recupere 1 essência na aventura', 'Recover 1 essence in the adventure', 'Recupera 1 esencia en la aventura'],
+  ['Recupere as 5 essências da aventura', 'Recover all 5 essences in the adventure', 'Recupera las 5 esencias de la aventura'],
+  ['Olá! Eu sou Ônix, a coruja guardiã deste laboratório.', 'Hello! I\'m Ônix, the owl who guards this lab.', '¡Hola! Soy Ônix, la lechuza guardiana de este laboratorio.'],
+  ['Uma explosão no Grande Caldeirão espalhou as cinco essências mágicas pelo reino.', 'An explosion in the Great Cauldron scattered the five magic essences across the kingdom.', 'Una explosión en el Gran Caldero esparció las cinco esencias mágicas por el reino.'],
+  ['Sem elas, as cores do mundo vão desbotar. Vamos buscá-las juntos?', 'Without them, the world\'s colors will fade. Shall we find them together?', 'Sin ellas, los colores del mundo se apagarán. ¿Vamos a buscarlas juntos?'],
+  ['O Jardim das Ervas guarda a Essência Verde. As plantas daqui misturaram tudo!', 'The Herb Garden holds the Green Essence. The plants here have mixed everything up!', 'El Jardín de Hierbas guarda la Esencia Verde. ¡Las plantas de aquí lo mezclaron todo!'],
+  ['Algumas fases têm missões especiais. Fique de olho no alvo no alto da tela.', 'Some stages have special missions. Keep an eye on the target at the top of the screen.', 'Algunas fases tienen misiones especiales. Atento al objetivo en la parte de arriba.'],
+  ['Você recuperou a Essência Verde! O jardim já está florescendo de novo.', 'You recovered the Green Essence! The garden is already blooming again.', '¡Recuperaste la Esencia Verde! El jardín ya vuelve a florecer.'],
+  ['Nas Minas de Cristal, os frascos são enormes. Cabe muita coisa... e muita bagunça.', 'In the Crystal Mines the flasks are huge. They hold a lot... and a lot of mess.', 'En las Minas de Cristal los frascos son enormes. Cabe mucho... y mucho desorden.'],
+  ['A Essência Azul brilha como gelo. Faltam três!', 'The Blue Essence shines like ice. Three to go!', 'La Esencia Azul brilla como el hielo. ¡Faltan tres!'],
+  ['O Pântano das Brumas esconde as cores na névoa. Cuidado com os frascos marcados com ?.', 'The Misty Marsh hides colors in the fog. Watch out for flasks marked with ?.', 'El Pantano de las Brumas esconde los colores en la niebla. Cuidado con los frascos marcados con ?.'],
+  ['A névoa se dissipou e a Essência Violeta é nossa!', 'The mist has cleared and the Violet Essence is ours!', '¡La niebla se disipó y la Esencia Violeta es nuestra!'],
+  ['No Vulcão Rubro, os frascos são pequenos e o calor apressa tudo. Conte cada jogada!', 'At the Crimson Volcano the flasks are small and the heat rushes everything. Count every move!', 'En el Volcán Carmesí los frascos son pequeños y el calor lo apura todo. ¡Cuenta cada jugada!'],
+  ['A Essência Rubra está salva. E minhas penas também, ufa!', 'The Crimson Essence is safe. And so are my feathers, phew!', 'La Esencia Carmesí está a salvo. Y mis plumas también, ¡uf!'],
+  ['A Torre das Estrelas guarda a última essência. Aqui tem de tudo: névoa, pressa e frascos de todo tamanho.', 'The Tower of Stars holds the last essence. It has everything: mist, haste and flasks of every size.', 'La Torre de las Estrellas guarda la última esencia. Aquí hay de todo: niebla, prisa y frascos de todos los tamaños.'],
+  ['A Essência Dourada! Agora temos as cinco.', 'The Golden Essence! Now we have all five.', '¡La Esencia Dorada! Ya tenemos las cinco.'],
+  ['Com as cinco essências, o Grande Caldeirão voltou a brilhar.', 'With all five essences, the Great Cauldron shines again.', 'Con las cinco esencias, el Gran Caldero volvió a brillar.'],
+  ['O reino recuperou suas cores graças a você, Mestre Alquimista.', 'The kingdom got its colors back thanks to you, Master Alchemist.', 'El reino recuperó sus colores gracias a ti, Maestro Alquimista.'],
+  ['Volte quando quiser: sempre há poções para preparar.', 'Come back anytime: there are always potions to brew.', 'Vuelve cuando quieras: siempre hay pociones que preparar.'], ['Cor diferente', 'Different color', 'Color diferente'],
   ['Sem jogadas', 'No moves left', 'Sin jugadas'], ['Reiniciar fase', 'Restart level', 'Reiniciar nivel'],
   ['Não há mais movimentos possíveis. Acontece com todo alquimista!', 'There are no possible moves left. It happens to every alchemist!', 'No quedan movimientos posibles. ¡Le pasa a todo alquimista!'],
   ['Modo navegador: anúncios e compras são simulados.', 'Browser mode: ads and purchases are simulated.', 'Modo navegador: anuncios y compras son simulados.'],
@@ -1030,6 +1197,13 @@ const RULES = [
   [/^Vença (\d+) desafios do dia$/, 'Win {1} daily challenges', 'Gana {1} desafíos del día'],
   [/^Pegue o bônus diário (\d+) dias seguidos$/, 'Claim the daily bonus {1} days in a row', 'Reclama el bono diario {1} días seguidos'],
   [/^Tenha (\d+) estilos de frasco$/, 'Own {1} flask styles', 'Ten {1} estilos de frasco'],
+  [/^Fase (\d+)-(\d+)$/, 'Stage {1}-{2}', 'Fase {1}-{2}'],
+  [/^Fase (\d+) de (\d+)$/, 'Stage {1} of {2}', 'Fase {1} de {2}'],
+  [/^Região (\d+)$/, 'Region {1}', 'Región {1}'],
+  [/^(.+) · fase (\d+)$/, '{t1} · stage {2}', '{t1} · fase {2}'],
+  [/^(.+) · (\d+)\/(\d+)$/, '{t1} · {2}/{3}', '{t1} · {2}/{3}'],
+  [/^Vença em até (\d+) jogadas$/, 'Win in {1} moves or fewer', 'Gana en {1} jugadas o menos'],
+  [/^Estilo (.+) desbloqueado!$/, '{t1} style unlocked!', '¡Estilo {t1} desbloqueado!'],
   [/^Alquimix · versão (.+)$/, 'Alquimix · version {1}', 'Alquimix · versión {1}']
 ];
 const LOCALES = { pt:'pt-BR', en:'en-US', es:'es-ES' };
@@ -1145,7 +1319,8 @@ loadProgress(.12);
 const SAVE_KEY = 'alquimix-v1';
 let save = { unlocked:1, coins:0, sound:true, music:true, vib:true, noAds:false, owned:['classico'], theme:'classico', sym:false, stars:{},
   daily:{ last:'', streak:0 }, challenge:{ last:'', count:0 }, ach:{},
-  stats:{ corks:0, reveals:0, clean:0, bestStreak:0 }, chapters:{}, relax:{ diff:1, done:0 } };
+  stats:{ corks:0, reveals:0, clean:0, bestStreak:0 }, chapters:{}, relax:{ diff:1, done:0 },
+  adv:{ unlocked:0, done:{}, seen:{}, regions:{} } };
 try { const s = JSON.parse(await N.storage.get(SAVE_KEY)); if (s) save = Object.assign(save, s); } catch(e){}
 setLang(save.lang || pickLang());   // sem escolha salva, segue o idioma do aparelho
 function persist(){ N.storage.set(SAVE_KEY, JSON.stringify(save)).catch(() => {}); }
@@ -1323,7 +1498,7 @@ function relaxWin(){
   owlSay('relaxWin', true);
   setTimeout(() => { if (mode === 'relax' && solved(tubes) && !document.querySelector('.overlay.show, .screen.show')) startRelax(); }, 1800);
 }
-const restartCurrent = () => mode === 'challenge' ? startChallenge() : mode === 'relax' ? beginRelax() : startLevel(level);
+const restartCurrent = () => mode === 'challenge' ? startChallenge() : mode === 'relax' ? beginRelax() : mode === 'adv' ? startAdv(advIdx) : startLevel(level);
 const challengeDone = () => save.challenge.last === dayStr(0);
 
 /* ---------- som: efeitos e música gerados na hora (Web Audio, sem arquivos) ---------- */
@@ -1498,6 +1673,11 @@ function render(){
   $('hintSub').innerHTML = relax ? 'grátis' : `${HINT_COST} ${COIN}`;
   $('btnUndo').disabled = history.length === 0;
   $('btnTube').disabled = extraUsed;
+  if (mode === 'adv' && advNoHelp){
+    $('btnUndo').disabled = $('btnTube').disabled = true;
+    $('undoLeft').innerHTML = $('tubeSub').innerHTML = svgIcon('lock');
+  }
+  updateMission();
 }
 
 // gotinhas que pulam onde o jato encontra a poção
@@ -1532,7 +1712,7 @@ function burst(x, y, colors, count, spread){
 
 /* ---------- jogar ---------- */
 function tap(i){
-  if (busy) return;
+  if (busy || missionFailed()) return;
   hint = null;
   if (sel === null){
     if (!tubes[i].length){ bump(i); return; }
@@ -1672,7 +1852,8 @@ function afterPour(to){
   if (solved(tubes)){ owlHide(); setTimeout(win, 380); }
   else {
     tutorHint(); checkAch();
-    if (!hasMoves()) setTimeout(openStuck, 650);
+    if (missionFailed()) setTimeout(openMissionFail, 450);
+    else if (!hasMoves()) setTimeout(openStuck, 650);
     else if (mode === 'level' && levelPar[level] && moves === levelPar[level] * 2) owlSay('long');
   }
 }
@@ -1707,14 +1888,15 @@ const hasMoves = () => tubes.some((a, i) => tubes.some((b, j) => i !== j && canP
 
 /* ---------- sem jogadas ---------- */
 function openStuck(){
-  if (solved(tubes) || hasMoves() || busy || document.querySelector('.overlay.show, .screen.show')) return;
+  if (solved(tubes) || hasMoves() || busy || missionFailed() || document.querySelector('.overlay.show, .screen.show')) return;
   owlHide();
   sfx.deny(); vibrate('deny');
-  $('btnStuckUndo').hidden = !history.length;
-  $('btnStuckTube').hidden = extraUsed;
+  const canUndo = history.length && !(mode === 'adv' && advNoHelp), canTube = !extraUsed && !(mode === 'adv' && advNoHelp);
+  $('btnStuckUndo').hidden = !canUndo;
+  $('btnStuckTube').hidden = !canTube;
   const row = $('btnStuckUndo').parentElement;
-  row.hidden = !history.length && extraUsed;
-  row.style.gridTemplateColumns = history.length && !extraUsed ? '' : '1fr';
+  row.hidden = !canUndo && !canTube;
+  row.style.gridTemplateColumns = canUndo && canTube ? '' : '1fr';
   $('stuck').classList.add('show');
 }
 $('btnStuckRestart').onclick = () => { $('stuck').classList.remove('show'); restartCurrent(); };
@@ -1726,13 +1908,13 @@ $('btnStuckHome').onclick = () => { $('stuck').classList.remove('show'); openHom
 function toast(msg){ const t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 2200); }
 
 $('btnUndo').onclick = () => {
-  if (busy || !history.length) return;
+  if (busy || !history.length || (mode === 'adv' && advNoHelp)) return;
   if (undos <= 0){ rewarded('+3 desfazer', () => { undos = 3; render(); toast('Você ganhou 3 desfazer'); }); return; }
   const h = history.pop(); tubes = h.t; mask = h.m; if (mode !== 'relax') undos--; helped = true; sel = null; hint = null; moves = Math.max(0, moves - 1); render();
 };
 $('btnRestart').onclick = () => { if (!busy) restartCurrent(); };
 $('btnTube').onclick = () => {
-  if (busy || extraUsed) return;
+  if (busy || extraUsed || (mode === 'adv' && advNoHelp)) return;
   (mode === 'relax' ? (label, cb) => cb() : rewarded)('+1 frasco vazio', () => {
     extraUsed = true; helped = true; tubes.push([]); mask.push([]); history.forEach(h => { h.t.push([]); h.m.push([]); }); sel = null; render(); toast('Frasco extra adicionado');
   });
@@ -1796,6 +1978,8 @@ $('btnAdNoAds').onclick = () => openShop();
 /* ---------- vitória ---------- */
 function win(){
   if (mode === 'relax'){ relaxWin(); return; }
+  if (mode === 'adv'){ advWin(); return; }
+  $('winStars').hidden = false; $('btnWinHome').textContent = 'Menu inicial';
   const challenge = mode === 'challenge', firstToday = challenge && !challengeDone();
   const stars = starsFor(level, moves);
   if (challenge){
@@ -1845,6 +2029,7 @@ function goNext(){
   if (level % INTER_EVERY === 0) interstitial(() => startLevel(next)); else startLevel(next);
 }
 $('btnNext').onclick = () => {
+  if (mode === 'adv'){ advContinue(true); return; }
   $('win').classList.remove('show');
   if (pendingChapter !== null) openChapterDone(goNext); else goNext();
 };
@@ -1872,6 +2057,7 @@ $('btnDouble').onclick = () => {
   });
 };
 $('btnWinHome').onclick = () => {
+  if (mode === 'adv'){ advContinue(false); return; }
   $('win').classList.remove('show');
   if (pendingChapter !== null) openChapterDone(openHome); else openHome();
 };
@@ -2034,6 +2220,8 @@ const ACH = [
   { id:'ch1',    name:'Desafiante',            desc:'Vença 1 desafio do dia',                  goal:1,    reward:30,  val:() => save.challenge.count },
   { id:'ch7',    name:'Rotina de alquimista',  desc:'Vença 7 desafios do dia',                 goal:7,    reward:150, val:() => save.challenge.count },
   { id:'d7',     name:'Fiel ao laboratório',   desc:'Pegue o bônus diário 7 dias seguidos',    goal:7,    reward:100, val:() => save.stats.bestStreak },
+  { id:'adv1',   name:'Primeira essência',     desc:'Recupere 1 essência na aventura',         goal:1,    reward:50,  val:() => Object.keys(save.adv.regions).length },
+  { id:'adv5',   name:'Herói do reino',        desc:'Recupere as 5 essências da aventura',     goal:5,    reward:300, val:() => Object.keys(save.adv.regions).length },
   { id:'th4',    name:'Colecionador',          desc:'Tenha 4 estilos de frasco',               goal:4,    reward:150, val:() => save.owned.length }
 ];
 let achQueue = [], achShowing = false;
@@ -2086,8 +2274,237 @@ function askConfirm(title, text, okLabel){
   });
 }
 
+/* ---------- modo aventura: A Jornada de Ônix ---------- */
+// 5 regiões com 8 fases cada. Cada fase tem uma missão; a última é o chefe da região.
+const REGIONS = [
+  { name:'Jardim das Ervas',   essence:'Essência Verde',    color:'#3BBF5C', icon:'leaf',    k:[4, 6], theme:'floresta' },
+  { name:'Minas de Cristal',   essence:'Essência Azul',     color:'#26C6C0', icon:'gem',     k:[5, 7], cap:5, theme:'cristal' },
+  { name:'Pântano das Brumas', essence:'Essência Violeta',  color:'#B07CF0', icon:'mist',    k:[6, 8], mystery:.35, theme:'neon' },
+  { name:'Vulcão Rubro',       essence:'Essência Rubra',    color:'#F0524F', icon:'volcano', k:[7, 9], cap:3, theme:'vulcao' },
+  { name:'Torre das Estrelas', essence:'Essência Dourada',  color:'#F4C55B', icon:'tower',   k:[8, 10], mixed:true }
+];
+const PER_REGION = 8, ADV_TOTAL = REGIONS.length * PER_REGION;
+const ADV_FINAL_COINS = 1000, ADV_DUP_COINS = 300;
+const PATTERN = ['clear', 'clear', 'moves', 'clear', 'nohelp', 'moves', 'clear', 'boss'];
+// regras da fase i (0 a 39)
+function advStage(i){
+  const r = Math.floor(i / PER_REGION), j = i % PER_REGION, R = REGIONS[r], type = PATTERN[j];
+  let cap = 4;
+  if (R.cap === 5 && j % 2 === 1) cap = 5;
+  if (R.cap === 3 && j % 2 === 0) cap = 3;
+  if (R.mixed) cap = [4, 5, 4, 3, 4, 5, 3, 4][j];
+  const k = Math.min(cap === 5 ? 8 : 10, R.k[0] + Math.round((R.k[1] - R.k[0]) * j / (PER_REGION - 1)));
+  const mystery = R.mystery ? R.mystery + j * .03 : R.mixed && j % 2 ? .4 : 0;
+  return { r, j, k, cap, mystery, boss:type === 'boss', limit:type === 'moves' || type === 'boss',
+    noHelp:type === 'nohelp' || (type === 'boss' && r % 2 === 0) };
+}
+const advCache = {};
+function makeAdv(i){
+  const st = advStage(i);
+  if (!advCache[i]){
+    const g = generate(70000 + i * 131, st.k, st.cap);
+    const r = rng(70000 + i * 977);
+    const mask = g.tubes.map(t => t.map((c, k) => st.mystery > 0 && k < t.length - 1 && r() < st.mystery));
+    const limit = st.limit ? g.par + Math.max(3, Math.round(g.par * (st.mystery ? .5 : .3))) : 0;
+    advCache[i] = { tubes:g.tubes, mask, limit, par:g.par };
+  }
+  CAP = st.cap;
+  const c = advCache[i];
+  return { tubes:c.tubes.map(t => t.slice()), mask:c.mask.map(m => m.slice()), limit:c.limit, st };
+}
+let advIdx = 0, advLimit = 0, advNoHelp = false, pendingRegion = null;
+
+// textos da missão, um por parte (cada parte é traduzida sozinha)
+function missionParts(st, limit){
+  const parts = [];
+  if (st.boss) parts.push('Chefe');
+  if (limit) parts.push(`Vença em até ${limit} jogadas`);
+  if (st.noHelp) parts.push('Sem desfazer nem frasco extra');
+  if (st.mystery) parts.push('Com névoa');
+  if (!limit && !st.noHelp) parts.push('Separe todas as poções');
+  return parts;
+}
+function showMission(){
+  const st = advStage(advIdx);
+  $('tip').innerHTML = `<span class="mission${st.boss ? ' boss' : ''}">${svgIcon(st.boss ? 'crown' : 'target')}` +
+    missionParts(st, advLimit).map(p => `<span>${p}</span>`).join('<span class="sep">·</span>') +
+    (advLimit ? `<b id="missionCount"></b>` : '') + `</span>`;
+  updateMission();
+}
+function updateMission(){
+  if (mode !== 'adv' || !advLimit || !$('missionCount')) return;
+  const left = advLimit - moves;
+  $('missionCount').textContent = `${moves}/${advLimit}`;
+  $('missionCount').classList.toggle('warn', left <= 2);
+}
+
+function startAdv(i){
+  const st = advStage(i);
+  const go = () => {
+    const a = makeAdv(i);
+    mode = 'adv'; advIdx = i; tubes = a.tubes; mask = a.mask; resetBoard();
+    advLimit = a.limit; advNoHelp = st.noHelp;
+    owlHide(); revealedThisLevel = false;
+    $('chapterName').textContent = REGIONS[st.r].name;
+    $('lvlTitle').textContent = `Fase ${st.r + 1}-${st.j + 1}`;
+    showMission();
+    render();
+  };
+  closeScreens();
+  if (!save.adv.seen['in' + st.r]){ save.adv.seen['in' + st.r] = true; persist(); playScene('in' + st.r, go); }
+  else go();
+}
+// passou do limite de jogadas sem terminar
+const missionFailed = () => mode === 'adv' && advLimit && moves >= advLimit && !solved(tubes);
+function openMissionFail(){
+  if (!missionFailed() || document.querySelector('.overlay.show')) return;
+  owlHide(); sfx.deny(); vibrate('deny');
+  $('missionFail').classList.add('show');
+}
+$('btnFailRetry').onclick = () => { $('missionFail').classList.remove('show'); restartCurrent(); };
+$('btnFailMap').onclick = () => { $('missionFail').classList.remove('show'); openMap(); };
+
+function advWin(){
+  const i = advIdx, st = advStage(i), first = !save.adv.done[i];
+  earned = first ? 15 + st.r * 5 : 5;
+  save.adv.done[i] = true;
+  if (i + 1 > save.adv.unlocked && i + 1 < ADV_TOTAL) save.adv.unlocked = i + 1;
+  if (st.j === PER_REGION - 1 && !save.adv.regions[st.r]){ save.adv.regions[st.r] = true; pendingRegion = st.r; }
+  save.coins += earned; persist();
+  sfx.win(); vibrate('done');
+  burst(window.innerWidth / 2, window.innerHeight * .4, palette().slice(0, 8), 60, Math.min(window.innerWidth, 500) * .5);
+  $('winStars').hidden = true;
+  $('winTitle').textContent = st.boss ? 'Chefe derrotado!' : 'Missão cumprida!';
+  $('winText').textContent = `${REGIONS[st.r].name} · fase ${st.j + 1}`;
+  $('winReward').innerHTML = `+${earned} ${COIN}`; $('winReward').style.display = '';
+  $('btnNext').textContent = pendingRegion !== null ? 'Continuar' : i + 1 < ADV_TOTAL ? 'Próxima fase' : 'Ver mapa';
+  $('btnDouble').style.display = '';
+  $('btnDouble').innerHTML = save.noAds ? 'Dobrar moedas' : `${svgIcon('tv')} Ver anúncio e dobrar moedas`;
+  $('btnWinHome').textContent = 'Ver mapa';
+  $('win').classList.add('show');
+  render();
+  setTimeout(checkAch, 900);
+}
+// depois da vitória: cena de fim de região (se houver), depois a próxima fase ou o mapa
+function advContinue(toNext){
+  $('win').classList.remove('show');
+  if (pendingRegion !== null){
+    const r = pendingRegion; pendingRegion = null;
+    playScene('out' + r, () => {
+      giveRegionReward(r);
+      if (r === REGIONS.length - 1) playScene('epilogue', openMap); else openMap();
+    });
+    return;
+  }
+  if (!toNext || advIdx + 1 >= ADV_TOTAL){ openMap(); return; }
+  const next = advIdx + 1;
+  if ((advIdx + 1) % INTER_EVERY === 0) interstitial(() => startAdv(next)); else startAdv(next);
+}
+function giveRegionReward(r){
+  const theme = REGIONS[r].theme;
+  if (theme && !save.owned.includes(theme)){
+    save.owned.push(theme); persist();
+    toast(`Estilo ${THEMES[theme].name} desbloqueado!`);
+  } else {
+    const coins = theme ? ADV_DUP_COINS : ADV_FINAL_COINS;
+    save.coins += coins; persist(); sfx.coin();
+    toast(`+${coins} moedas`);
+  }
+  refreshHome(); checkAch();
+}
+
+/* cenas: falas da Ônix, uma por toque */
+const SCENES = {
+  prologue:['Olá! Eu sou Ônix, a coruja guardiã deste laboratório.',
+            'Uma explosão no Grande Caldeirão espalhou as cinco essências mágicas pelo reino.',
+            'Sem elas, as cores do mundo vão desbotar. Vamos buscá-las juntos?'],
+  in0:['O Jardim das Ervas guarda a Essência Verde. As plantas daqui misturaram tudo!',
+       'Algumas fases têm missões especiais. Fique de olho no alvo no alto da tela.'],
+  out0:['Você recuperou a Essência Verde! O jardim já está florescendo de novo.'],
+  in1:['Nas Minas de Cristal, os frascos são enormes. Cabe muita coisa... e muita bagunça.'],
+  out1:['A Essência Azul brilha como gelo. Faltam três!'],
+  in2:['O Pântano das Brumas esconde as cores na névoa. Cuidado com os frascos marcados com ?.'],
+  out2:['A névoa se dissipou e a Essência Violeta é nossa!'],
+  in3:['No Vulcão Rubro, os frascos são pequenos e o calor apressa tudo. Conte cada jogada!'],
+  out3:['A Essência Rubra está salva. E minhas penas também, ufa!'],
+  in4:['A Torre das Estrelas guarda a última essência. Aqui tem de tudo: névoa, pressa e frascos de todo tamanho.'],
+  out4:['A Essência Dourada! Agora temos as cinco.'],
+  epilogue:['Com as cinco essências, o Grande Caldeirão voltou a brilhar.',
+            'O reino recuperou suas cores graças a você, Mestre Alquimista.',
+            'Volte quando quiser: sempre há poções para preparar.']
+};
+let sceneLines = [], sceneStep = 0, sceneThen = null;
+function playScene(key, then){
+  sceneLines = SCENES[key] || []; sceneStep = 0; sceneThen = then;
+  const r = /\d$/.test(key) ? +key.slice(-1) : null;
+  const R = r !== null ? REGIONS[r] : null;
+  $('scene').style.setProperty('--rc', R ? R.color : '#F4C55B');
+  $('sceneBadge').innerHTML = R ? `${svgIcon(R.icon)}<span>${R.name}</span>` : `${svgIcon('star', true)}<span>A Jornada de Ônix</span>`;
+  owlHide();
+  $('scene').classList.add('show');
+  showSceneLine();
+}
+function showSceneLine(){
+  const el = $('sceneText');
+  el.textContent = sceneLines[sceneStep] || '';
+  el.classList.remove('in'); void el.offsetWidth; el.classList.add('in');
+  $('btnSceneNext').textContent = sceneStep < sceneLines.length - 1 ? 'Continuar' : 'Vamos lá!';
+  $('sceneDots').innerHTML = sceneLines.map((_, k) => `<i class="${k === sceneStep ? 'on' : ''}"></i>`).join('');
+  sfx.select();
+}
+function nextSceneLine(){
+  if (++sceneStep < sceneLines.length){ showSceneLine(); return; }
+  $('scene').classList.remove('show');
+  const then = sceneThen; sceneThen = null; if (then) then();
+}
+$('btnSceneNext').onclick = e => { e.stopPropagation(); nextSceneLine(); };
+$('scene').onclick = nextSceneLine;
+
+/* mapa */
+const hexA = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${n >> 8 & 255},${n & 255},${a})`; };
+const NODE_X = [50, 76, 62, 30, 20, 42, 72, 50], NODE_DY = 86, NODE_Y0 = 46;
+function openAdventure(){
+  if (!save.adv.seen.prologue){ save.adv.seen.prologue = true; persist(); playScene('prologue', openMap); }
+  else openMap();
+}
+function openMap(){
+  ['pause', 'win', 'stuck', 'missionFail'].forEach(o => $(o).classList.remove('show'));
+  owlHide();
+  const got = REGIONS.filter((_, r) => save.adv.regions[r]).length;
+  $('essences').innerHTML = REGIONS.map((R, r) => `<i class="${save.adv.regions[r] ? 'on' : ''}" style="--rc:${R.color}" title="${R.essence}"></i>`).join('');
+  $('essCount').textContent = `${got}/${REGIONS.length}`;
+  const H = NODE_Y0 * 2 + NODE_DY * (PER_REGION - 1);
+  let cur = null;
+  $('regions').innerHTML = REGIONS.map((R, r) => {
+    const first = r * PER_REGION, open = first <= save.adv.unlocked;
+    const done = Array.from({ length:PER_REGION }, (_, j) => save.adv.done[first + j]).filter(Boolean).length;
+    const pts = NODE_X.map((x, j) => [x, NODE_Y0 + j * NODE_DY]);
+    const d = pts.map(([x, y], j) => j ? `C${pts[j - 1][0]},${y - NODE_DY / 2} ${x},${pts[j - 1][1] + NODE_DY / 2} ${x},${y}` : `M${x},${y}`).join(' ');
+    const nodes = pts.map(([x, y], j) => {
+      const i = first + j, st = advStage(i), isDone = !!save.adv.done[i], isCur = i === save.adv.unlocked && !isDone, locked = i > save.adv.unlocked;
+      if (isCur) cur = i;
+      const inner = locked ? svgIcon('lock') : st.boss ? svgIcon('crown') : isDone ? `${j + 1}` : `${j + 1}`;
+      return `<button class="node${isDone ? ' done' : ''}${isCur ? ' cur' : ''}${locked ? ' locked' : ''}${st.boss ? ' boss' : ''}" data-i="${i}"` +
+        ` style="left:${x}%;top:${y}px"${locked ? ' disabled' : ''} aria-label="Fase ${r + 1}-${j + 1}">${inner}` +
+        (isDone && !st.boss ? '<span class="tick">✓</span>' : '') +
+        (st.boss ? '<span class="lbl">Chefe</span>' : '') +
+        (isCur ? `<svg class="node-owl" viewBox="0 0 64 64"><use href="#owlArt"/></svg>` : '') + `</button>`;
+    }).join('');
+    return `<section class="region${open ? '' : ' closed'}${save.adv.regions[r] ? ' cleared' : ''}" style="--rc:${R.color};--rc-bg:${hexA(R.color, .16)};--rc-line:${hexA(R.color, .45)}">` +
+      `<div class="rg-head"><span class="rg-icon">${svgIcon(R.icon)}</span><span class="rg-txt"><small>Região ${r + 1}</small><b>${R.name}</b>` +
+      `<span>${R.essence} · ${done}/${PER_REGION}</span></span>${save.adv.regions[r] ? `<span class="rg-ess"></span>` : open ? '' : svgIcon('lock')}</div>` +
+      `<div class="rg-path" style="height:${H}px"><svg viewBox="0 0 100 ${H}" preserveAspectRatio="none" aria-hidden="true">` +
+      `<path d="${d}" vector-effect="non-scaling-stroke"/></svg>${nodes}</div></section>`;
+  }).join('');
+  $('regions').querySelectorAll('.node:not(:disabled)').forEach(b => b.onclick = () => { click(); startAdv(+b.dataset.i); });
+  showScreen('adventure');
+  const el = cur !== null ? $('regions').querySelector(`.node[data-i="${cur}"]`) : null;
+  if (el) el.scrollIntoView({ block:'center' });
+}
+$('btnAdvBack').onclick = () => { click(); openHome(); };
+
 /* ---------- telas ---------- */
-const SCREENS = ['home', 'levels', 'trophies', 'settings'];
+const SCREENS = ['home', 'adventure', 'levels', 'trophies', 'settings'];
 function showScreen(id){
   SCREENS.forEach(s => $(s).classList.toggle('show', s === id));
 }
@@ -2100,13 +2517,17 @@ function refreshHome(){
   const done = challengeDone();
   $('btnChallenge').classList.toggle('done', done);
   $('challengeReward').innerHTML = done ? '✓ Feito hoje' : `+${CHALLENGE_REWARD} ${COIN}`;
+  const advDone = Object.keys(save.adv.done).length;
+  $('advSub').textContent = Object.keys(save.adv.regions).length === REGIONS.length ? 'Reino restaurado!'
+    : advDone ? `Fase ${save.adv.unlocked + 1} de ${ADV_TOTAL}` : 'A Jornada de Ônix';
+  $('advEssHome').innerHTML = REGIONS.map((R, r) => `<i class="${save.adv.regions[r] ? 'on' : ''}" style="--rc:${R.color}"></i>`).join('');
   $('relaxSub').textContent = save.relax.done ? `${save.relax.done} ${save.relax.done === 1 ? 'poção' : 'poções'}` : 'Sem placar';
   const got = ACH.filter(a => save.ach[a.id]).length;
   $('trophyDot').hidden = !got; $('trophyDot').textContent = `${got}/${ACH.length}`;
 }
 function openHome(){
   owlHide();
-  ['pause', 'win', 'stuck'].forEach(o => $(o).classList.remove('show'));
+  ['pause', 'win', 'stuck', 'missionFail'].forEach(o => $(o).classList.remove('show'));
   refreshHome();
   showScreen('home');
   setTimeout(openDaily, 350);
@@ -2153,6 +2574,7 @@ function openSettings(){ syncSettings(); showScreen('settings'); }
 $('btnPlay').onclick = () => { click(); play(save.unlocked); };
 $('btnChallenge').onclick = () => { click(); closeScreens(); startChallenge(); };
 $('btnRelaxHome').onclick = () => { click(); openRelax(); };
+$('btnAdvHome').onclick = () => { click(); openAdventure(); };
 $('btnTrophiesHome').onclick = () => { click(); openTrophies(); };
 $('btnTrophiesBack').onclick = () => { click(); openHome(); };
 $('btnLevelsHome').onclick = () => { click(); openLevels(); };
@@ -2163,15 +2585,16 @@ $('btnSettingsBack').onclick = () => { click(); openHome(); };
 $('btnPause').onclick = () => {
   if (busy) return;
   $('pauseText').textContent = mode === 'challenge' ? `Desafio do dia · ${moves} jogadas`
+    : mode === 'adv' ? `${REGIONS[advStage(advIdx).r].name} · fase ${advStage(advIdx).j + 1}`
     : mode === 'relax' ? `Modo relaxante · ${save.relax.done} ${save.relax.done === 1 ? 'poção preparada' : 'poções preparadas'}`
     : `${CHAPTERS[chapterOf(level)].name} · nível ${level} · ${moves} jogadas`;
-  $('pauseLevelsLbl').textContent = mode === 'relax' ? 'Mudar ritmo' : 'Escolher nível';
-  $('pauseRestartLbl').textContent = mode === 'relax' ? 'Recomeçar mistura' : 'Reiniciar nível';
+  $('pauseLevelsLbl').textContent = mode === 'relax' ? 'Mudar ritmo' : mode === 'adv' ? 'Ver mapa' : 'Escolher nível';
+  $('pauseRestartLbl').textContent = mode === 'relax' ? 'Recomeçar mistura' : mode === 'adv' ? 'Reiniciar fase' : 'Reiniciar nível';
   $('pause').classList.add('show');
 };
 $('btnResume').onclick = () => $('pause').classList.remove('show');
 $('btnPauseRestart').onclick = () => { $('pause').classList.remove('show'); restartCurrent(); };
-$('btnPauseLevels').onclick = () => { $('pause').classList.remove('show'); if (mode === 'relax') openRelax(); else openLevels(); };
+$('btnPauseLevels').onclick = () => { $('pause').classList.remove('show'); if (mode === 'relax') openRelax(); else if (mode === 'adv') openMap(); else openLevels(); };
 $('btnPauseHome').onclick = () => openHome();
 
 $('setMusic').onclick = () => {
@@ -2192,7 +2615,7 @@ $('btnReset').onclick = async () => {
   if (!ok) return;
   save = { unlocked:1, coins:0, sound:save.sound, music:save.music, vib:save.vib, noAds:false, owned:['classico'], theme:'classico', sym:save.sym, stars:{},
     daily:save.daily, challenge:{ last:'', count:0 }, ach:{}, stats:{ corks:0, reveals:0, clean:0, bestStreak:0 }, chapters:{},
-    relax:save.relax };
+    relax:save.relax, adv:{ unlocked:0, done:{}, seen:{}, regions:{} } };
   persist(); applyTheme(); startLevel(1); openHome();
   if (realIap()) N.iap.owned().then(applyOwned);
   toast('Progresso apagado');
