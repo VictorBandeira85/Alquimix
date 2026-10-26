@@ -526,6 +526,27 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .node-owl{position:absolute;width:46px;height:46px;left:100%;top:-20px;margin-left:0;pointer-events:none;animation:bob 2s ease-in-out infinite}
 .node:not(:disabled):active{transform:translate(-50%,-50%) scale(.94)}
 
+/* cenários */
+#owl > svg,.stuck-owl,.scene-owl,.node-owl,.adv-owl,.owlsvg{overflow:visible}
+.rg-art{height:118px;margin-bottom:-44px;-webkit-mask-image:linear-gradient(#000 60%, transparent);mask-image:linear-gradient(#000 60%, transparent)}
+.rg-art svg,.scene-art svg,#advBg svg{display:block;width:100%;height:100%}
+.rg-head{position:relative}
+.rg-txt b,.rg-txt small,.rg-txt span{text-shadow:0 2px 6px rgba(0,0,0,.7)}
+.scene-art{position:absolute;left:50%;top:calc(var(--safe-t) + 28px);width:min(440px, calc(100% - 32px));transform:translateX(-50%);
+  aspect-ratio:400/150;max-width:100%;border-radius:24px;overflow:hidden;pointer-events:none;
+  border:1px solid rgba(255,255,255,.12);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+#advBg{position:fixed;left:0;right:0;bottom:0;height:46vh;z-index:0;opacity:0;transition:opacity .5s;pointer-events:none;
+  -webkit-mask-image:linear-gradient(transparent, #000 55%);mask-image:linear-gradient(transparent, #000 55%)}
+#advBg.on{opacity:.3}
+svg .tw{animation:twinkle 2.6s ease-in-out infinite}
+svg .drift{animation:drift 9s ease-in-out infinite alternate}
+svg .pulse{animation:artpulse 2.2s ease-in-out infinite}
+@keyframes drift{to{transform:translateX(26px)}}
+@keyframes artpulse{50%{opacity:.45}}
+.owl-pv{flex:0 0 auto;width:56px;height:58px;display:grid;place-items:end center}
+.adv-card .essences{gap:3px}
+.adv-card .essences i{width:9px;height:9px}
+
 /* aventura: missão no alto do jogo */
 .mission{display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 6px;padding:6px 12px;border-radius:14px;
   background:rgba(20,12,40,.65);border:1px solid var(--line-gold);color:var(--ink);font-weight:700;font-size:14px;line-height:1.25}
@@ -636,7 +657,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
   .layer.drop,.tube.no,.tube.hint .glass,.cork.pop,.tube.done .fill::after,
   .flask .wave,.flask .bub,.halo,.hero-art .flask,.side-tube,.win-stars .ico.on,.overlay.show .card,.screen.show,
   .layer.reveal,.gift,.day.today,.cd-medal .rays,#owl.show svg,.tube.slosh .fill,.stuck-owl,
-  .node.cur,.node-owl,.scene-owl,.scene-box,#sceneText.in{animation:none}
+  .node.cur,.node-owl,.scene-owl,.scene-box,#sceneText.in,svg .tw,svg .drift,svg .pulse{animation:none}
   .tube.no .glass,.tube.no::before{animation:redflash .6s ease-out}
   #motes{display:none}
   .tube{transition:none}
@@ -651,6 +672,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
     <linearGradient id="liqGrad" x1="0" x2="1" y1="0" y2="1">
       <stop offset="0" stop-color="#F06BB4"/><stop offset=".45" stop-color="#9B4DE0"/><stop offset="1" stop-color="#3A7BEB"/>
     </linearGradient>
+    <linearGradient id="crownGrad" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FFE9A8"/><stop offset=".55" stop-color="#D4AF37"/><stop offset="1" stop-color="#8A6510"/></linearGradient>
     <clipPath id="flaskClip"><path d="M49 16H71V55.4A44 44 0 1 1 49 55.4Z"/></clipPath>
   </defs>
   <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
@@ -682,6 +704,9 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
   <symbol id="i-crown" viewBox="0 0 24 24"><path d="M3 18h18l-2-11-5 4-2-7-2 7-5-4z"/><path d="M5 21h14"/></symbol>
   <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
   <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2v20M4.9 7l14.2 10M4.9 17 19.1 7M9 4l3 2 3-2M9 20l3-2 3 2"/></symbol>
+  <symbol id="i-column" viewBox="0 0 24 24"><path d="M5 21h14M6 18h12M7 18V8M17 18V8M10.3 18V8M13.7 18V8M5 8h14l-2-3H7z"/></symbol>
+  <symbol id="i-cauldron" viewBox="0 0 24 24"><path d="M3 9h18M5 9c0 6 3 10 7 10s7-4 7-10M7 19l-1 2M17 19l1 2"/><path d="M9 6c0-1.2 1-2 2-2M14 5.5c0-1 .8-1.5 1.5-2"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a6.8 6.8 0 0 0 11 11z"/></symbol>
   <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
@@ -690,6 +715,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 </svg>
 
 <div id="motes" aria-hidden="true"></div>
+<div id="advBg" aria-hidden="true"></div>
 
 <!-- carregando -->
 <section class="screen show solid" id="loading" aria-label="Carregando">
@@ -834,7 +860,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
         <button class="set-row" id="btnPrivacy" style="display:none"><svg class="ico"><use href="#i-shield"/></svg><span class="lbl">Privacidade dos anúncios</span></button>
         <button class="set-row danger" id="btnReset"><svg class="ico"><use href="#i-trash"/></svg><span class="lbl">Apagar progresso</span></button>
       </div>
-      <p class="version">Alquimix · versão 1.4</p>
+      <p class="version">Alquimix · versão 1.5</p>
     </div>
   </div>
 </section>
@@ -877,6 +903,8 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
     <div id="shopCoinsList"></div>
     <h3>Estilos de frasco</h3>
     <div id="shopThemes"></div>
+    <h3>Visual da Ônix</h3>
+    <div id="shopOwl"></div>
     <button class="btn-plum" id="btnShopRestore"><svg class="ico"><use href="#i-refresh"/></svg>Restaurar compras</button>
     <button class="ghost" id="btnShopClose">Fechar</button>
   </div>
@@ -988,6 +1016,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 </div>
 
 <div class="overlay" id="scene">
+  <div class="scene-art" id="sceneArt"></div>
   <div class="scene-wrap">
     <div class="scene-badge" id="sceneBadge"></div>
     <svg class="scene-owl" viewBox="0 0 64 64" aria-hidden="true"><use href="#owlArt"/></svg>
@@ -1011,7 +1040,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 <div id="achPop" role="status" aria-live="polite"><div class="medal"><svg class="ico"><use href="#i-trophy"/></svg></div><div><small id="achPopReward"></small><b id="achPopName"></b></div></div>
 <div id="owl" role="status" aria-live="polite">
   <svg viewBox="0 0 64 64" aria-hidden="true"><use href="#owlArt"/></svg>
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="owlArt" viewBox="0 0 64 64">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="owlBase" viewBox="0 0 64 64">
     <path d="M17 16 22 6l6 8M47 16 42 6l-6 8" fill="#6E52A8"/>
     <ellipse cx="32" cy="38" rx="21" ry="23" fill="#8B6CC6"/>
     <ellipse cx="32" cy="45" rx="13" ry="14" fill="#E8DDF7"/>
@@ -1024,7 +1053,8 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
     <path d="M29 35l3 5 3-5z" fill="#F4C55B"/>
     <path d="M14 46q-4 8 4 13M50 46q4 8-4 13" stroke="#6E52A8" stroke-width="4" fill="none" stroke-linecap="round"/>
     <path d="M26 61h4M34 61h4" stroke="#F4C55B" stroke-width="3" stroke-linecap="round"/>
-  </symbol></svg>
+  </symbol>
+  <symbol id="owlArt" viewBox="0 0 64 64" overflow="visible"><use href="#owlBase"/><g id="owlAcc"></g></symbol></svg>
   <div class="bubble" id="owlText"></div>
 </div>
 <div class="toast" id="toast" role="status"></div>
@@ -1117,6 +1147,28 @@ const WORDS = [
   ['Remover anúncios', 'Remove ads', 'Quitar anuncios'], ['Apagar tudo', 'Erase everything', 'Borrar todo'], ['Apagar progresso?', 'Erase progress?', '¿Borrar progreso?'],
   ['Progresso apagado', 'Progress erased', 'Progreso borrado'],
   ['Frasco cheio', 'Flask is full', 'Frasco lleno'],
+  ['Geleira Uivante', 'Howling Glacier', 'Glaciar Aullante'], ['Ruínas Submersas', 'Sunken Ruins', 'Ruinas Sumergidas'],
+  ['Coração do Caldeirão', 'Heart of the Cauldron', 'Corazón del Caldero'],
+  ['Essência Prateada', 'Silver Essence', 'Esencia Plateada'], ['Essência Marinha', 'Sea Essence', 'Esencia Marina'],
+  ['Essência Primordial', 'Primordial Essence', 'Esencia Primordial'],
+  ['Visual da Ônix', 'Ônix\'s look', 'Estilo de Ônix'], ['Sem acessório', 'No accessory', 'Sin accesorio'], ['A Ônix de sempre.', 'The usual Ônix.', 'La Ônix de siempre.'],
+  ['Laço de veludo', 'Velvet bow', 'Lazo de terciopelo'], ['Um charme para a cabeça.', 'A charming touch for the head.', 'Un detalle encantador para la cabeza.'],
+  ['Coroa de flores', 'Flower crown', 'Corona de flores'], ['Colhida no Jardim das Ervas.', 'Picked in the Herb Garden.', 'Recogida en el Jardín de Hierbas.'],
+  ['Chapéu de mago', 'Wizard hat', 'Sombrero de mago'], ['Pontudo, estrelado e muito sábio.', 'Pointy, starry and very wise.', 'Puntiagudo, estrellado y muy sabio.'],
+  ['Cachecol de lã', 'Wool scarf', 'Bufanda de lana'], ['Prêmio da Geleira Uivante.', 'Reward from the Howling Glacier.', 'Premio del Glaciar Aullante.'],
+  ['Tiara de pérolas', 'Pearl tiara', 'Tiara de perlas'], ['Prêmio das Ruínas Submersas.', 'Reward from the Sunken Ruins.', 'Premio de las Ruinas Sumergidas.'],
+  ['Coroa de ouro', 'Gold crown', 'Corona de oro'], ['Prêmio do Coração do Caldeirão.', 'Reward from the Heart of the Cauldron.', 'Premio del Corazón del Caldero.'],
+  ['Lenda do caldeirão', 'Legend of the cauldron', 'Leyenda del caldero'], ['Recupere as 8 essências da aventura', 'Recover all 8 essences in the adventure', 'Recupera las 8 esencias de la aventura'],
+  ['Estilista da Ônix', 'Ônix\'s stylist', 'Estilista de Ônix'], ['Tenha 3 acessórios para a Ônix', 'Own 3 accessories for Ônix', 'Ten 3 accesorios para Ônix'],
+  ['Uma explosão no Grande Caldeirão espalhou as essências mágicas pelo reino.', 'An explosion in the Great Cauldron scattered the magic essences across the kingdom.', 'Una explosión en el Gran Caldero esparció las esencias mágicas por el reino.'],
+  ['Espere... o Caldeirão revelou um mapa antigo. Existem mais três essências perdidas!', 'Wait... the Cauldron revealed an ancient map. There are three more lost essences!', 'Espera... el Caldero reveló un mapa antiguo. ¡Hay tres esencias perdidas más!'],
+  ['A Geleira Uivante congelou a Essência Prateada. Os frascos são grandes e o frio não perdoa jogadas extras.', 'The Howling Glacier froze the Silver Essence. The flasks are big and the cold won\'t forgive extra moves.', 'El Glaciar Aullante congeló la Esencia Plateada. Los frascos son grandes y el frío no perdona jugadas de más.'],
+  ['A Essência Prateada! E olha só, um cachecol para o frio. Combina comigo, não acha?', 'The Silver Essence! And look, a scarf for the cold. It suits me, don\'t you think?', '¡La Esencia Plateada! Y mira, una bufanda para el frío. Me queda bien, ¿no crees?'],
+  ['As Ruínas Submersas guardam segredos no fundo do mar. Névoa e frascos pequenos: respire fundo!', 'The Sunken Ruins hide secrets at the bottom of the sea. Mist and small flasks: take a deep breath!', 'Las Ruinas Sumergidas guardan secretos en el fondo del mar. Niebla y frascos pequeños: ¡respira hondo!'],
+  ['A Essência Marinha brilha como pérola. E achei esta tiara no fundo do mar!', 'The Sea Essence shines like a pearl. And I found this tiara at the bottom of the sea!', 'La Esencia Marina brilla como una perla. ¡Y encontré esta tiara en el fondo del mar!'],
+  ['Chegamos ao Coração do Caldeirão. Aqui as oito essências se encontram. É o desafio final!', 'We reached the Heart of the Cauldron. This is where the eight essences meet. It\'s the final challenge!', 'Llegamos al Corazón del Caldero. Aquí se encuentran las ocho esencias. ¡Es el desafío final!'],
+  ['As oito essências estão juntas outra vez! E esta coroa estava no fundo do caldeirão. Posso usar?', 'All eight essences are together again! And this crown was at the bottom of the cauldron. May I wear it?', '¡Las ocho esencias están juntas otra vez! Y esta corona estaba en el fondo del caldero. ¿Puedo usarla?'],
+  ['Com as oito essências, o Grande Caldeirão voltou a brilhar.', 'With all eight essences, the Great Cauldron shines again.', 'Con las ocho esencias, el Gran Caldero volvió a brillar.'],
   ['Comum', 'Common', 'Común'], ['Raro', 'Rare', 'Raro'], ['Épico', 'Epic', 'Épico'], ['Lendário', 'Legendary', 'Legendario'],
   ['Vidro claro', 'Clear glass', 'Vidrio claro'], ['Rolha de cortiça', 'Cork stopper', 'Tapón de corcho'],
   ['Aro listrado', 'Striped rim', 'Borde a rayas'], ['Granulado nas poções', 'Sprinkles in the potions', 'Grageas en las pociones'],
@@ -1320,6 +1372,7 @@ const RULES = [
   [/^(.+) · fase (\d+)$/, '{t1} · stage {2}', '{t1} · fase {2}'],
   [/^(.+) · (\d+)\/(\d+)$/, '{t1} · {2}/{3}', '{t1} · {2}/{3}'],
   [/^Vença em até (\d+) jogadas$/, 'Win in {1} moves or fewer', 'Gana en {1} jugadas o menos'],
+  [/^(.+) para a Ônix!$/, '{t1} for Ônix!', '¡{t1} para Ônix!'],
   [/^Estilo (.+) desbloqueado!$/, '{t1} style unlocked!', '¡Estilo {t1} desbloqueado!'],
   [/^Alquimix · versão (.+)$/, 'Alquimix · version {1}', 'Alquimix · versión {1}']
 ];
@@ -1439,7 +1492,7 @@ const SAVE_KEY = 'alquimix-v1';
 let save = { unlocked:1, coins:0, sound:true, music:true, vib:true, noAds:false, owned:['classico'], theme:'classico', sym:false, stars:{},
   daily:{ last:'', streak:0 }, challenge:{ last:'', count:0 }, ach:{},
   stats:{ corks:0, reveals:0, clean:0, bestStreak:0 }, chapters:{}, relax:{ diff:1, done:0 },
-  adv:{ unlocked:0, done:{}, seen:{}, regions:{} } };
+  adv:{ unlocked:0, done:{}, seen:{}, regions:{} }, owl:{ owned:['none'], wear:'none' } };
 try { const s = JSON.parse(await N.storage.get(SAVE_KEY)); if (s) save = Object.assign(save, s); } catch(e){}
 setLang(save.lang || pickLang());   // sem escolha salva, segue o idioma do aparelho
 function persist(){ N.storage.set(SAVE_KEY, JSON.stringify(save)).catch(() => {}); }
@@ -1553,6 +1606,7 @@ function markSel(){
 }
 function resetBoard(){
   if (typeof finishAnim === 'function') finishAnim();
+  $('advBg').classList.remove('on');
   tapQueue = [];
   history = []; sel = null; moves = 0; undos = 3; extraUsed = false; helped = false;
   lastDrop = null; justDone = null; hint = null; busy = false; hiddenTube = null;
@@ -2327,12 +2381,29 @@ function renderShop(){
     th.appendChild(row);
   });
 }
+function renderOwlShop(){
+  const box = $('shopOwl'); box.innerHTML = '';
+  Object.keys(ACCS).forEach(id => {
+    const a = ACCS[id], owned = id === 'none' || save.owl.owned.includes(id), wearing = save.owl.wear === id;
+    let html, cls, fn = null;
+    if (wearing){ html = 'Em uso'; cls = 'used'; }
+    else if (owned){ html = 'Usar'; cls = 'owned'; fn = () => { save.owl.wear = id; persist(); applyOwl(); renderShop(); }; }
+    else if (a.region !== undefined){ html = `${svgIcon('lock')} Região ${a.region + 1}`; cls = 'used'; }
+    else { html = `${a.cost} ${COIN}`; cls = ''; fn = () => {
+      if (save.coins < a.cost){ toast(`Faltam ${a.cost - save.coins} moedas`); return; }
+      save.coins -= a.cost; save.owl.owned.push(id); save.owl.wear = id; persist(); applyOwl(); renderShop(); render();
+      sfx.win(); toast(`${a.name} para a Ônix!`); checkAch();
+    }; }
+    const left = document.createElement('div'); left.className = 'owl-pv'; left.innerHTML = owlPreview(id, 50);
+    box.appendChild(item(left, a.name, a.desc, html, cls, fn));
+  });
+}
 function unlockTheme(id){
   if (!save.owned.includes(id)) save.owned.push(id);
   save.theme = id; persist(); applyTheme(); renderShop(); render(); toast(`Estilo ${THEMES[id].name} ativado`); sfx.win();
   checkAch();
 }
-function openShop(){ renderShop(); $('shop').classList.add('show'); }
+function openShop(){ renderShop(); renderOwlShop(); $('shop').classList.add('show'); }
 async function restorePurchases(btn){
   if (!realIap()){ toast(N.isNative ? 'Loja indisponível no momento' : 'Modo de teste: nada para restaurar'); return; }
   if (buying) return;
@@ -2408,6 +2479,8 @@ const ACH = [
   { id:'d7',     name:'Fiel ao laboratório',   desc:'Pegue o bônus diário 7 dias seguidos',    goal:7,    reward:100, val:() => save.stats.bestStreak },
   { id:'adv1',   name:'Primeira essência',     desc:'Recupere 1 essência na aventura',         goal:1,    reward:50,  val:() => Object.keys(save.adv.regions).length },
   { id:'adv5',   name:'Herói do reino',        desc:'Recupere as 5 essências da aventura',     goal:5,    reward:300, val:() => Object.keys(save.adv.regions).length },
+  { id:'adv8',   name:'Lenda do caldeirão',    desc:'Recupere as 8 essências da aventura',     goal:8,    reward:600, val:() => Object.keys(save.adv.regions).length },
+  { id:'owl3',   name:'Estilista da Ônix',     desc:'Tenha 3 acessórios para a Ônix',          goal:3,    reward:120, val:() => save.owl.owned.length - 1 },
   { id:'th4',    name:'Colecionador',          desc:'Tenha 4 estilos de frasco',               goal:4,    reward:150, val:() => save.owned.length }
 ];
 let achQueue = [], achShowing = false;
@@ -2460,6 +2533,130 @@ function askConfirm(title, text, okLabel){
   });
 }
 
+/* ---------- cenários das regiões (desenhados em SVG, sem imagens) ---------- */
+// Cada chamada recebe um sufixo próprio para os ids dos degradês não se repetirem na página.
+const ART_SRC = {};
+let artUid = 0;
+function regionArt(r){
+  if (!ART_SRC[r]) ART_SRC[r] = drawRegion(r);
+  return ART_SRC[r].replace(/%U/g, 'a' + (++artUid));
+}
+function drawRegion(r){
+  const R = rng(4242 + r * 99), W = 400, H = 150, f = n => n.toFixed(1);
+  const dots = (n, y0, y1, col, rmax, cls) => Array.from({ length:n }, () =>
+    `<circle${cls ? ` class="${cls}" style="animation-delay:${f(-R() * 3)}s"` : ''} cx="${f(R() * W)}" cy="${f(y0 + R() * (y1 - y0))}" r="${f(.5 + R() * rmax)}" fill="${col}"/>`).join('');
+  const sky = (a, b) => `<defs><linearGradient id="sky%U" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs>` +
+    `<rect width="${W}" height="${H}" fill="url(#sky%U)"/>`;
+  const glow = (x, y, rr, col, o) => `<circle cx="${x}" cy="${y}" r="${rr * 1.9}" fill="${col}" opacity="${o * .15}"/><circle cx="${x}" cy="${y}" r="${rr}" fill="${col}" opacity="${o}"/>`;
+  let g = '';
+  if (r === 0){ // Jardim das Ervas
+    g = sky('#16302E', '#2C5E45') + glow(300, 42, 24, '#FFE9A8', .85) +
+      `<path d="M0 104 Q80 70 170 98 T340 90 T400 96 V150 H0Z" fill="#2E7A4A"/>` +
+      `<path d="M0 124 Q100 100 210 121 T400 117 V150 H0Z" fill="#3BA05A"/>`;
+    const cols = ['#FF7FB0', '#FFE36E', '#FF9F4A', '#B07CF0', '#7FE3FF'];
+    for (let k = 0; k < 11; k++){
+      const x = 14 + k * 37 + R() * 14, y = 96 + R() * 24, c = cols[k % cols.length];
+      g += `<path d="M${f(x)} 150 Q${f(x - 5)} ${f(y + 22)} ${f(x)} ${f(y)}" stroke="#256B33" stroke-width="2.6" fill="none"/>` +
+        `<ellipse cx="${f(x - 6)}" cy="${f(y + 18)}" rx="6" ry="2.6" fill="#4CB863" transform="rotate(-30 ${f(x - 6)} ${f(y + 18)})"/>` +
+        `<ellipse cx="${f(x + 5)}" cy="${f(y + 26)}" rx="6" ry="2.6" fill="#4CB863" transform="rotate(28 ${f(x + 5)} ${f(y + 26)})"/>` +
+        [0, 72, 144, 216, 288].map(a => `<circle cx="${f(x + Math.cos(a * Math.PI / 180) * 4)}" cy="${f(y + Math.sin(a * Math.PI / 180) * 4)}" r="3.2" fill="${c}"/>`).join('') +
+        `<circle cx="${f(x)}" cy="${f(y)}" r="2" fill="#FFF6C8"/>`;
+    }
+    g += dots(12, 26, 110, '#FFF6A8', 1.3, 'tw');
+  } else if (r === 1){ // Minas de Cristal
+    g = sky('#0E1424', '#1C2440') + `<path d="M0 0 H400 V28 Q330 58 280 38 T170 48 T60 32 T0 44Z" fill="#090D18"/>` +
+      `<path d="M0 118 Q100 108 200 120 T400 114 V150 H0Z" fill="#121828"/>`;
+    const crystal = (x, base, h, w, col) => `<path d="M${x - w / 2} ${base} L${f(x - w / 3)} ${f(base - h * .7)} L${x} ${base - h} L${f(x + w / 3)} ${f(base - h * .7)} L${x + w / 2} ${base}Z" fill="${col}"/>` +
+      `<path d="M${x} ${base - h} L${f(x - w / 3)} ${f(base - h * .7)} L${x - w / 2} ${base} L${x} ${base}Z" fill="#fff" opacity=".28"/>`;
+    [[64, '#5FF2E6'], [158, '#8B7BFF'], [330, '#5FF2E6']].forEach(([x, c], k) => {
+      g += glow(x, 108, 22, c, .22);
+      g += crystal(x - 14, 124, 30, 14, c) + crystal(x, 126, 48, 18, c) + crystal(x + 15, 124, 26, 12, k === 1 ? '#5FF2E6' : '#B9F7FF');
+    });
+    g += `<path d="M0 138 H400 M0 145 H400" stroke="#4A5068" stroke-width="2"/>` +
+      Array.from({ length:20 }, (_, k) => `<path d="M${k * 21 + 4} 136 V147" stroke="#3A3428" stroke-width="3"/>`).join('') +
+      glow(250, 66, 6, '#FFC15E', .9) + `<path d="M250 40 V60" stroke="#3A3428" stroke-width="1.5"/>` + dots(16, 20, 118, '#9FFCF4', 1.1, 'tw');
+  } else if (r === 2){ // Pântano das Brumas
+    g = sky('#1C1433', '#3A2A5C') + glow(92, 38, 17, '#EDE6FF', .9) +
+      `<path d="M300 150 V92 Q298 70 284 58 M298 88 Q312 72 330 70 M300 104 Q280 96 268 98 M286 62 Q276 54 272 44" stroke="#120C22" stroke-width="6" fill="none" stroke-linecap="round"/>` +
+      `<rect y="120" width="${W}" height="30" fill="#251A42"/>` +
+      `<path d="M30 132 H90 M140 140 H230 M260 130 H330" stroke="#5A4890" stroke-width="1.5" opacity=".6"/>` +
+      Array.from({ length:26 }, () => { const x = R() * W, h = 14 + R() * 26; return `<path d="M${f(x)} 124 Q${f(x + 3)} ${f(124 - h / 2)} ${f(x + (R() - .5) * 8)} ${f(124 - h)}" stroke="#1A3A2A" stroke-width="2" fill="none"/>`; }).join('') +
+      `<g class="drift"><ellipse cx="120" cy="110" rx="170" ry="14" fill="#C9B8F0" opacity=".2"/><ellipse cx="340" cy="100" rx="140" ry="11" fill="#C9B8F0" opacity=".16"/></g>` +
+      dots(12, 40, 118, '#C9FF8A', 1.2, 'tw');
+  } else if (r === 3){ // Vulcão Rubro
+    g = sky('#2A0A10', '#6E1E16') + `<path d="M0 150 L60 92 L110 120 L150 150Z M280 150 L340 100 L400 126 V150Z" fill="#3A1414"/>` +
+      `<g opacity=".35" fill="#7A6A6A"><circle cx="196" cy="28" r="12"/><circle cx="212" cy="20" r="10"/><circle cx="184" cy="16" r="8"/></g>` +
+      `<path d="M70 150 L172 52 Q200 40 228 52 L330 150Z" fill="#2A0E0E"/>` +
+      `<ellipse class="pulse" cx="200" cy="49" rx="28" ry="7" fill="#FF8A3D"/>` +
+      `<path d="M198 52 Q188 80 204 102 T194 150" stroke="#FF6A2B" stroke-width="8" fill="none" stroke-linecap="round"/>` +
+      `<path d="M198 52 Q188 80 204 102 T194 150" stroke="#FFC15E" stroke-width="3" fill="none" stroke-linecap="round"/>` +
+      dots(18, 20, 120, '#FFB347', 1.3, 'tw');
+  } else if (r === 4){ // Torre das Estrelas
+    g = sky('#0B0822', '#2A1F5A') + dots(46, 0, 110, '#FFFFFF', 1.1, '') + dots(10, 0, 90, '#FFF3C8', 1.4, 'tw') +
+      `<circle cx="330" cy="38" r="16" fill="#FFF3C8"/><circle cx="338" cy="32" r="15" fill="#120D30"/>` +
+      `<path d="M0 132 Q120 116 240 130 T400 126 V150 H0Z" fill="#160F36"/>` +
+      `<path d="M182 150 V74 L200 36 L218 74 V150Z" fill="#1E1542"/><path d="M178 78 H222 L218 72 H182Z" fill="#2E2262"/>` +
+      `<rect x="195" y="88" width="10" height="14" rx="5" fill="#F4C55B"/><rect x="195" y="114" width="10" height="12" rx="5" fill="#F4C55B" opacity=".7"/>` +
+      glow(200, 30, 4, '#FFE9A8', 1) + `<g opacity=".5" fill="#3A2E78"><ellipse cx="80" cy="120" rx="60" ry="10"/><ellipse cx="320" cy="116" rx="70" ry="9"/></g>`;
+  } else if (r === 5){ // Geleira Uivante
+    g = sky('#0B1D36', '#1F4A72') +
+      `<path class="drift" d="M-20 44 Q100 10 200 38 T420 28" stroke="#5EE6C8" stroke-width="18" opacity=".22" fill="none"/>` +
+      `<path d="M-20 62 Q120 34 220 56 T420 50" stroke="#B07CF0" stroke-width="12" opacity=".16" fill="none"/>` +
+      `<path d="M0 150 L70 72 L110 100 L170 46 L240 108 L292 70 L360 118 L400 92 V150Z" fill="#CFE8FF"/>` +
+      `<path d="M170 46 L188 150 H240 L240 108Z M70 72 L86 150 H110 L110 100Z M292 70 L306 150 H360 L360 118Z" fill="#8FB8DD" opacity=".75"/>` +
+      `<path d="M0 150 L50 118 L120 140 L200 112 L280 138 L340 116 L400 140 V150Z" fill="#E8F4FF"/>` + dots(30, 0, 140, '#FFFFFF', 1.2, 'tw');
+  } else if (r === 6){ // Ruínas Submersas
+    g = sky('#04182A', '#0B3E5E') +
+      `<g fill="#9FE8FF" opacity=".08"><path d="M110 0 H150 L104 150 H54Z"/><path d="M230 0 H262 L232 150 H190Z"/><path d="M330 0 H352 L342 150 H312Z"/></g>` +
+      `<path d="M0 128 Q100 118 200 130 T400 124 V150 H0Z" fill="#1C3A44"/>` +
+      [[60, 70], [104, 46], [278, 82], [322, 56]].map(([x, top]) => `<rect x="${x - 9}" y="${top}" width="18" height="${128 - top}" fill="#4D7C92"/>` +
+        `<rect x="${x - 13}" y="${top}" width="26" height="6" fill="#6A9AB0"/><path d="M${x - 4} ${top + 10} V124 M${x + 4} ${top + 10} V124" stroke="#3B6478" stroke-width="2"/>`).join('') +
+      `<rect x="150" y="118" width="46" height="12" rx="3" fill="#4D7C92" transform="rotate(-8 173 124)"/>` +
+      Array.from({ length:9 }, () => { const x = R() * W, h = 20 + R() * 30; return `<path d="M${f(x)} 132 Q${f(x - 8)} ${f(132 - h / 2)} ${f(x + 4)} ${f(132 - h)}" stroke="#2E9A6A" stroke-width="3" fill="none" stroke-linecap="round"/>`; }).join('') +
+      Array.from({ length:14 }, () => `<circle class="tw" cx="${f(R() * W)}" cy="${f(10 + R() * 110)}" r="${f(1.5 + R() * 2.5)}" fill="none" stroke="#CFF6FF" stroke-width="1" opacity=".7"/>`).join('');
+  } else { // Coração do Caldeirão
+    g = sky('#170A2C', '#3D1858') + dots(34, 0, 100, '#FFFFFF', 1, '') +
+      `<path d="M200 106 Q170 70 200 50 T200 4" stroke="#FF8FD8" stroke-width="3" opacity=".35" fill="none"/>`;
+    const ess = ['#3BBF5C', '#26C6C0', '#B07CF0', '#F0524F', '#F4C55B', '#A8DCFF', '#3FB8E0', '#FF8FD8'];
+    ess.forEach((c, k) => { const a = Math.PI * (1.08 + k * .12), x = 200 + Math.cos(a) * 120, y = 98 + Math.sin(a) * 74; g += glow(f(x), f(y), 5.5, c, .95); });
+    g += `<ellipse class="pulse" cx="200" cy="104" rx="56" ry="9" fill="#5EE6C8" opacity=".75"/>` +
+      `<path d="M138 110 Q138 150 200 150 Q262 150 262 110 Z" fill="#1A1028"/><ellipse cx="200" cy="110" rx="64" ry="9" fill="#2A1C40"/>` +
+      `<path d="M150 146 L142 150 M250 146 L258 150" stroke="#1A1028" stroke-width="6"/>`;
+  }
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMax slice" aria-hidden="true">${g}</svg>`;
+}
+
+/* ---------- visual da Ônix: acessórios ---------- */
+// region: prêmio exclusivo da aventura (índice da região); cost: compra com moedas
+const flowerCrown = () => Array.from({ length:7 }, (_, k) => {
+  const x = 18 + k * 4.7, y = 15 - 4 * (1 - Math.pow((x - 32) / 14, 2)), c = ['#FF7FB0', '#FFE36E', '#FF9F4A', '#B07CF0'][k % 4];
+  return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="${c}"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.1" fill="#FFF6C8"/>`;
+}).join('');
+const pearlTiara = () => Array.from({ length:9 }, (_, k) => {
+  const t = k / 8, x = (1 - t) * (1 - t) * 19 + 2 * t * (1 - t) * 32 + t * t * 45, y = (1 - t) * (1 - t) * 17 + 2 * t * (1 - t) * 3 + t * t * 17;
+  return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.9" fill="#F7F2FF" stroke="#BBA8E0" stroke-width=".5"/>`;
+}).join('') + `<path d="M32 3.5l2.4 3.5-2.4 3.5-2.4-3.5z" fill="#FF6FA5"/>`;
+const ACCS = {
+  none:    { name:'Sem acessório',   desc:'A Ônix de sempre.',                svg:'' },
+  laco:    { name:'Laço de veludo',  desc:'Um charme para a cabeça.',          cost:200,
+    svg:'<path d="M43 9 35.5 4.5v9z M43 9l7.5-4.5v9z" fill="#FF6FA5"/><circle cx="43" cy="9" r="2.4" fill="#D64584"/>' },
+  flores:  { name:'Coroa de flores', desc:'Colhida no Jardim das Ervas.',      cost:300,
+    svg:'<path d="M17 15 Q32 7 47 15" stroke="#3E8E3A" stroke-width="2" fill="none"/>' + flowerCrown() },
+  chapeu:  { name:'Chapéu de mago',  desc:'Pontudo, estrelado e muito sábio.', cost:400,
+    svg:'<ellipse cx="32" cy="15.5" rx="16" ry="3.2" fill="#4A3290"/><path d="M20 15 Q32 18.5 44 15 L36 -12 Q33 -14 31 -10 Z" fill="#5B3FA8"/>' +
+      '<path d="M20.5 14 Q32 17.5 43.5 14" stroke="#F4C55B" stroke-width="2.4" fill="none"/>' +
+      '<path d="M33 1l.9 1.9 2 .3-1.5 1.4.4 2-1.8-1-1.8 1 .4-2-1.5-1.4 2-.3z" fill="#F4C55B"/><circle cx="27" cy="8" r="1" fill="#FFE9A8"/><circle cx="35.5" cy="-6" r=".9" fill="#FFE9A8"/>' },
+  cachecol:{ name:'Cachecol de lã',  desc:'Prêmio da Geleira Uivante.',        region:5,
+    svg:'<path d="M12 39 Q32 49 52 39 L52 45 Q32 55 12 45 Z" fill="#E8394B"/><path d="M18 41.5v5.6M25 43.6v5.6M32 44.3v5.6M39 43.6v5.6M46 41.5v5.6" stroke="#fff" stroke-width="2" opacity=".85"/>' +
+      '<path d="M41 46l4 13 6-1.8-3-12z" fill="#E8394B"/><path d="M43 51.5l5.6-1.5M44.4 55.6l5.6-1.6" stroke="#fff" stroke-width="1.6" opacity=".85"/>' },
+  tiara:   { name:'Tiara de pérolas', desc:'Prêmio das Ruínas Submersas.',     region:6, svg:pearlTiara() },
+  coroa:   { name:'Coroa de ouro',   desc:'Prêmio do Coração do Caldeirão.',   region:7,
+    svg:'<path d="M20 16V5l5.5 5L29 2l3 6 3-6 3.5 8L44 5v11z" fill="url(#crownGrad)" stroke="#8A6510" stroke-width="1"/>' +
+      '<circle cx="32" cy="12" r="2" fill="#E0115F"/><circle cx="24.5" cy="13" r="1.4" fill="#26C6C0"/><circle cx="39.5" cy="13" r="1.4" fill="#26C6C0"/>' }
+};
+function applyOwl(){ const a = ACCS[save.owl.wear] || ACCS.none; $('owlAcc').innerHTML = a.svg; }
+const owlPreview = (id, size) => `<svg class="owlsvg" viewBox="0 0 64 64" width="${size}" height="${size}" aria-hidden="true"><use href="#owlBase"/>${ACCS[id].svg}</svg>`;
+
 /* ---------- modo aventura: A Jornada de Ônix ---------- */
 // 5 regiões com 8 fases cada. Cada fase tem uma missão; a última é o chefe da região.
 const REGIONS = [
@@ -2467,7 +2664,10 @@ const REGIONS = [
   { name:'Minas de Cristal',   essence:'Essência Azul',     color:'#26C6C0', icon:'gem',     k:[5, 7], cap:5, theme:'cristal' },
   { name:'Pântano das Brumas', essence:'Essência Violeta',  color:'#B07CF0', icon:'mist',    k:[6, 8], mystery:.35, theme:'neon' },
   { name:'Vulcão Rubro',       essence:'Essência Rubra',    color:'#F0524F', icon:'volcano', k:[7, 9], cap:3, theme:'vulcao' },
-  { name:'Torre das Estrelas', essence:'Essência Dourada',  color:'#F4C55B', icon:'tower',   k:[8, 10], mixed:true }
+  { name:'Torre das Estrelas', essence:'Essência Dourada',  color:'#F4C55B', icon:'tower',   k:[8, 10], mixed:true },
+  { name:'Geleira Uivante',    essence:'Essência Prateada', color:'#A8DCFF', icon:'snow',    k:[8, 9], cap:5, tight:.2, acc:'cachecol' },
+  { name:'Ruínas Submersas',   essence:'Essência Marinha',  color:'#3FB8E0', icon:'column',  k:[8, 10], cap:3, mystery:.45, acc:'tiara' },
+  { name:'Coração do Caldeirão', essence:'Essência Primordial', color:'#FF8FD8', icon:'cauldron', k:[9, 10], mixed:true, mysteryMix:.5, tight:.25, acc:'coroa', coins:1500 }
 ];
 const PER_REGION = 8, ADV_TOTAL = REGIONS.length * PER_REGION;
 const ADV_FINAL_COINS = 1000, ADV_DUP_COINS = 300;
@@ -2480,8 +2680,8 @@ function advStage(i){
   if (R.cap === 3 && j % 2 === 0) cap = 3;
   if (R.mixed) cap = [4, 5, 4, 3, 4, 5, 3, 4][j];
   const k = Math.min(cap === 5 ? 8 : 10, R.k[0] + Math.round((R.k[1] - R.k[0]) * j / (PER_REGION - 1)));
-  const mystery = R.mystery ? R.mystery + j * .03 : R.mixed && j % 2 ? .4 : 0;
-  return { r, j, k, cap, mystery, boss:type === 'boss', limit:type === 'moves' || type === 'boss',
+  const mystery = R.mystery ? R.mystery + j * .03 : R.mixed && j % 2 ? (R.mysteryMix || .4) : 0;
+  return { r, j, k, cap, mystery, tight:R.tight, boss:type === 'boss', limit:type === 'moves' || type === 'boss',
     noHelp:type === 'nohelp' || (type === 'boss' && r % 2 === 0) };
 }
 const advCache = {};
@@ -2491,7 +2691,7 @@ function makeAdv(i){
     const g = generate(70000 + i * 131, st.k, st.cap);
     const r = rng(70000 + i * 977);
     const mask = g.tubes.map(t => t.map((c, k) => st.mystery > 0 && k < t.length - 1 && r() < st.mystery));
-    const limit = st.limit ? g.par + Math.max(3, Math.round(g.par * (st.mystery ? .5 : .3))) : 0;
+    const limit = st.limit ? g.par + Math.max(3, Math.round(g.par * (st.mystery ? .5 : st.tight || .3))) : 0;
     advCache[i] = { tubes:g.tubes, mask, limit, par:g.par };
   }
   CAP = st.cap;
@@ -2533,6 +2733,7 @@ function startAdv(i){
     owlHide(); revealedThisLevel = false;
     $('chapterName').textContent = REGIONS[st.r].name;
     $('lvlTitle').textContent = `Fase ${st.r + 1}-${st.j + 1}`;
+    $('advBg').innerHTML = regionArt(st.r); $('advBg').classList.add('on');
     showMission();
     render();
   };
@@ -2587,8 +2788,13 @@ function advContinue(toNext){
   if ((advIdx + 1) % INTER_EVERY === 0) interstitial(() => startAdv(next)); else startAdv(next);
 }
 function giveRegionReward(r){
-  const theme = REGIONS[r].theme;
-  if (theme && !save.owned.includes(theme)){
+  const R = REGIONS[r], theme = R.theme;
+  if (R.acc){
+    if (!save.owl.owned.includes(R.acc)) save.owl.owned.push(R.acc);
+    save.owl.wear = R.acc; applyOwl();
+    if (R.coins){ save.coins += R.coins; sfx.coin(); }
+    persist(); toast(`${ACCS[R.acc].name} para a Ônix!`);
+  } else if (theme && !save.owned.includes(theme)){
     save.owned.push(theme); persist();
     toast(`Estilo ${THEMES[theme].name} desbloqueado!`);
   } else {
@@ -2602,7 +2808,7 @@ function giveRegionReward(r){
 /* cenas: falas da Ônix, uma por toque */
 const SCENES = {
   prologue:['Olá! Eu sou Ônix, a coruja guardiã deste laboratório.',
-            'Uma explosão no Grande Caldeirão espalhou as cinco essências mágicas pelo reino.',
+            'Uma explosão no Grande Caldeirão espalhou as essências mágicas pelo reino.',
             'Sem elas, as cores do mundo vão desbotar. Vamos buscá-las juntos?'],
   in0:['O Jardim das Ervas guarda a Essência Verde. As plantas daqui misturaram tudo!',
        'Algumas fases têm missões especiais. Fique de olho no alvo no alto da tela.'],
@@ -2614,8 +2820,15 @@ const SCENES = {
   in3:['No Vulcão Rubro, os frascos são pequenos e o calor apressa tudo. Conte cada jogada!'],
   out3:['A Essência Rubra está salva. E minhas penas também, ufa!'],
   in4:['A Torre das Estrelas guarda a última essência. Aqui tem de tudo: névoa, pressa e frascos de todo tamanho.'],
-  out4:['A Essência Dourada! Agora temos as cinco.'],
-  epilogue:['Com as cinco essências, o Grande Caldeirão voltou a brilhar.',
+  out4:['A Essência Dourada! Agora temos as cinco.',
+        'Espere... o Caldeirão revelou um mapa antigo. Existem mais três essências perdidas!'],
+  in5:['A Geleira Uivante congelou a Essência Prateada. Os frascos são grandes e o frio não perdoa jogadas extras.'],
+  out5:['A Essência Prateada! E olha só, um cachecol para o frio. Combina comigo, não acha?'],
+  in6:['As Ruínas Submersas guardam segredos no fundo do mar. Névoa e frascos pequenos: respire fundo!'],
+  out6:['A Essência Marinha brilha como pérola. E achei esta tiara no fundo do mar!'],
+  in7:['Chegamos ao Coração do Caldeirão. Aqui as oito essências se encontram. É o desafio final!'],
+  out7:['As oito essências estão juntas outra vez! E esta coroa estava no fundo do caldeirão. Posso usar?'],
+  epilogue:['Com as oito essências, o Grande Caldeirão voltou a brilhar.',
             'O reino recuperou suas cores graças a você, Mestre Alquimista.',
             'Volte quando quiser: sempre há poções para preparar.']
 };
@@ -2626,6 +2839,7 @@ function playScene(key, then){
   const R = r !== null ? REGIONS[r] : null;
   $('scene').style.setProperty('--rc', R ? R.color : '#F4C55B');
   $('sceneBadge').innerHTML = R ? `${svgIcon(R.icon)}<span>${R.name}</span>` : `${svgIcon('star', true)}<span>A Jornada de Ônix</span>`;
+  $('sceneArt').innerHTML = regionArt(r !== null ? r : REGIONS.length - 1);
   owlHide();
   $('scene').classList.add('show');
   showSceneLine();
@@ -2653,7 +2867,10 @@ function openAdventure(){
   if (!save.adv.seen.prologue){ save.adv.seen.prologue = true; persist(); playScene('prologue', openMap); }
   else openMap();
 }
+// quem terminou a última fase antes de existirem regiões novas continua de onde parou
+function fixAdvProgress(){ while (save.adv.done[save.adv.unlocked] && save.adv.unlocked + 1 < ADV_TOTAL) save.adv.unlocked++; }
 function openMap(){
+  fixAdvProgress();
   ['pause', 'win', 'stuck', 'missionFail'].forEach(o => $(o).classList.remove('show'));
   owlHide();
   const got = REGIONS.filter((_, r) => save.adv.regions[r]).length;
@@ -2677,6 +2894,7 @@ function openMap(){
         (isCur ? `<svg class="node-owl" viewBox="0 0 64 64"><use href="#owlArt"/></svg>` : '') + `</button>`;
     }).join('');
     return `<section class="region${open ? '' : ' closed'}${save.adv.regions[r] ? ' cleared' : ''}" style="--rc:${R.color};--rc-bg:${hexA(R.color, .16)};--rc-line:${hexA(R.color, .45)}">` +
+      `<div class="rg-art">${regionArt(r)}</div>` +
       `<div class="rg-head"><span class="rg-icon">${svgIcon(R.icon)}</span><span class="rg-txt"><small>Região ${r + 1}</small><b>${R.name}</b>` +
       `<span>${R.essence} · ${done}/${PER_REGION}</span></span>${save.adv.regions[r] ? `<span class="rg-ess"></span>` : open ? '' : svgIcon('lock')}</div>` +
       `<div class="rg-path" style="height:${H}px"><svg viewBox="0 0 100 ${H}" preserveAspectRatio="none" aria-hidden="true">` +
@@ -2801,7 +3019,8 @@ $('btnReset').onclick = async () => {
   if (!ok) return;
   save = { unlocked:1, coins:0, sound:save.sound, music:save.music, vib:save.vib, noAds:false, owned:['classico'], theme:'classico', sym:save.sym, stars:{},
     daily:save.daily, challenge:{ last:'', count:0 }, ach:{}, stats:{ corks:0, reveals:0, clean:0, bestStreak:0 }, chapters:{},
-    relax:save.relax, adv:{ unlocked:0, done:{}, seen:{}, regions:{} } };
+    relax:save.relax, adv:{ unlocked:0, done:{}, seen:{}, regions:{} }, owl:{ owned:['none'], wear:'none' } };
+  applyOwl();
   persist(); applyTheme(); startLevel(1); openHome();
   if (realIap()) N.iap.owned().then(applyOwned);
   toast('Progresso apagado');
@@ -2811,6 +3030,7 @@ $('btnPrivacy').onclick = () => N.ads.showPrivacyOptions();
 window.addEventListener('resize', () => { if (!busy) render(); });
 
 /* ---------- abrir o jogo ---------- */
+applyOwl(); fixAdvProgress();
 $('modeNote').textContent = N.isNative ? ''
   : 'Modo navegador: anúncios e compras são simulados.';
 applyTheme();
